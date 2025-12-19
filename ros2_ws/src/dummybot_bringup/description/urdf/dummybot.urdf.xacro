@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="dummybot">
+
+  <!-- Include ros2_control xacro -->
+  <xacro:include filename="$(find dummybot_bringup)/description/urdf/dummybot.ros2_control.xacro"/>
+
+  <!-- Properties -->
+  <xacro:property name="use_mock_hardware" value="false"/>
+  
+  <!-- Robot dimensions (from ESP32 config.h) -->
+  <xacro:property name="wheel_radius" value="0.0325"/>        <!-- 65mm / 2 -->
+  <xacro:property name="wheel_width" value="0.026"/>          <!-- 26mm width -->
+  <xacro:property name="wheel_separation" value="0.3863"/>    <!-- Lx: 386.3mm -->
+  <xacro:property name="wheelbase" value="0.37232"/>          <!-- Ly: 372.32mm -->
+  
+  <xacro:property name="base_length" value="0.40"/>
+  <xacro:property name="base_width" value="0.35"/>
+  <xacro:property name="base_height" value="0.15"/>
+  
+  <!-- Serial configuration -->
+  <xacro:property name="serial_port" value="/dev/ttyUSB0"/>
+  <xacro:property name="serial_baud" value="115200"/>
+  <xacro:property name="ticks_per_revolution" value="1760"/>
+
+  <!-- Materials -->
+  <material name="black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+  
+  <material name="dark_grey">
+    <color rgba="0.2 0.2 0.2 1.0"/>
+  </material>
+  
+  <material name="red">
+    <color rgba="0.8 0.0 0.0 1.0"/>
+  </material>
+
+  <!-- Base Link (robot chassis) -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="${base_length} ${base_width} ${base_height}"/>
+      </geometry>
+      <material name="dark_grey"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="${base_length} ${base_width} ${base_height}"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="5.0"/>
+      <inertia ixx="0.0833" ixy="0.0" ixz="0.0" 
+               iyy="0.1042" iyz="0.0" 
+               izz="0.1667"/>
+    </inertial>
+  </link>
+
+  <!-- Base Footprint (for navigation) -->
+  <link name="base_footprint"/>
+  
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Wheel Macro -->
+  <xacro:macro name="wheel" params="prefix x y">
+    
+    <link name="${prefix}_wheel_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <material name="black"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.5"/>
+        <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+                 iyy="0.0001" iyz="0.0"
+                 izz="0.0001"/>
+      </inertial>
+    </link>
+
+    <joint name="${prefix}_wheel_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="${prefix}_wheel_link"/>
+      <origin xyz="${x} ${y} 0" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+    
+  </xacro:macro>
+
+  <!-- Instantiate 4 wheels -->
+  <xacro:wheel prefix="front_left"  x="${wheelbase/2}"  y="${wheel_separation/2}"/>
+  <xacro:wheel prefix="front_right" x="${wheelbase/2}"  y="${-wheel_separation/2}"/>
+  <xacro:wheel prefix="rear_left"   x="${-wheelbase/2}" y="${wheel_separation/2}"/>
+  <xacro:wheel prefix="rear_right"  x="${-wheelbase/2}" y="${-wheel_separation/2}"/>
+
+  <!-- Include ros2_control -->
+  <xacro:dummybot_ros2_control 
+    name="DummyBotSystem"
+    serial_port="${serial_port}"
+    serial_baud="${serial_baud}"
+    wheel_radius="${wheel_radius}"
+    wheel_separation="${wheel_separation}"
+    ticks_per_revolution="${ticks_per_revolution}"/>
+
+</robot>

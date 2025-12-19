@@ -1,0 +1,77 @@
+# DummyBot Robot Controllers Configuration
+# ESP32-based 4WD robot with L298N motor drivers
+
+controller_manager:
+  ros__parameters:
+    update_rate: 30  # Hz (matches ESP32 PID rate)
+    controller_timeout: 0.1 
+    use_sim_time: False
+    
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+    
+    diff_drive_controller:
+      type: diff_drive_controller/DiffDriveController
+
+# Joint State Broadcaster
+joint_state_broadcaster:
+  ros__parameters:
+    publish_rate: 30.0
+    joints:
+      - front_left_wheel_joint
+      - front_right_wheel_joint
+      - rear_left_wheel_joint
+      - rear_right_wheel_joint
+
+# Diff Drive Controller
+diff_drive_controller:
+  ros__parameters:
+    use_sim_time: False
+    
+    # Wheel configuration
+    left_wheel_names: ["front_left_wheel_joint", "rear_left_wheel_joint"]
+    right_wheel_names: ["front_right_wheel_joint", "rear_right_wheel_joint"]
+    wheels_per_side: 2
+    
+    # Robot dimensions (from ESP32 config.h)
+    wheel_separation: 0.3863      # Lx: 386.3mm
+    wheel_radius: 0.0325          # 65mm diameter / 2 = 32.5mm
+    
+    # Wheel multipliers (for calibration fine-tuning if needed)
+    wheel_separation_multiplier: 1.0
+    left_wheel_radius_multiplier: 1.0
+    right_wheel_radius_multiplier: 1.0
+    
+    # Publishing
+    publish_rate: 30.0
+    odom_frame_id: odom
+    base_frame_id: base_link
+    pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+    twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+    
+    # Feedback settings
+    open_loop: false
+    enable_odom_tf: true
+    position_feedback: true
+    velocity_rolling_window_size: 10
+    
+    # Command timeout
+    cmd_vel_timeout: 0.5
+    use_stamped_vel: false
+    
+    # Velocity and acceleration limits
+    linear.x.has_velocity_limits: true
+    linear.x.has_acceleration_limits: true
+    linear.x.has_jerk_limits: false
+    linear.x.max_velocity: 1.0
+    linear.x.min_velocity: -1.0
+    linear.x.max_acceleration: 1.0
+    linear.x.min_acceleration: -1.0
+    
+    angular.z.has_velocity_limits: true
+    angular.z.has_acceleration_limits: true
+    angular.z.has_jerk_limits: false
+    angular.z.max_velocity: 20.0
+    angular.z.min_velocity: -20.0
+    angular.z.max_acceleration: 1.2
+    angular.z.min_acceleration: -1.2

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<library path="dummybot_hardware_interface">
+  <class name="dummybot_hardware/DummyBotHardwareInterface"
+         type="dummybot_hardware::DummyBotHardwareInterface"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      DummyBot Hardware Interface for ESP32-based 4WD robot with L298N motor drivers.
+      Communicates via serial protocol with ESP32 to control 4 independent motors
+      and read encoder feedback.
+    </description>
+  </class>
+</library>

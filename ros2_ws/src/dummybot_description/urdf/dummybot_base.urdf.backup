@@ -1,0 +1,376 @@
+<?xml version="1.0"?>
+<robot name="dummybot">
+
+  <!-- Material definitions -->
+  <material name="blue">
+    <color rgba="0.2 0.2 0.8 1.0"/>
+  </material>
+  
+  <material name="black">
+    <color rgba="0.1 0.1 0.1 1.0"/>
+  </material>
+  
+  <material name="gray">
+    <color rgba="0.5 0.5 0.5 1.0"/>
+  </material>
+
+  <!-- Base footprint - reference frame on ground -->
+  <link name="base_footprint"/>
+
+  <!-- Base link - main platform -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0.025" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.432 0.384 0.05"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.025" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.432 0.384 0.05"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0.025" rpy="0 0 0"/>
+      <mass value="5.0"/>
+      <inertia ixx="0.0641" ixy="0.0" ixz="0.0" 
+               iyy="0.0783" iyz="0.0" 
+               izz="0.1404"/>
+    </inertial>
+  </link>
+
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Motor mount + motor assemblies (4x) -->
+  
+  <!-- Front Left Motor Mount -->
+  <link name="motor_mount_front_left">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04934 0.0398 0.046"/>
+      </geometry>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04934 0.0398 0.046"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.3"/>
+      <inertia ixx="0.000062" ixy="0.0" ixz="0.0"
+               iyy="0.000071" iyz="0.0"
+               izz="0.000038"/>
+    </inertial>
+  </link>
+
+  <joint name="motor_mount_front_left_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="motor_mount_front_left"/>
+    <!-- X: half base length - 46mm - half mount length = 0.216 - 0.046 - 0.024670 = 0.14533 -->
+    <!-- Y: half base width - half mount width = 0.192 - 0.0199 = 0.1721 -->
+    <origin xyz="0.14533 0.1721 -0.023" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Front Right Motor Mount -->
+  <link name="motor_mount_front_right">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04934 0.0398 0.046"/>
+      </geometry>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04934 0.0398 0.046"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.3"/>
+      <inertia ixx="0.000062" ixy="0.0" ixz="0.0"
+               iyy="0.000071" iyz="0.0"
+               izz="0.000038"/>
+    </inertial>
+  </link>
+
+  <joint name="motor_mount_front_right_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="motor_mount_front_right"/>
+    <origin xyz="0.14533 -0.1721 -0.023" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Rear Left Motor Mount -->
+  <link name="motor_mount_rear_left">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04934 0.0398 0.046"/>
+      </geometry>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04934 0.0398 0.046"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.3"/>
+      <inertia ixx="0.000062" ixy="0.0" ixz="0.0"
+               iyy="0.000071" iyz="0.0"
+               izz="0.000038"/>
+    </inertial>
+  </link>
+
+  <joint name="motor_mount_rear_left_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="motor_mount_rear_left"/>
+    <!-- X: -(half base length - 46mm - half mount length) = -0.14533 -->
+    <origin xyz="-0.14533 0.1721 -0.023" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Rear Right Motor Mount -->
+  <link name="motor_mount_rear_right">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04934 0.0398 0.046"/>
+      </geometry>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04934 0.0398 0.046"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.3"/>
+      <inertia ixx="0.000062" ixy="0.0" ixz="0.0"
+               iyy="0.000071" iyz="0.0"
+               izz="0.000038"/>
+    </inertial>
+  </link>
+
+  <joint name="motor_mount_rear_right_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="motor_mount_rear_right"/>
+    <origin xyz="-0.14533 -0.1721 -0.023" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Wheel links (4x mecanum wheels) -->
+  
+  <!-- Front Left Wheel -->
+  <link name="wheel_front_left">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.037"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.037"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.000233" ixy="0.0" ixz="0.0"
+               iyy="0.000233" iyz="0.0"
+               izz="0.0004"/>
+    </inertial>
+  </link>
+
+  <joint name="wheel_front_left_joint" type="continuous">
+    <parent link="motor_mount_front_left"/>
+    <child link="wheel_front_left"/>
+    <!-- Shaft position: center of mount width, 16.19mm down from base, 11mm outward -->
+    <!-- Y offset from mount center: +half mount width + shaft length + half wheel width -->
+    <!-- Y: 0.0199 + 0.011 + 0.0185 = 0.0494 -->
+    <!-- Z offset: -mount half height - (base to shaft distance - mount half height) -->
+    <!-- Z: -0.023 - (0.01619 - 0.023) = -0.00919 -->
+    <origin xyz="0 0.0494 -0.00919" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="10.0" velocity="10.0"/>
+  </joint>
+
+  <!-- Front Right Wheel -->
+  <link name="wheel_front_right">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.037"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.037"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.000233" ixy="0.0" ixz="0.0"
+               iyy="0.000233" iyz="0.0"
+               izz="0.0004"/>
+    </inertial>
+  </link>
+
+  <joint name="wheel_front_right_joint" type="continuous">
+    <parent link="motor_mount_front_right"/>
+    <child link="wheel_front_right"/>
+    <!-- Y offset is negative (inward): -(half mount width + shaft length + half wheel width) -->
+    <origin xyz="0 -0.0494 -0.00919" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="10.0" velocity="10.0"/>
+  </joint>
+
+  <!-- Rear Left Wheel -->
+  <link name="wheel_rear_left">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.037"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.037"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.000233" ixy="0.0" ixz="0.0"
+               iyy="0.000233" iyz="0.0"
+               izz="0.0004"/>
+    </inertial>
+  </link>
+
+  <joint name="wheel_rear_left_joint" type="continuous">
+    <parent link="motor_mount_rear_left"/>
+    <child link="wheel_rear_left"/>
+    <origin xyz="0 0.0494 -0.00919" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="10.0" velocity="10.0"/>
+  </joint>
+
+  <!-- Rear Right Wheel -->
+  <link name="wheel_rear_right">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.037"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.037"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.000233" ixy="0.0" ixz="0.0"
+               iyy="0.000233" iyz="0.0"
+               izz="0.0004"/>
+    </inertial>
+  </link>
+
+  <joint name="wheel_rear_right_joint" type="continuous">
+    <parent link="motor_mount_rear_right"/>
+    <child link="wheel_rear_right"/>
+    <origin xyz="0 -0.0494 -0.00919" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="10.0" velocity="10.0"/>
+  </joint>
+
+  <!-- ========================================== -->
+  <!-- CAMERA SECTION (COMMENTED OUT FOR NOW)    -->
+  <!-- ========================================== -->
+  <!--
+  <link name="camera_mount">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.025454382 0.05 0.055514729"/>
+      </geometry>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.025454382 0.05 0.055514729"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.000026" ixy="0.0" ixz="0.0"
+               iyy="0.000014" iyz="0.0"
+               izz="0.000021"/>
+    </inertial>
+  </link>
+
+  <joint name="camera_mount_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="camera_mount"/>
+    <origin xyz="0.2287272 0 0.0527574" rpy="0 0 0"/>
+  </joint>
+
+  <link name="camera_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.08 0.02"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.05"/>
+      <inertia ixx="0.000003" ixy="0.0" ixz="0.0"
+               iyy="0.000001" iyz="0.0"
+               izz="0.000003"/>
+    </inertial>
+  </link>
+
+  <joint name="camera_joint" type="fixed">
+    <parent link="camera_mount"/>
+    <child link="camera_link"/>
+    <origin xyz="0.0227272 0 0.0377574" rpy="0 0 0"/>
+  </joint>
+
+  <link name="camera_optical_frame"/>
+
+  <joint name="camera_optical_joint" type="fixed">
+    <parent link="camera_link"/>
+    <child link="camera_optical_frame"/>
+    <origin xyz="0 0 0" rpy="-1.5708 0 -1.5708"/>
+  </joint>
+  -->
+
+</robot>

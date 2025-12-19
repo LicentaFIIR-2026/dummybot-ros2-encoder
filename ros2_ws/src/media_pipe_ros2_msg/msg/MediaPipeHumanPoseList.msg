@@ -1,0 +1,2 @@
+MediaPipeHumanPose human_pose
+int32 num_humans

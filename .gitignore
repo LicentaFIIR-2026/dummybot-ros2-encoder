@@ -1,0 +1,26 @@
+# ROS2
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+*.pyc
+__pycache__/
+
+# Arduino/PlatformIO
+firmware/esp32/build/
+firmware/esp32/.pio/
+*.bin
+*.elf
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+*.egg-info/
+dist/

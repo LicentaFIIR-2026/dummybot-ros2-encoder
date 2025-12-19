@@ -1,0 +1,185 @@
+Documentare Finală - DummyBot Odometrie Reală
+Rezumat Proiect
+Am implementat cu succes un sistem complet de odometrie reală pentru robotul DummyBot, înlocuind odometria fake anterioară. Sistemul integrează 4 motoare DC cu encodere, control PID pe ESP32, și interfață hardware ROS2 pentru navigație autonomă.
+
+Specificații Hardware
+Roți și Encodere
+
+Diametru roți: 65mm (rază 32.5mm)
+Circumferință: 0.2042m
+Wheelbase: Lx=0.3863m, Ly=0.37232m
+Tip drive: Skid-steer (4WD)
+Encodere: AB Dual Phase Hall, 11 PPR base
+Quadrature: 4x multiplicare
+Gear ratio: 40:1
+Ticks per revolution: 1760
+Rezoluție: 0.116mm per tick
+
+Motoare și Drivere
+
+Motoare: 4× DC cu encodere integrate, gear ratio 40:1
+Drivere: 2× L298N dual H-bridge
+
+Driver 1: Controlează FL + RL (stânga)
+Driver 2: Controlează FR + RR (dreapta)
+
+
+PWM: 20kHz, 8-bit resolution (0-255)
+
+
+Configurație Pinout ESP32
+Driver 1 - Motoare STÂNGA (FL + RL)
+
+ENA_L: GPIO 13 (PWM pentru FL)
+IN1_L: GPIO 12 (direcție FL)
+IN2_L: GPIO 14 (direcție FL)
+IN3_L: GPIO 27 (direcție RL)
+IN4_L: GPIO 26 (direcție RL)
+ENB_L: GPIO 25 (PWM pentru RL)
+
+Driver 2 - Motoare DREAPTA (FR + RR)
+
+ENA_R: GPIO 19 (PWM pentru FR)
+IN1_R: GPIO 18 (nefolosit - defect)
+IN2_R: GPIO 5 (direcție FR)
+IN3_R: GPIO 4 (direcție RR)
+IN4_R: GPIO 2 (direcție RR)
+ENB_R: GPIO 15 (PWM pentru RR)
+
+Encodere (doar 4 fire per encoder)
+Firele folosite: Blue (+3.3V), Black (GND), Yellow (A), Green (B)
+Firele Red/White NU sunt conectate (făceau rezistență electrică)
+
+FL: A=GPIO32, B=GPIO35 (Yellow/Green inversate fizic)
+FR: A=GPIO33, B=GPIO21 (Yellow/Green inversate fizic)
+RL: A=GPIO17, B=GPIO16
+RR: A=GPIO23, B=GPIO22
+
+
+Arhitectură Software ESP32
+Fișiere Create (9 total)
+Locație: ~/Arduino/DummyBot_ESP32_Bridge/
+
+config.h (4564 bytes) - Configurare centralizată
+
+Definiri pini GPIO
+Parametri roți și encodere
+Setări PID și PWM
+Flag-uri debug
+
+
+commands.h (2307 bytes) - Protocol serial ASCII
+
+Definiri comenzi și constante
+Documentație protocol
+
+
+motor_driver_l298n.h/.ino (1216 + 4954 bytes)
+
+Control 2× L298N dual H-bridge
+Funcții: initMotorController(), setMotorSpeed(), setMotorSpeeds(), stopMotors()
+Skid-steer logic (LEFT = FL+RL, RIGHT = FR+RR)
+
+
+encoder_driver.h/.ino (1867 + 6056 bytes)
+
+Citire 4× encodere quadrature
+ISR separate pentru fiecare encoder
+Protecție noInterrupts() pentru citiri atomice
+Funcții: initEncoders(), readEncoder(), resetEncoders()
+
+
+diff_controller.h/.ino (1949 + 3895 bytes)
+
+PID controller pentru control viteză
+Anti-windup pentru ITerm
+Factori calibrare LEFT/RIGHT
+
+
+DummyBot_ESP32_Bridge.ino (6612 bytes)
+
+Program principal
+Loop procesare comenzi seriale
+Update PID la 30Hz
+Auto-stop după 2s fără comenzi
+
+
+
+Protocol Serial (115200 baud)
+Comenzi disponibile:
+
+b - GET_BAUDRATE → returnează 115200
+e - READ_ENCODERS → returnează "FL FR RL RR"
+m left right - MOTOR_SPEEDS cu PID (ticks/frame)
+o left right - PWM direct fără PID (-255 to 255)
+r - RESET_ENCODERS → resetează la 0
+u Kp Kd Ki Ko - UPDATE_PID
+p - GET_PID → returnează parametri
+s - AUTO_STOP → oprește motoarele
+
+Format răspuns:
+
+Comenzi reușite: "OK"
+Erori: "ERROR: mesaj"
+Encodere: "val1 val2 val3 val4"
+
+Parametri PID
+
+Kp: 60
+Kd: 20
+Ki: 0
+Ko: 15
+Rate: 30Hz (update la fiecare 33ms)
+Auto-stop: 2000ms timeout
+
+
+Probleme Hardware Rezolvate
+1. Encodere fără LED și valori 0
+Simptom: LED-uri verzi doar pe FL/FR, RL/RR fără LED, valori 0
+Cauză: Fire Blue (+3.3V) deconectate la RL/RR
+Soluție: Reconectare fire Blue la alimentare 3.3V
+2. Encoder RL sens inversat
+Simptom: La rotire înainte FL/FR/RR pozitive, RL negativ
+Cauză: Semnale A și B inversate fizic
+Soluție: Inversare fizică Yellow ↔ Green la encoder RL
+3. Upload firmware blocat
+Simptom: "Fatal error: Packet content transfer stopped"
+Cauză: GPIO-uri conectate la hardware trag curent în timpul flash
+Soluție: Deconectare TOATE firele (28 total) pentru upload, apoi reconectare
+4. Motor FL singur funcțional
+Simptom: Doar FL se mișcă, restul nu
+Test: LED pe GPIO 19 (ENA_R) se aprinde ✅, GPIO 18 (IN1_R) NU ❌
+Cauză: GPIO 18 defect sau strapping pin problematic
+Soluție: Bypass GPIO 18, folosim doar IN2_R/IN3_R/IN4_R pentru control dreapta
+5. Cod vechi uploadat repetat
+Simptom: Modificări cod nu apar după upload
+Cauză: Arduino IDE cache în ~/.cache/arduino/sketches/
+Soluție: Folosire fișier corect din cache cu timestamp recent
+6. Firele Red/White de la encodere
+Simptom: Motoare merg greu sau vibră când Red/White conectate
+Cauză: Firele Red/White fac rezistență electrică prin circuit encoder
+Soluție: Deconectare completă Red/White la TOȚI encoderii - folosim doar Blue/Black/Yellow/Green
+7. FL și FR encodere inversate
+Simptom: Odometrie crește când robotul merge înapoi
+Cauză: Encodere FL/FR montate cu polaritate inversă
+Soluție: Inversare fizică Yellow ↔ Green la encoderele FL și FR
+
+Arhitectură Software ROS2
+Structură Pachete
+~/dummybot_ws/src/
+├── dummybot_control/
+│   ├── dummybot_control/
+│   │   ├── esp32_hardware_interface.py (NOU)
+│   │   ├── motor_controller.py (BACKUP VECHI)
+│   │   └── ... (noduri lidar, unified controller)
+│   ├── launch/
+│   │   ├── esp32_hardware.launch.py (NOU)
+│   │   └── dummybot_launch.py (BACKUP VECHI)
+│   └── setup.py
+├── dummybot_description/
+│   └── urdf/
+│       └── dummybot_base.urdf
+└── dummybot_navigation/
+    ├── config/
+    └── launch/
+

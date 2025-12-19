@@ -1,0 +1,2 @@
+MediaPipeHumanHand human_hand_list
+int32 num_humans
