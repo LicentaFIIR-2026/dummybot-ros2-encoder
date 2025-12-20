@@ -62,15 +62,24 @@ sudo apt install -y \
 ```bash
 # Clone repository
 cd ~
-git clone https://github.com/YOUR_USERNAME/dummybot-ros2-encoder.git
+git clone https://github.com/LicentaFIIR-2026/dummybot-ros2-encoder.git
 cd dummybot-ros2-encoder
 
 # Source ROS2
 source /opt/ros/jazzy/setup.bash
 
-# Build workspace
-cd ros2_ws
-colcon build --symlink-install
+# **IMPORTANT: Clone ros2_control in workspace to avoid ABI issues**
+cd ros2_ws/src
+git clone https://github.com/ros-controls/ros2_control.git -b jazzy
+git clone https://github.com/ros-controls/ros2_controllers.git -b jazzy
+
+# Build only essential packages
+cd ~/dummybot-ros2-encoder/ros2_ws
+colcon build --symlink-install \
+  --packages-select dummybot_bringup dummybot_control \
+  dummybot_description dummybot_navigation \
+  controller_manager controller_interface hardware_interface \
+  diff_drive_controller joint_state_broadcaster
 
 # Source workspace
 source install/setup.bash
@@ -78,6 +87,8 @@ source install/setup.bash
 # Add to bashrc for convenience
 echo "source ~/dummybot-ros2-encoder/ros2_ws/install/setup.bash" >> ~/.bashrc
 ```
+
+**Note:** You may see warnings about missing packages (e.g., `state_interfaces_broadcaster`). These are normal and can be ignored - they don't affect robot operation.
 
 ### 4. Install Additional Dependencies
 ```bash
