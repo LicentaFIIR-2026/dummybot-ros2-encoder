@@ -13,6 +13,20 @@
   - Camera (for MediaPipe integration)
 - **Computer**: Raspberry Pi 5 (16GB RAM)
 
+### Connected Devices
+- **ESP32 Microcontroller**: Motor control and encoder reading
+  - Device: `/dev/ttyESP32`
+  - Baud rate: 115200
+  
+- **LD06 LiDAR**: 2D laser scanner for SLAM
+  - Device: `/dev/ttyLIDAR`
+  - Baud rate: 230400
+  - Range: 0.15m - 12m
+  - Scan rate: 10 Hz
+
+### USB Mapping Setup
+See [docs/udev-setup.md](docs/udev-setup.md) for persistent USB device mapping configuration.
+
 ## 🎯 Features
 
 - ✅ Real-time odometry with wheel encoders
