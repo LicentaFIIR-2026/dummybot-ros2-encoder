@@ -24,3 +24,8 @@ Thumbs.db
 # Python
 *.egg-info/
 dist/
+build/
+install/
+log/
+ros2_ws/src/ros2_control/
+ros2_ws/src/ros2_controllers/

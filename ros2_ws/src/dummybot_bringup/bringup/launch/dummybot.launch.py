@@ -8,6 +8,8 @@ from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.parameter_descriptions import ParameterValue
 
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
     # Declare arguments
@@ -62,6 +64,17 @@ def generate_launch_description():
 
     rviz_config_file = PathJoinSubstitution(
         [FindPackageShare("dummybot_bringup"), "description", "rviz", "dummybot.rviz"]
+    )
+
+    # LiDAR launch file (LD06 driver)
+    lidar_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            PathJoinSubstitution([
+                FindPackageShare("ldlidar_stl_ros2"),
+                "launch",
+                "ld06.launch.py"
+            ])
+        ])
     )
 
     control_node = Node(
@@ -119,6 +132,7 @@ def generate_launch_description():
     )
 
     nodes = [
+        lidar_launch,
         control_node,
         robot_state_pub_node,
         joint_state_broadcaster_spawner,

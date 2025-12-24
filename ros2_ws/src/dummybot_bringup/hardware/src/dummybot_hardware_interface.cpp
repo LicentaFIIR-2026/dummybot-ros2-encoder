@@ -250,9 +250,9 @@ hardware_interface::return_type DummyBotHardwareInterface::write(
     }
 
     // ADAUGĂ ACEST LOG:
-    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
-                "Motor speeds: FL=%d FR=%d RL=%d RR=%d", 
-                motor_speeds[0], motor_speeds[1], motor_speeds[2], motor_speeds[3]);
+    //RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
+                //"Motor speeds: FL=%d FR=%d RL=%d RR=%d", 
+                //motor_speeds[0], motor_speeds[1], motor_speeds[2], motor_speeds[3]);
 
     // Send to ESP32: m FL FR RL RR
     if (!send_motor_speeds(motor_speeds[0], motor_speeds[1], 

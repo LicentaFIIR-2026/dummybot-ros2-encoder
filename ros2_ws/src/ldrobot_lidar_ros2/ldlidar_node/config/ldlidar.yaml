@@ -9,7 +9,7 @@
 
     comm: 
       direct_serial:    false           # false to use usb to serial converter
-      serial_port:      "/dev/ttyUSB1"              # serial port name if `direct-serial` is true
+      serial_port:      "/dev/ttyLIDAR"              # serial port name if `direct-serial` is true
 
     lidar:
       frame_id:         "ldlidar_link"    # TF frame name for the lidar

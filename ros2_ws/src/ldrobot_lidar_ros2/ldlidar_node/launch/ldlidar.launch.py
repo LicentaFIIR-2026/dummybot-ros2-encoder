@@ -37,11 +37,14 @@ def generate_launch_description():
         package = 'ldlidar_node',
         executable = 'ldlidar_node',
         name = node_name,
-	namespace = '',
+        namespace = '',
         output='screen',
         parameters=[
             # YAML files
             lidar_config_path  # Parameters
+        ],
+        remappings=[
+            ('ldlidar_node/scan', '/scan')
         ]
     )
 
