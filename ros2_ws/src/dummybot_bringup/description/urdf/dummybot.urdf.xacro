@@ -8,7 +8,7 @@
   <xacro:property name="use_mock_hardware" value="false"/>
   
   <!-- Robot dimensions (from ESP32 config.h) -->
-  <xacro:property name="wheel_radius" value="0.0325"/>        <!-- 65mm / 2 -->
+  <xacro:property name="wheel_radius" value="0.0345"/>        <!-- 69mm / 2 -->
   <xacro:property name="wheel_width" value="0.026"/>          <!-- 26mm width -->
   <xacro:property name="wheel_separation" value="0.3863"/>    <!-- Lx: 386.3mm -->
   <xacro:property name="wheelbase" value="0.37232"/>          <!-- Ly: 372.32mm -->
