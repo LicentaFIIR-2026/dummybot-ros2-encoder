@@ -7,22 +7,23 @@
   <!-- Properties -->
   <xacro:property name="use_mock_hardware" value="false"/>
   
-  <!-- Robot dimensions - După rotație 90°: X=lateral, Y=față-spate -->
+  <!-- Robot dimensions -->
   <xacro:property name="wheel_radius" value="0.0345"/>
   <xacro:property name="wheel_width" value="0.028"/>
   <xacro:property name="wheelbase" value="0.374"/>            <!-- Track width (lateral X) -->
   <xacro:property name="wheel_separation" value="0.390"/>     <!-- Wheelbase (longitudinal Y) -->
   
-  <xacro:property name="base_length" value="0.36"/>           <!-- X (scurt, lateral) -->
-  <xacro:property name="base_width" value="0.46"/>            <!-- Y (lung, față-spate) -->
+  <xacro:property name="base_length" value="0.36"/>           <!-- X (scurt) -->
+  <xacro:property name="base_width" value="0.46"/>            <!-- Y (lung) -->
   <xacro:property name="base_height" value="0.14"/>
   
+  <!-- Ground clearance: centru roată la 1.45cm + 2cm la bază = 3.45cm -->
   <xacro:property name="ground_clearance" value="0.0345"/>
   <xacro:property name="wheel_z_offset" value="-0.02"/>
   
   <!-- Poziții roți pe Y (față-spate) -->
-  <xacro:property name="front_wheel_y_offset" value="0.175"/>
-  <xacro:property name="rear_wheel_y_offset" value="-0.215"/>
+  <xacro:property name="front_wheel_y_offset" value="0.175"/>   <!-- Față (pozitiv) ✅ INVERSAT -->
+  <xacro:property name="rear_wheel_y_offset" value="-0.215"/>   <!-- Spate (negativ) ✅ INVERSAT -->
   
   <!-- Serial configuration -->
   <xacro:property name="serial_port" value="/dev/ttyESP32"/>
@@ -42,19 +43,20 @@
     <color rgba="0.8 0.0 0.0 1.0"/>
   </material>
 
-  <!-- Base Footprint -->
+  <!-- Base Footprint (pe sol) -->
   <link name="base_footprint"/>
   
   <joint name="base_footprint_joint" type="fixed">
     <parent link="base_footprint"/>
     <child link="base_link"/>
-    <!-- MODIFICAT: Rotație 90° pe Z + ridicare deasupra solului -->
-    <origin xyz="0 0 ${ground_clearance}" rpy="0 0 ${-pi/2}"/>
+    <!-- Baza chassis la 3.45cm deasupra solului ✅ -->
+    <origin xyz="0 0 ${ground_clearance}" rpy="0 0 0"/>
   </joint>
 
-  <!-- Base Link -->
+  <!-- Base Link (FĂRĂ offset pe visual acum, origin e la bază) -->
   <link name="base_link">
     <visual>
+      <!-- Origin la bază (jos), geometry crește în sus ✅ -->
       <origin xyz="0 0 ${base_height/2}" rpy="0 0 0"/>
       <geometry>
         <box size="${base_length} ${base_width} ${base_height}"/>
@@ -76,11 +78,12 @@
     </inertial>
   </link>
 
-  <!-- Wheel Macro -->
+  <!-- Wheel Macro cu ROTAȚIE 90° pe Z ✅ -->
   <xacro:macro name="wheel" params="prefix x y">
     
     <link name="${prefix}_wheel_link">
       <visual>
+        <!-- Rotație: 90° pe Z pentru axa X să fie axa de rotație ✅ -->
         <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
         <geometry>
           <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
@@ -106,19 +109,19 @@
       <parent link="base_link"/>
       <child link="${prefix}_wheel_link"/>
       <origin xyz="${x} ${y} ${wheel_z_offset}" rpy="0 0 0"/>
-      <!-- MODIFICAT: Axa X pentru roți pe lateral -->
+      <!-- Axa de rotație: Y pentru roți pe X-axis ✅ -->
       <axis xyz="1 0 0"/>
     </joint>
     
   </xacro:macro>
 
-  <!-- Instantiate 4 wheels - X=lateral, Y=față-spate -->
+  <!-- Instantiate 4 wheels - FAȚĂ = +Y (pozitiv) ✅ -->
   <xacro:wheel prefix="front_left"  x="${wheelbase/2}"   y="${front_wheel_y_offset}"/>
   <xacro:wheel prefix="front_right" x="${-wheelbase/2}"  y="${front_wheel_y_offset}"/>
   <xacro:wheel prefix="rear_left"   x="${wheelbase/2}"   y="${rear_wheel_y_offset}"/>
   <xacro:wheel prefix="rear_right"  x="${-wheelbase/2}"  y="${rear_wheel_y_offset}"/>
 
-  <!-- LiDAR -->
+  <!-- LiDAR - FAȚĂ = +Y (pozitiv) ✅ -->
   <link name="laser_frame">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -144,7 +147,7 @@
   <joint name="laser_joint" type="fixed">
     <parent link="base_link"/>
     <child link="laser_frame"/>
-    <!-- MODIFICAT: LiDAR pe Y (față) -->
+    <!-- LiDAR în FAȚĂ: Y pozitiv = +0.10m ✅ INVERSAT -->
     <origin xyz="0 0.10 ${base_height + 0.0175}" rpy="0 0 0"/>
   </joint>
 

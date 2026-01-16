@@ -43,6 +43,9 @@ def generate_launch_description():
                 'mapper_params_online_async.yaml'
             ]),
             {'use_sim_time': use_sim_time}
+        ],
+        remappings=[
+            ('/odom', '/diff_drive_controller/odom')  # ← ADAUGĂ ASTA
         ]
     )
 

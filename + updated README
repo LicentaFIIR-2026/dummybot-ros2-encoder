@@ -1,0 +1,564 @@
+[1mdiff --git a/ros2_ws/src/dummybot_bringup/bringup/config/dummybot_controllers.yaml b/ros2_ws/src/dummybot_bringup/bringup/config/dummybot_controllers.yaml[m
+[1mindex 6b0eaeb..7f25929 100644[m
+[1m--- a/ros2_ws/src/dummybot_bringup/bringup/config/dummybot_controllers.yaml[m
+[1m+++ b/ros2_ws/src/dummybot_bringup/bringup/config/dummybot_controllers.yaml[m
+[36m@@ -45,7 +45,7 @@[m [mdiff_drive_controller:[m
+     # Publishing[m
+     publish_rate: 30.0[m
+     odom_frame_id: odom[m
+[31m-    base_frame_id: base_link[m
+[32m+[m[32m    base_frame_id: base_footprint[m
+     pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01][m
+     twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01][m
+     [m
+[1mdiff --git a/ros2_ws/src/dummybot_bringup/description/urdf/dummybot.urdf.xacro b/ros2_ws/src/dummybot_bringup/description/urdf/dummybot.urdf.xacro[m
+[1mindex 4b1ec8a..628ab59 100644[m
+[1m--- a/ros2_ws/src/dummybot_bringup/description/urdf/dummybot.urdf.xacro[m
+[1m+++ b/ros2_ws/src/dummybot_bringup/description/urdf/dummybot.urdf.xacro[m
+[36m@@ -7,15 +7,22 @@[m
+   <!-- Properties -->[m
+   <xacro:property name="use_mock_hardware" value="false"/>[m
+   [m
+[31m-  <!-- Robot dimensions (from ESP32 config.h) -->[m
+[31m-  <xacro:property name="wheel_radius" value="0.0345"/>        <!-- 69mm / 2 -->[m
+[31m-  <xacro:property name="wheel_width" value="0.026"/>          <!-- 26mm width -->[m
+[31m-  <xacro:property name="wheel_separation" value="0.3863"/>    <!-- Lx: 386.3mm -->[m
+[31m-  <xacro:property name="wheelbase" value="0.37232"/>          <!-- Ly: 372.32mm -->[m
+[32m+[m[32m  <!-- Robot dimensions - După rotație 90°: X=lateral, Y=față-spate -->[m
+[32m+[m[32m  <xacro:property name="wheel_radius" value="0.0345"/>[m
+[32m+[m[32m  <xacro:property name="wheel_width" value="0.028"/>[m
+[32m+[m[32m  <xacro:property name="wheelbase" value="0.374"/>            <!-- Track width (lateral X) -->[m
+[32m+[m[32m  <xacro:property name="wheel_separation" value="0.390"/>     <!-- Wheelbase (longitudinal Y) -->[m
+   [m
+[31m-  <xacro:property name="base_length" value="0.40"/>[m
+[31m-  <xacro:property name="base_width" value="0.35"/>[m
+[31m-  <xacro:property name="base_height" value="0.15"/>[m
+[32m+[m[32m  <xacro:property name="base_length" value="0.36"/>           <!-- X (scurt, lateral) -->[m
+[32m+[m[32m  <xacro:property name="base_width" value="0.46"/>            <!-- Y (lung, față-spate) -->[m
+[32m+[m[32m  <xacro:property name="base_height" value="0.14"/>[m
+[32m+[m[41m  [m
+[32m+[m[32m  <xacro:property name="ground_clearance" value="0.0345"/>[m
+[32m+[m[32m  <xacro:property name="wheel_z_offset" value="-0.02"/>[m
+[32m+[m[41m  [m
+[32m+[m[32m  <!-- Poziții roți pe Y (față-spate) -->[m
+[32m+[m[32m  <xacro:property name="front_wheel_y_offset" value="0.175"/>[m
+[32m+[m[32m  <xacro:property name="rear_wheel_y_offset" value="-0.215"/>[m
+   [m
+   <!-- Serial configuration -->[m
+   <xacro:property name="serial_port" value="/dev/ttyESP32"/>[m
+[36m@@ -35,23 +42,33 @@[m
+     <color rgba="0.8 0.0 0.0 1.0"/>[m
+   </material>[m
+ [m
+[31m-  <!-- Base Link (robot chassis) -->[m
+[32m+[m[32m  <!-- Base Footprint -->[m
+[32m+[m[32m  <link name="base_footprint"/>[m
+[32m+[m[41m  [m
+[32m+[m[32m  <joint name="base_footprint_joint" type="fixed">[m
+[32m+[m[32m    <parent link="base_footprint"/>[m
+[32m+[m[32m    <child link="base_link"/>[m
+[32m+[m[32m    <!-- MODIFICAT: Rotație 90° pe Z + ridicare deasupra solului -->[m
+[32m+[m[32m    <origin xyz="0 0 ${ground_clearance}" rpy="0 0 ${-pi/2}"/>[m
+[32m+[m[32m  </joint>[m
+[32m+[m
+[32m+[m[32m  <!-- Base Link -->[m
+   <link name="base_link">[m
+     <visual>[m
+[31m-      <origin xyz="0 0 0" rpy="0 0 0"/>[m
+[32m+[m[32m      <origin xyz="0 0 ${base_height/2}" rpy="0 0 0"/>[m
+       <geometry>[m
+         <box size="${base_length} ${base_width} ${base_height}"/>[m
+       </geometry>[m
+       <material name="dark_grey"/>[m
+     </visual>[m
+     <collision>[m
+[31m-      <origin xyz="0 0 0" rpy="0 0 0"/>[m
+[32m+[m[32m      <origin xyz="0 0 ${base_height/2}" rpy="0 0 0"/>[m
+       <geometry>[m
+         <box size="${base_length} ${base_width} ${base_height}"/>[m
+       </geometry>[m
+     </collision>[m
+     <inertial>[m
+[31m-      <origin xyz="0 0 0" rpy="0 0 0"/>[m
+[32m+[m[32m      <origin xyz="0 0 ${base_height/2}" rpy="0 0 0"/>[m
+       <mass value="5.0"/>[m
+       <inertia ixx="0.0833" ixy="0.0" ixz="0.0" [m
+                iyy="0.1042" iyz="0.0" [m
+[36m@@ -59,28 +76,19 @@[m
+     </inertial>[m
+   </link>[m
+ [m
+[31m-  <!-- Base Footprint (for navigation) -->[m
+[31m-  <link name="base_footprint"/>[m
+[31m-  [m
+[31m-  <joint name="base_footprint_joint" type="fixed">[m
+[31m-    <parent link="base_footprint"/>[m
+[31m-    <child link="base_link"/>[m
+[31m-    <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>[m
+[31m-  </joint>[m
+[31m-[m
+   <!-- Wheel Macro -->[m
+   <xacro:macro name="wheel" params="prefix x y">[m
+     [m
+     <link name="${prefix}_wheel_link">[m
+       <visual>[m
+[31m-        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>[m
+[32m+[m[32m        <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>[m
+         <geometry>[m
+           <cylinder radius="${wheel_radius}" length="${wheel_width}"/>[m
+         </geometry>[m
+         <material name="black"/>[m
+       </visual>[m
+       <collision>[m
+[31m-        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>[m
+[32m+[m[32m        <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>[m
+         <geometry>[m
+           <cylinder radius="${wheel_radius}" length="${wheel_width}"/>[m
+         </geometry>[m
+[36m@@ -97,17 +105,48 @@[m
+     <joint name="${prefix}_wheel_joint" type="continuous">[m
+       <parent link="base_link"/>[m
+       <child link="${prefix}_wheel_link"/>[m
+[31m-      <origin xyz="${x} ${y} 0" rpy="0 0 0"/>[m
+[31m-      <axis xyz="0 1 0"/>[m
+[32m+[m[32m      <origin xyz="${x} ${y} ${wheel_z_offset}" rpy="0 0 0"/>[m
+[32m+[m[32m      <!-- MODIFICAT: Axa X pentru roți pe lateral -->[m
+[32m+[m[32m      <axis xyz="1 0 0"/>[m
+     </joint>[m
+     [m
+   </xacro:macro>[m
+ [m
+[31m-  <!-- Instantiate 4 wheels -->[m
+[31m-  <xacro:wheel prefix="front_left"  x="${wheelbase/2}"  y="${wheel_separation/2}"/>[m
+[31m-  <xacro:wheel prefix="front_right" x="${wheelbase/2}"  y="${-wheel_separation/2}"/>[m
+[31m-  <xacro:wheel prefix="rear_left"   x="${-wheelbase/2}" y="${wheel_separation/2}"/>[m
+[31m-  <xacro:wheel prefix="rear_right"  x="${-wheelbase/2}" y="${-wheel_separation/2}"/>[m
+[32m+[m[32m  <!-- Instantiate 4 wheels - X=lateral, Y=față-spate -->[m
+[32m+[m[32m  <xacro:wheel prefix="front_left"  x="${wheelbase/2}"   y="${front_wheel_y_offset}"/>[m
+[32m+[m[32m  <xacro:wheel prefix="front_right" x="${-wheelbase/2}"  y="${front_wheel_y_offset}"/>[m
+[32m+[m[32m  <xacro:wheel prefix="rear_left"   x="${wheelbase/2}"   y="${rear_wheel_y_offset}"/>[m
+[32m+[m[32m  <xacro:wheel prefix="rear_right"  x="${-wheelbase/2}"  y="${rear_wheel_y_offset}"/>[m
+[32m+[m
+[32m+[m[32m  <!-- LiDAR -->[m
+[32m+[m[32m  <link name="laser_frame">[m
+[32m+[m[32m    <visual>[m
+[32m+[m[32m      <origin xyz="0 0 0" rpy="0 0 0"/>[m
+[32m+[m[32m      <geometry>[m
+[32m+[m[32m        <box size="0.035 0.035 0.035"/>[m
+[32m+[m[32m      </geometry>[m
+[32m+[m[32m      <material name="red"/>[m
+[32m+[m[32m    </visual>[m
+[32m+[m[32m    <collision>[m
+[32m+[m[32m      <origin xyz="0 0 0" rpy="0 0 0"/>[m
+[32m+[m[32m      <geometry>[m
+[32m+[m[32m        <box size="0.035 0.035 0.035"/>[m
+[32m+[m[32m      </geometry>[m
+[32m+[m[32m    </collision>[m
+[32m+[m[32m    <inertial>[m
+[32m+[m[32m      <mass value="0.15"/>[m
+[32m+[m[32m      <inertia ixx="0.0001" ixy="0.0" ixz="0.0"[m
+[32m+[m[32m               iyy="0.0001" iyz="0.0"[m
+[32m+[m[32m               izz="0.0001"/>[m
+[32m+[m[32m    </inertial>[m
+[32m+[m[32m  </link>[m
+[32m+[m
+[32m+[m[32m  <joint name="laser_joint" type="fixed">[m
+[32m+[m[32m    <parent link="base_link"/>[m
+[32m+[m[32m    <child link="laser_frame"/>[m
+[32m+[m[32m    <!-- MODIFICAT: LiDAR pe Y (față) -->[m
+[32m+[m[32m    <origin xyz="0 0.10 ${base_height + 0.0175}" rpy="0 0 0"/>[m
+[32m+[m[32m  </joint>[m
+ [m
+   <!-- Include ros2_control -->[m
+   <xacro:dummybot_ros2_control [m
+[36m@@ -118,4 +157,4 @@[m
+     wheel_separation="${wheel_separation}"[m
+     ticks_per_revolution="${ticks_per_revolution}"/>[m
+ [m
+[31m-</robot>[m
+[32m+[m[32m</robot>[m
+\ No newline at end of file[m
+[1mdiff --git a/ros2_ws/src/dummybot_navigation/config/mapper_params_online_async.yaml b/ros2_ws/src/dummybot_navigation/config/mapper_params_online_async.yaml[m
+[1mindex 22780ed..2206d3e 100644[m
+[1m--- a/ros2_ws/src/dummybot_navigation/config/mapper_params_online_async.yaml[m
+[1m+++ b/ros2_ws/src/dummybot_navigation/config/mapper_params_online_async.yaml[m
+[36m@@ -13,6 +13,7 @@[m [mslam_toolbox:[m
+     map_frame: map[m
+     base_frame: base_link[m
+     scan_topic: /scan[m
+[32m+[m[32m    odom_topic: /diff_drive_controller/odom  # ← ADAUGĂ ASTA[m
+     use_map_saver: true[m
+     mode: mapping[m
+ [m
+[36m@@ -24,8 +25,8 @@[m [mslam_toolbox:[m
+     resolution: 0.05  # 5cm resolution (bun pentru spații mici)[m
+     max_laser_range: 12.0  # LD06 max range[m
+     minimum_time_interval: 0.5[m
+[31m-    transform_timeout: 0.2[m
+[31m-    tf_buffer_duration: 30.0[m
+[32m+[m[32m    transform_timeout: 1.0 #0.2[m
+[32m+[m[32m    tf_buffer_duration: 60.0 #30.0[m
+     stack_size_to_use: 40000000[m
+ [m
+     # General Parameters[m
+[1mdiff --git a/ros2_ws/src/dummybot_navigation/config/nav2_params.yaml b/ros2_ws/src/dummybot_navigation/config/nav2_params.yaml[m
+[1mindex f361c2c..40f9e56 100644[m
+[1m--- a/ros2_ws/src/dummybot_navigation/config/nav2_params.yaml[m
+[1m+++ b/ros2_ws/src/dummybot_navigation/config/nav2_params.yaml[m
+[36m@@ -1,44 +1,66 @@[m
+ amcl:[m
+   ros__parameters:[m
+     use_sim_time: False[m
+[31m-    alpha1: 0.2[m
+[31m-    alpha2: 0.2[m
+[31m-    alpha3: 0.2[m
+[31m-    alpha4: 0.2[m
+[32m+[m[41m    [m
+[32m+[m[32m    # Motion model pentru SKID-STEER ✅[m
+[32m+[m[32m    robot_model_type: "nav2_amcl::OmniMotionModel"[m
+[32m+[m[41m    [m
+[32m+[m[32m    # Noise model pentru skid-steer (drift lateral!) ✅[m
+[32m+[m[32m    alpha1: 0.4[m
+[32m+[m[32m    alpha2: 0.4[m
+[32m+[m[32m    alpha3: 0.4[m
+[32m+[m[32m    alpha4: 0.4[m
+     alpha5: 0.2[m
+[31m-    base_frame_id: "base_link"[m
+[31m-    beam_skip_distance: 0.5[m
+[31m-    beam_skip_error_threshold: 0.9[m
+[31m-    beam_skip_threshold: 0.3[m
+[31m-    do_beamskip: false[m
+[32m+[m[41m    [m
+[32m+[m[32m    # Frame IDs CORECTE ✅[m
+[32m+[m[32m    base_frame_id: "base_footprint"[m
+     global_frame_id: "map"[m
+[31m-    lambda_short: 0.1[m
+[31m-    laser_likelihood_max_dist: 2.0[m
+[31m-    laser_max_range: 12.0[m
+[31m-    laser_min_range: 0.15[m
+[32m+[m[32m    odom_frame_id: "odom"[m
+[32m+[m[41m    [m
+[32m+[m[32m    # Laser configuration ✅[m
+[32m+[m[32m    laser_frame_id: "laser_frame"[m
+[32m+[m[32m    scan_topic: scan_best_effort[m
+     laser_model_type: "likelihood_field"[m
+[32m+[m[32m    laser_max_range: 10.0[m
+[32m+[m[32m    laser_min_range: 0.15[m
+     max_beams: 60[m
+[31m-    max_particles: 2000[m
+[32m+[m[41m    [m
+[32m+[m[32m    # Particle filter ✅[m
+     min_particles: 500[m
+[31m-    odom_frame_id: "odom"[m
+[32m+[m[32m    max_particles: 2000[m
+     pf_err: 0.05[m
+     pf_z: 0.99[m
+[31m-    recovery_alpha_fast: 0.0[m
+[31m-    recovery_alpha_slow: 0.0[m
+[32m+[m[41m    [m
+[32m+[m[32m    # Update mai FRECVENT ✅[m
+[32m+[m[32m    update_min_d: 0.15[m
+[32m+[m[32m    update_min_a: 0.15[m
+     resample_interval: 1[m
+[31m-    robot_model_type: "nav2_amcl::DifferentialMotionModel"[m
+[31m-    save_pose_rate: 0.5[m
+[32m+[m[41m    [m
+[32m+[m[32m    # RECOVERY activat ✅[m
+[32m+[m[32m    recovery_alpha_slow: 0.001[m
+[32m+[m[32m    recovery_alpha_fast: 0.1[m
+[32m+[m[41m    [m
+[32m+[m[32m    # Laser likelihood[m
+[32m+[m[32m    laser_likelihood_max_dist: 2.0[m
+     sigma_hit: 0.2[m
+[31m-    tf_broadcast: true[m
+[31m-    transform_tolerance: 0.5[m
+[31m-    update_min_a: 0.2[m
+[31m-    update_min_d: 0.25[m
+     z_hit: 0.5[m
+     z_max: 0.05[m
+     z_rand: 0.5[m
+     z_short: 0.05[m
+[31m-    scan_topic: scan_best_effort[m
+[31m-    laser_frame_id: base_laser[m
+[32m+[m[32m    lambda_short: 0.1[m
+[32m+[m[41m    [m
+[32m+[m[32m    # Beam skip[m
+[32m+[m[32m    do_beamskip: false[m
+[32m+[m[32m    beam_skip_distance: 0.5[m
+[32m+[m[32m    beam_skip_error_threshold: 0.9[m
+[32m+[m[32m    beam_skip_threshold: 0.3[m
+[32m+[m[41m    [m
+[32m+[m[32m    # TF[m
+[32m+[m[32m    tf_broadcast: true[m
+[32m+[m[32m    transform_tolerance: 0.5[m
+[32m+[m[32m    save_pose_rate: 0.5[m
+[32m+[m[41m    [m
+[32m+[m[32m    # QoS[m
+     qos_overrides:[m
+       /scan:[m
+         reliability: reliable[m
+[36m@@ -47,7 +69,7 @@[m [mbt_navigator:[m
+   ros__parameters:[m
+     use_sim_time: False[m
+     global_frame: map[m
+[31m-    robot_base_frame: base_link[m
+[32m+[m[32m    robot_base_frame: base_footprint  # ← CORECTAT[m
+     odom_topic: /diff_drive_controller/odom[m
+     bt_loop_duration: 10[m
+     default_server_timeout: 20[m
+[36m@@ -69,37 +91,37 @@[m [mcontroller_server:[m
+     goal_checker_plugins: ["general_goal_checker"][m
+     controller_plugins: ["FollowPath"][m
+ [m
+[31m-    # Progress checker parameters[m
+[32m+[m[32m    # Progress checker[m
+     progress_checker:[m
+       plugin: "nav2_controller::SimpleProgressChecker"[m
+[31m-      required_movement_radius: 0.5[m
+[31m-      movement_time_allowance: 10.0[m
+[32m+[m[32m      required_movement_radius: 0.3[m
+[32m+[m[32m      movement_time_allowance: 15.0[m
+     [m
+[31m-    # Goal checker parameters[m
+[32m+[m[32m    # Goal checker - toleranțe mai mari pentru skid-steer ✅[m
+     general_goal_checker:[m
+       stateful: True[m
+       plugin: "nav2_controller::SimpleGoalChecker"[m
+[31m-      xy_goal_tolerance: 0.15[m
+[31m-      yaw_goal_tolerance: 0.15[m
+[32m+[m[32m      xy_goal_tolerance: 0.25  # ← Mărit pentru drift[m
+[32m+[m[32m      yaw_goal_tolerance: 0.40 # ← Mărit[m
+     [m
+[31m-    # DWB parameters (Dynamic Window Approach)[m
+[32m+[m[32m    # DWB - viteze reduse pentru control mai bun ✅[m
+     FollowPath:[m
+       plugin: "dwb_core::DWBLocalPlanner"[m
+       debug_trajectory_details: True[m
+       min_vel_x: 0.0[m
+       min_vel_y: 0.0[m
+[31m-      max_vel_x: 0.8[m
+[32m+[m[32m      max_vel_x: 1.0  # ← Redus de la 1.0[m
+       max_vel_y: 0.0[m
+[31m-      max_vel_theta: 1.5[m
+[32m+[m[32m      max_vel_theta: 2.0  # ← Redus de la 2.0[m
+       min_speed_xy: 0.0[m
+[31m-      max_speed_xy: 0.8[m
+[32m+[m[32m      max_speed_xy: 0.8  # ← Redus de la 0.8[m
+       min_speed_theta: 0.0[m
+[31m-      acc_lim_x: 1.0[m
+[32m+[m[32m      acc_lim_x: 1.0  # ← Redus[m
+       acc_lim_y: 0.0[m
+[31m-      acc_lim_theta: 1.2[m
+[31m-      decel_lim_x: -1.0[m
+[32m+[m[32m      acc_lim_theta: 1.2  # ← Redus[m
+[32m+[m[32m      decel_lim_x: -1.0  # ← Redus[m
+       decel_lim_y: 0.0[m
+[31m-      decel_lim_theta: -1.2[m
+[32m+[m[32m      decel_lim_theta: -1.2  # ← Redus[m
+       vx_samples: 20[m
+       vy_samples: 5[m
+       vtheta_samples: 20[m
+[36m@@ -107,12 +129,12 @@[m [mcontroller_server:[m
+       linear_granularity: 0.05[m
+       angular_granularity: 0.025[m
+       transform_tolerance: 0.2[m
+[31m-      xy_goal_tolerance: 0.15[m
+[31m-      trans_stopped_velocity: 0.25[m
+[32m+[m[32m      xy_goal_tolerance: 0.25  # ← Mărit[m
+[32m+[m[32m      trans_stopped_velocity: 0.10[m
+       short_circuit_trajectory_evaluation: True[m
+       stateful: True[m
+       critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"][m
+[31m-      BaseObstacle.scale: 0.02[m
+[32m+[m[32m      BaseObstacle.scale: 0.05  # ← Mărit de la 0.02 (evitare mai puternică!)[m
+       PathAlign.scale: 32.0[m
+       PathAlign.forward_point_distance: 0.1[m
+       GoalAlign.scale: 24.0[m
+[36m@@ -120,50 +142,49 @@[m [mcontroller_server:[m
+       PathDist.scale: 32.0[m
+       GoalDist.scale: 24.0[m
+       RotateToGoal.scale: 32.0[m
+[31m-      RotateToGoal.slowing_factor: 5.0[m
+[32m+[m[32m      RotateToGoal.slowing_factor: 8.0[m
+       RotateToGoal.lookahead_time: -1.0[m
+ [m
+ local_costmap:[m
+   local_costmap:[m
+     ros__parameters:[m
+[31m-      update_frequency: 5.0[m
+[31m-      publish_frequency: 2.0[m
+[32m+[m[32m      update_frequency: 10.0  # ← Mărit de la 5.0[m
+[32m+[m[32m      publish_frequency: 5.0  # ← Mărit de la 2.0[m
+       global_frame: odom[m
+[31m-      robot_base_frame: base_link[m
+[32m+[m[32m      robot_base_frame: base_footprint[m
+       use_sim_time: False[m
+       rolling_window: true[m
+[31m-      width: 3[m
+[31m-      height: 3[m
+[32m+[m[32m      width: 6[m
+[32m+[m[32m      height: 6[m
+       resolution: 0.05[m
+[31m-      robot_radius: 0.28[m
+[31m-      plugins: ["voxel_layer", "inflation_layer"][m
+[31m-      inflation_layer:[m
+[31m-        plugin: "nav2_costmap_2d::InflationLayer"[m
+[31m-        cost_scaling_factor: 3.0[m
+[31m-        inflation_radius: 0.55[m
+[31m-      voxel_layer:[m
+[31m-        plugin: "nav2_costmap_2d::VoxelLayer"[m
+[32m+[m[32m      robot_radius: 0.35  # ← Mărit de la 0.28 (mai mult spațiu!)[m
+[32m+[m[32m      plugins: ["obstacle_layer", "inflation_layer"]  # ← Schimbat de la voxel[m
+[32m+[m[41m      [m
+[32m+[m[32m      # Obstacle layer pentru LiDAR ✅[m
+[32m+[m[32m      obstacle_layer:[m
+[32m+[m[32m        plugin: "nav2_costmap_2d::ObstacleLayer"[m
+         enabled: True[m
+[31m-        publish_voxel_map: True[m
+[31m-        origin_z: 0.0[m
+[31m-        z_resolution: 0.05[m
+[31m-        z_voxels: 16[m
+[31m-        max_obstacle_height: 2.0[m
+[31m-        mark_threshold: 0[m
+         observation_sources: scan[m
+         scan:[m
+[31m-          topic: /scan[m
+[31m-          max_obstacle_height: 2.0[m
+[32m+[m[32m          topic: /scan_best_effort  # ← Topic corect![m
+[32m+[m[32m          sensor_frame: laser_frame  # ← Frame corect![m
+[32m+[m[32m          data_type: "LaserScan"[m
+           clearing: True[m
+           marking: True[m
+[31m-          data_type: "LaserScan"[m
+[31m-          raytrace_max_range: 3.0[m
+[31m-          raytrace_min_range: 0.0[m
+[31m-          obstacle_max_range: 2.5[m
+[32m+[m[32m          max_obstacle_height: 2.0[m
+[32m+[m[32m          min_obstacle_height: 0.0[m
+[32m+[m[32m          obstacle_max_range: 10.0[m
+           obstacle_min_range: 0.0[m
+[31m-      static_layer:[m
+[31m-        plugin: "nav2_costmap_2d::StaticLayer"[m
+[31m-        map_subscribe_transient_local: True[m
+[32m+[m[32m          raytrace_max_range: 11.0[m
+[32m+[m[32m          raytrace_min_range: 0.0[m
+[32m+[m[32m          observation_persistence: 0.0  # ← Nu păstra obstacole vechi[m
+[32m+[m[32m          expected_update_rate: 10.0  # ← Așteaptă 10Hz de la LiDAR[m
+[32m+[m[41m      [m
+[32m+[m[32m      inflation_layer:[m
+[32m+[m[32m        plugin: "nav2_costmap_2d::InflationLayer"[m
+[32m+[m[32m        cost_scaling_factor: 5.0  # ← Mărit de la 3.0 (evitare mai agresivă!)[m
+[32m+[m[32m        inflation_radius: 0.55[m
+[32m+[m[41m      [m
+       always_send_full_costmap: True[m
+ [m
+ global_costmap:[m
+[36m@@ -172,33 +193,39 @@[m [mglobal_costmap:[m
+       update_frequency: 1.0[m
+       publish_frequency: 1.0[m
+       global_frame: map[m
+[31m-      robot_base_frame: base_link[m
+[32m+[m[32m      robot_base_frame: base_footprint  # ← CORECTAT[m
+       use_sim_time: False[m
+[31m-      robot_radius: 0.28[m
+[32m+[m[32m      robot_radius: 0.35  # ← Mărit[m
+       resolution: 0.05[m
+       track_unknown_space: true[m
+       plugins: ["static_layer", "obstacle_layer", "inflation_layer"][m
+[32m+[m[41m      [m
+       obstacle_layer:[m
+         plugin: "nav2_costmap_2d::ObstacleLayer"[m
+         enabled: True[m
+         observation_sources: scan[m
+         scan:[m
+[31m-          topic: /scan[m
+[31m-          max_obstacle_height: 2.0[m
+[32m+[m[32m          topic: /scan_best_effort[m
+[32m+[m[32m          sensor_frame: laser_frame[m
+[32m+[m[32m          data_type: "LaserScan"[m
+           clearing: True[m
+           marking: True[m
+[31m-          data_type: "LaserScan"[m
+[31m-          raytrace_max_range: 3.0[m
+[31m-          raytrace_min_range: 0.0[m
+[31m-          obstacle_max_range: 2.5[m
+[32m+[m[32m          max_obstacle_height: 2.0[m
+[32m+[m[32m          min_obstacle_height: 0.0[m
+[32m+[m[32m          obstacle_max_range: 10.0[m
+           obstacle_min_range: 0.0[m
+[32m+[m[32m          raytrace_max_range: 11.0[m
+[32m+[m[32m          raytrace_min_range: 0.0[m
+[32m+[m[41m      [m
+       static_layer:[m
+         plugin: "nav2_costmap_2d::StaticLayer"[m
+         map_subscribe_transient_local: True[m
+[32m+[m[41m      [m
+       inflation_layer:[m
+         plugin: "nav2_costmap_2d::InflationLayer"[m
+[31m-        cost_scaling_factor: 3.0[m
+[32m+[m[32m        cost_scaling_factor: 5.0  # ← Mărit[m
+         inflation_radius: 0.55[m
+[32m+[m[41m      [m
+       always_send_full_costmap: True[m
+ [m
+ map_server:[m
+[36m@@ -250,7 +277,7 @@[m [mbehavior_server:[m
+     wait:[m
+       plugin: "nav2_behaviors::Wait"[m
+     global_frame: odom[m
+[31m-    robot_base_frame: base_link[m
+[32m+[m[32m    robot_base_frame: base_footprint  # ← CORECTAT[m
+     transform_tolerance: 0.1[m
+     use_sim_time: False[m
+     simulate_ahead_time: 2.0[m
+[36m@@ -286,4 +313,4 @@[m [mvelocity_smoother:[m
+     odom_topic: "/diff_drive_controller/odom"[m
+     odom_duration: 0.1[m
+     deadband_velocity: [0.0, 0.0, 0.0][m
+[31m-    velocity_timeout: 1.0[m
+[32m+[m[32m    velocity_timeout: 1.0[m
+\ No newline at end of file[m
+[1mdiff --git a/ros2_ws/src/dummybot_navigation/launch/navigation.launch.py b/ros2_ws/src/dummybot_navigation/launch/navigation.launch.py[m
+[1mindex b6dfd24..90d15ab 100644[m
+[1m--- a/ros2_ws/src/dummybot_navigation/launch/navigation.launch.py[m
+[1m+++ b/ros2_ws/src/dummybot_navigation/launch/navigation.launch.py[m
+[36m@@ -49,7 +49,7 @@[m [mdef generate_launch_description():[m
+ [m
+     declare_map_yaml_cmd = DeclareLaunchArgument([m
+         'map',[m
+[31m-        default_value=os.path.join(nav_dir, 'maps', 'my_map.yaml'),[m
+[32m+[m[32m        default_value=os.path.join(nav_dir, 'maps', 'my_map_mare.yaml'),[m
+         description='Full path to map yaml file to load')[m
+ [m
+     declare_autostart_cmd = DeclareLaunchArgument([m
+[1mdiff --git a/ros2_ws/src/dummybot_navigation/launch/slam.launch.py b/ros2_ws/src/dummybot_navigation/launch/slam.launch.py[m
+[1mindex 54c450f..008478d 100644[m
+[1m--- a/ros2_ws/src/dummybot_navigation/launch/slam.launch.py[m
+[1m+++ b/ros2_ws/src/dummybot_navigation/launch/slam.launch.py[m
+[36m@@ -43,6 +43,9 @@[m [mdef generate_launch_description():[m
+                 'mapper_params_online_async.yaml'[m
+             ]),[m
+             {'use_sim_time': use_sim_time}[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        remappings=[[m
+[32m+[m[32m            ('/odom', '/diff_drive_controller/odom')  # ← ADAUGĂ ASTA[m
+         ][m
+     )[m
+ [m
+[1mdiff --git a/ros2_ws/src/dummybot_navigation/maps/my_map.pgm b/ros2_ws/src/dummybot_navigation/maps/my_map.pgm[m
+[1mindex 2bc88b8..11f68c8 100644[m
+Binary files a/ros2_ws/src/dummybot_navigation/maps/my_map.pgm and b/ros2_ws/src/dummybot_navigation/maps/my_map.pgm differ
+[1mdiff --git a/ros2_ws/src/dummybot_navigation/maps/my_map.yaml b/ros2_ws/src/dummybot_navigation/maps/my_map.yaml[m
+[1mindex 9036a61..a0ca4a3 100644[m
+[1m--- a/ros2_ws/src/dummybot_navigation/maps/my_map.yaml[m
+[1m+++ b/ros2_ws/src/dummybot_navigation/maps/my_map.yaml[m
+[36m@@ -1,7 +1,7 @@[m
+ image: my_map.pgm[m
+ mode: trinary[m
+ resolution: 0.05[m
+[31m-origin: [-3.62, -2.08, 0][m
+[32m+[m[32morigin: [-1.68, -2.79, 0][m
+ negate: 0[m
+ occupied_thresh: 0.65[m
+ free_thresh: 0.25[m
+\ No newline at end of file[m
