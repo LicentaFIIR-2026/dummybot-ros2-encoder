@@ -25,10 +25,10 @@ Autonomous navigation system using Nav2 stack with AMCL localization and dynamic
 **Critical for accurate odometry!** Encoders were calibrated using ESP32 command `c` to ensure equal motor performance:
 ```bash
 # ESP32 Serial Monitor:
-c 0.9 1.07 1.0 1.02
+c 0.875 1.065 1.025 1.025
 
 # Resulting tick counts after calibration (test: m 100 100 100 100):
-# FL: 2760  FR: 2757  RL: 2765  RR: 2762
+# FL: 2849  FR: 2847  RL: 2849  RR: 2849
 # Difference: ±5 ticks (0.2%) - Excellent!
 ```
 

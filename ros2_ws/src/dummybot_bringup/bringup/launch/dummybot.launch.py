@@ -77,6 +77,19 @@ def generate_launch_description():
         ])
     )
 
+    # LiDAR launch file (LD19 driver)
+    #lidar_launch = IncludeLaunchDescription(
+        #PythonLaunchDescriptionSource([
+            #PathJoinSubstitution([
+                #FindPackageShare("dummybot_bringup"),
+                #"bringup",
+                #"launch",
+                #"include",
+                #"ld19.launch.py"
+            #])
+        #])
+    #)
+
     control_node = Node(
         package="controller_manager",
         executable="ros2_control_node",
