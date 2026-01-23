@@ -71,6 +71,8 @@ def generate_launch_description():
         output="both",
         remappings=[
             ("~/robot_description", "/robot_description"),
+            ("/diff_drive_controller/cmd_vel", "/cmd_vel"),  # Remap cmd_vel
+            ("/diff_drive_controller/odom", "/odom"),        # Remap odom
         ],
     )
     

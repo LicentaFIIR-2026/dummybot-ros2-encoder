@@ -3,11 +3,10 @@ LD19:
     product_name: 'LDLiDAR_LD19'
     topic_name: 'scan'
     frame_id: 'base_laser'
-    port_name: '/dev/ttyLIDAR'
+    port_name: '/dev/ttyUSB0'
     port_baudrate: 230400
     laser_scan_dir: True
     bins: 456
     enable_angle_crop_func: False
     angle_crop_min: 135.0
     angle_crop_max: 225.0
-    use_lidar_time: False

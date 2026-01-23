@@ -34,18 +34,21 @@ diff_drive_controller:
     wheels_per_side: 2
     
     # Robot dimensions (from ESP32 config.h)
-    wheel_separation: 0.3863      # Lx: 386.3mm
-    wheel_radius: 0.0325          # 65mm diameter / 2 = 32.5mm
+    wheel_separation: 0.390 #0.3863      # Lx: 386.3mm
+    wheel_radius: 0.0345 #0.0325          # 65mm diameter / 2 = 32.5mm
     
     # Wheel multipliers (for calibration fine-tuning if needed)
-    wheel_separation_multiplier: 1.0
+    wheel_separation_multiplier: 3.5
     left_wheel_radius_multiplier: 1.0
     right_wheel_radius_multiplier: 1.0
     
     # Publishing
     publish_rate: 30.0
     odom_frame_id: odom
-    base_frame_id: base_footprint
+    base_frame_id: base_link
+
+    odom_topic: /odom  # Forțează publicarea pe /odom în loc de /diff_drive_controller/odom
+
     pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
     twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
     
@@ -63,15 +66,15 @@ diff_drive_controller:
     linear.x.has_velocity_limits: true
     linear.x.has_acceleration_limits: true
     #linear.x.has_jerk_limits: false
-    linear.x.max_velocity: 1.0
-    linear.x.min_velocity: -1.0
-    linear.x.max_acceleration: 1.0
-    linear.x.min_acceleration: -1.0
+    linear.x.max_velocity: 3.0
+    linear.x.min_velocity: -3.0
+    linear.x.max_acceleration: 5.0
+    linear.x.min_acceleration: -5.0
     
     angular.z.has_velocity_limits: true
     angular.z.has_acceleration_limits: true
     #angular.z.has_jerk_limits: false
-    angular.z.max_velocity: 20.0
-    angular.z.min_velocity: -20.0
-    angular.z.max_acceleration: 1.2
-    angular.z.min_acceleration: -1.2
+    angular.z.max_velocity: 3.0
+    angular.z.min_velocity: -3.0
+    angular.z.max_acceleration: 5.2
+    angular.z.min_acceleration: -5.2

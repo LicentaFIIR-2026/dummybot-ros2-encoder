@@ -1,0 +1,63 @@
+<root main_tree_to_execute="MainTree">
+  <BehaviorTree ID="MainTree">
+    <ReactiveFallback name="BatteryAwareWaypointNavigation">
+      
+      <!-- Navigația către waypoint se execută cât timp bateria e OK -->
+      <ReactiveSequence name="NavigateToWaypointIfBatterySufficient">
+        <!-- Verifică dacă bateria NU e scăzută -->
+        <Inverter>
+          <IsBatteryLow min_battery="55.0" 
+                        battery_topic="/front_battery_state" 
+                        is_voltage="false"/>
+        </Inverter>
+        
+        <!-- Navigația către waypoint -->
+        <RecoveryNode number_of_retries="3" name="NavigateToWaypointRecovery">
+          <PipelineSequence name="NavigateToWaypointWithReplanning">
+            <RateController hz="1.0">
+              <RecoveryNode number_of_retries="1" name="ComputePathToPose">
+                <ComputePathToPose goal="{goal}" path="{path}" planner_id="GridBased"/>
+                <ReactiveFallback name="ComputePathToPoseRecoveryFallback">
+                  <GoalUpdated/>
+                  <ClearEntireCostmap name="ClearGlobalCostmap-Context" 
+                                      service_name="global_costmap/clear_entirely_global_costmap"/>
+                </ReactiveFallback>
+              </RecoveryNode>
+            </RateController>
+            <RecoveryNode number_of_retries="1" name="FollowPath">
+              <FollowPath path="{path}" controller_id="FollowPath"/>
+              <ReactiveFallback name="FollowPathRecoveryFallback">
+                <GoalUpdated/>
+                <ClearEntireCostmap name="ClearLocalCostmap-Context" 
+                                    service_name="local_costmap/clear_entirely_local_costmap"/>
+              </ReactiveFallback>
+            </RecoveryNode>
+          </PipelineSequence>
+          <ReactiveFallback name="RecoveryFallback">
+            <GoalUpdated/>
+            <RoundRobin name="RecoveryActions">
+              <Sequence name="ClearCostmapRecovery">
+                <ClearEntireCostmap name="ClearLocalCostmap-Sequence" 
+                                    service_name="local_costmap/clear_entirely_local_costmap"/>
+                <ClearEntireCostmap name="ClearGlobalCostmap-Sequence" 
+                                    service_name="global_costmap/clear_entirely_global_costmap"/>
+              </Sequence>
+              <Spin spin_dist="1.57" time_allowance="10"/>
+              <Wait wait_duration="3"/>
+              <BackUp backup_dist="0.15" backup_speed="0.025" time_allowance="10"/>
+            </RoundRobin>
+          </ReactiveFallback>
+        </RecoveryNode>
+      </ReactiveSequence>
+      
+      <!-- Comportament când bateria e scăzută - oprește waypoint following -->
+      <Sequence name="LowBatteryWaypointBehavior">
+        <IsBatteryLow min_battery="55.0" 
+                      battery_topic="/front_battery_state" 
+                      is_voltage="false"/>
+        <AlwaysFailure name="StopWaypointFollowing"/>
+      </Sequence>
+      
+    </ReactiveFallback>
+  </BehaviorTree>
+</root>

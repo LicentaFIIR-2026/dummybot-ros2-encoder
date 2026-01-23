@@ -1,0 +1,30 @@
+# Configurație pentru Dynamic Following Mode
+# Toate setările din xplorer.yaml + BT setat la dynamic following
+
+# Include configurația de bază și override BT-ul
+/**:
+  ros__parameters:
+    use_sim_time: False
+
+bt_navigator:
+  ros__parameters:
+    use_sim_time: False
+    global_frame: map
+    robot_base_frame: base_link
+    odom_topic: "/platform/odom/filtered"
+    bt_loop_duration: 10
+    default_server_timeout: 20
+    
+    # BT SETAT LA DYNAMIC FOLLOWING
+    default_nav_to_pose_bt_xml: "$(find-pkg-share amr2ax_nav2)/behavior_trees/dynamic_object_following.xml"
+    default_nav_through_poses_bt_xml: "$(find-pkg-share amr2ax_nav2)/behavior_trees/battery_aware_waypoint_navigation.xml"
+    default_dynamic_follow_bt_xml: "$(find-pkg-share amr2ax_nav2)/behavior_trees/dynamic_object_following.xml"
+    always_reload_bt_xml: false
+    
+    navigators: [navigate_to_pose, navigate_through_poses, dynamic_follow]
+    navigate_to_pose:
+      plugin: nav2_bt_navigator::NavigateToPoseNavigator
+    navigate_through_poses:
+      plugin: nav2_bt_navigator::NavigateThroughPosesNavigator
+    dynamic_follow:
+      plugin: nav2_bt_navigator::NavigateToPoseNavigator

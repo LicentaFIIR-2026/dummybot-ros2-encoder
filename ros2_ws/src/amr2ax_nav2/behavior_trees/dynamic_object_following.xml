@@ -1,0 +1,75 @@
+<!--
+  Dynamic Object Following Behavior Tree for SAIM Xplorer
+  
+  Parametri:
+  - Distanță following: 1.0m (TruncatePath)
+  - Frecvență replanificare: 1.0 Hz (RateController)
+  - Comportament pierdere: Stop (KeepRunningUntilFailure)
+  
+  Topic input: /goal_update (geometry_msgs/PoseStamped)
+  Folosește planner: GridBased (SmacPlannerHybrid)
+  Folosește controller: FollowPath (MPPI)
+-->
+
+<root BTCPP_format="4" main_tree_to_execute="MainTree">
+  <BehaviorTree ID="MainTree">
+    <ReactiveFallback name="DynamicFollowingWithBatteryCheck">
+      
+      <!-- Verificare baterie - oprește dacă bateria e scăzută -->
+      <ReactiveSequence name="FollowIfBatterySufficient">
+        <!-- Verifică dacă bateria NU e scăzută -->
+        <Inverter>
+          <IsBatteryLow min_battery="55.0" 
+                        battery_topic="/front_battery_state" 
+                        is_voltage="false"/>
+        </Inverter>
+        
+        <!-- Dynamic following loop -->
+        <PipelineSequence name="DynamicFollowingPipeline">
+          <!-- Selectors pentru planner și controller -->
+          <ControllerSelector selected_controller="{selected_controller}" 
+                              default_controller="FollowPath" 
+                              topic_name="controller_selector"/>
+          <PlannerSelector selected_planner="{selected_planner}" 
+                           default_planner="GridBased" 
+                           topic_name="planner_selector"/>
+          
+          <!-- Replanificare continuă la 1 Hz -->
+          <RateController hz="1.0">
+            <Sequence name="ComputeAndTruncatePath">
+              <!-- Primește actualizări de goal dinamic -->
+              <GoalUpdater input_goal="{goal}" output_goal="{updated_goal}">
+                <ComputePathToPose goal="{updated_goal}" 
+                                   path="{path}" 
+                                   planner_id="{selected_planner}" 
+                                   error_code_id="{compute_path_error_code}"/>
+              </GoalUpdater>
+              
+              <!-- Scurtează path-ul pentru a menține distanța de 1.0m -->
+              <TruncatePath distance="1.0" 
+                            input_path="{path}" 
+                            output_path="{truncated_path}"/>
+            </Sequence>
+          </RateController>
+          
+          <!-- Urmărire continuă - se oprește la pierderea obiectului -->
+          <KeepRunningUntilFailure>
+            <FollowPath path="{truncated_path}" 
+                        controller_id="{selected_controller}" 
+                        error_code_id="{follow_path_error_code}"/>
+          </KeepRunningUntilFailure>
+        </PipelineSequence>
+      </ReactiveSequence>
+      
+      <!-- Comportament baterie scăzută -->
+      <Sequence name="LowBatteryStop">
+        <IsBatteryLow min_battery="55.0" 
+                      battery_topic="/front_battery_state" 
+                      is_voltage="false"/>
+        <!-- Oprește robotul -->
+        <AlwaysSuccess name="EmergencyStop"/>
+      </Sequence>
+      
+    </ReactiveFallback>
+  </BehaviorTree>
+</root>

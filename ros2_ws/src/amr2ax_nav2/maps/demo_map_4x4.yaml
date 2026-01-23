@@ -1,0 +1,6 @@
+image: demo_map_4x4.pgm
+resolution: 0.05  # metri pe pixel
+origin: [0.0, 0.0, 0.0]  # Originea hărții (colțul stânga jos) în frame-ul map
+occupied_thresh: 0.65  # Prag pentru pixeli considerați ocupați (negru)
+free_thresh: 0.196  # Prag pentru pixeli considerați liberi (alb)
+negate: 0  # 0 înseamnă că alb = liber, negru = ocupat

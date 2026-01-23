@@ -2,32 +2,32 @@ amcl:
   ros__parameters:
     use_sim_time: False
     
-    # Motion model pentru SKID-STEER ✅
-    robot_model_type: "nav2_amcl::OmniMotionModel"
+    # Motion model pentru DIFFERENTIAL DRIVE ✅
+    robot_model_type: "nav2_amcl::DifferentialMotionModel"
     
-    # Noise model pentru skid-steer (drift lateral!) ✅
-    alpha1: 0.4
-    alpha2: 0.4
-    alpha3: 0.4
-    alpha4: 0.4
+    # Noise model pentru differential drive ✅
+    alpha1: 0.2
+    alpha2: 0.2
+    alpha3: 0.2
+    alpha4: 0.2
     alpha5: 0.2
     
-    # Frame IDs CORECTE ✅
-    base_frame_id: "base_footprint"
+    # Frame IDs ACTUALIZATE ✅
+    base_frame_id: "base_link"
     global_frame_id: "map"
     odom_frame_id: "odom"
     
     # Laser configuration ✅
     laser_frame_id: "laser_frame"
-    scan_topic: scan_best_effort
+    scan_topic: /scan
     laser_model_type: "likelihood_field"
-    laser_max_range: 10.0
+    laser_max_range: 12.0
     laser_min_range: 0.15
-    max_beams: 60
+    max_beams: 400
     
     # Particle filter ✅
-    min_particles: 500
-    max_particles: 2000
+    min_particles: 800
+    max_particles: 4000
     pf_err: 0.05
     pf_z: 0.99
     
@@ -63,14 +63,14 @@ amcl:
     # QoS
     qos_overrides:
       /scan:
-        reliability: reliable
+        reliability: best_effort
 
 bt_navigator:
   ros__parameters:
     use_sim_time: False
     global_frame: map
-    robot_base_frame: base_footprint  # ← CORECTAT
-    odom_topic: /diff_drive_controller/odom
+    robot_base_frame: base_link
+    odom_topic: /odom
     bt_loop_duration: 10
     default_server_timeout: 20
     navigators: ['navigate_to_pose', 'navigate_through_poses']
@@ -82,7 +82,7 @@ bt_navigator:
 controller_server:
   ros__parameters:
     use_sim_time: False
-    enable_stamped_cmd_vel: false
+    enable_stamped_cmd_vel: true
     controller_frequency: 20.0
     min_x_velocity_threshold: 0.001
     min_y_velocity_threshold: 0.5
@@ -98,44 +98,44 @@ controller_server:
       required_movement_radius: 0.3
       movement_time_allowance: 15.0
     
-    # Goal checker - toleranțe mai mari pentru skid-steer ✅
+    # Goal checker
     general_goal_checker:
       stateful: True
       plugin: "nav2_controller::SimpleGoalChecker"
-      xy_goal_tolerance: 0.25  # ← Mărit pentru drift
-      yaw_goal_tolerance: 0.40 # ← Mărit
+      xy_goal_tolerance: 0.20
+      yaw_goal_tolerance: 0.25
     
-    # DWB - viteze reduse pentru control mai bun ✅
+    # DWB Local Planner
     FollowPath:
       plugin: "dwb_core::DWBLocalPlanner"
       debug_trajectory_details: True
-      min_vel_x: -0.26 #0.0
+      min_vel_x: -0.26
       min_vel_y: 0.0
-      max_vel_x: 1.0  # ← Redus de la 1.0
+      max_vel_x: 1.0
       max_vel_y: 0.0
-      max_vel_theta: 2.0  # ← Redus de la 2.0
+      max_vel_theta: 2.0
       min_speed_xy: 0.0
-      max_speed_xy: 0.8  # ← Redus de la 0.8
+      max_speed_xy: 0.8
       min_speed_theta: 0.0
-      acc_lim_x: 1.0  # ← Redus
+      acc_lim_x: 1.0
       acc_lim_y: 0.0
-      acc_lim_theta: 1.2  # ← Redus
-      decel_lim_x: -1.0  # ← Redus
+      acc_lim_theta: 1.2
+      decel_lim_x: -1.0
       decel_lim_y: 0.0
-      decel_lim_theta: -1.2  # ← Redus
-      vx_samples: 15 #20
+      decel_lim_theta: -1.2
+      vx_samples: 15
       vy_samples: 5
       vtheta_samples: 20
       sim_time: 1.7
       linear_granularity: 0.05
       angular_granularity: 0.025
       transform_tolerance: 0.2
-      xy_goal_tolerance: 0.25  # ← Mărit
+      xy_goal_tolerance: 0.20
       trans_stopped_velocity: 0.10
       short_circuit_trajectory_evaluation: True
       stateful: True
       critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
-      BaseObstacle.scale: 0.05  # ← Mărit de la 0.02 (evitare mai puternică!)
+      BaseObstacle.scale: 0.05
       PathAlign.scale: 32.0
       PathAlign.forward_point_distance: 0.1
       GoalAlign.scale: 24.0
@@ -149,26 +149,25 @@ controller_server:
 local_costmap:
   local_costmap:
     ros__parameters:
-      update_frequency: 10.0  # ← Mărit de la 5.0
-      publish_frequency: 5.0  # ← Mărit de la 2.0
+      update_frequency: 10.0
+      publish_frequency: 5.0
       global_frame: odom
-      robot_base_frame: base_footprint
+      robot_base_frame: base_link
       use_sim_time: False
       rolling_window: true
       width: 6
       height: 6
       resolution: 0.05
-      robot_radius: 0.35  # ← Mărit de la 0.28 (mai mult spațiu!)
-      plugins: ["obstacle_layer", "inflation_layer"]  # ← Schimbat de la voxel
+      robot_radius: 0.35
+      plugins: ["obstacle_layer", "inflation_layer"]
       
-      # Obstacle layer pentru LiDAR ✅
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
         observation_sources: scan
         scan:
-          topic: /scan_best_effort  # ← Topic corect!
-          sensor_frame: laser_frame  # ← Frame corect!
+          topic: /scan
+          sensor_frame: laser_frame
           data_type: "LaserScan"
           clearing: True
           marking: True
@@ -178,13 +177,13 @@ local_costmap:
           obstacle_min_range: 0.0
           raytrace_max_range: 11.0
           raytrace_min_range: 0.0
-          observation_persistence: 0.0  # ← Nu păstra obstacole vechi
-          expected_update_rate: 10.0  # ← Așteaptă 10Hz de la LiDAR
+          observation_persistence: 0.0
+          expected_update_rate: 10.0
       
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 5.0  # ← Mărit de la 3.0 (evitare mai agresivă!)
-        inflation_radius: 0.35 #0.55
+        cost_scaling_factor: 5.0
+        inflation_radius: 0.35
       
       always_send_full_costmap: True
 
@@ -194,9 +193,9 @@ global_costmap:
       update_frequency: 1.0
       publish_frequency: 1.0
       global_frame: map
-      robot_base_frame: base_footprint  # ← CORECTAT
+      robot_base_frame: base_link
       use_sim_time: False
-      robot_radius: 0.35  # ← Mărit
+      robot_radius: 0.35
       resolution: 0.05
       track_unknown_space: true
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
@@ -206,7 +205,7 @@ global_costmap:
         enabled: True
         observation_sources: scan
         scan:
-          topic: /scan_best_effort
+          topic: /scan
           sensor_frame: laser_frame
           data_type: "LaserScan"
           clearing: True
@@ -224,8 +223,8 @@ global_costmap:
       
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 5.0  # ← Mărit
-        inflation_radius: 0.35 #0.55
+        cost_scaling_factor: 5.0
+        inflation_radius: 0.35
       
       always_send_full_costmap: True
 
@@ -279,7 +278,7 @@ behavior_server:
     wait:
       plugin: "nav2_behaviors::Wait"
     global_frame: odom
-    robot_base_frame: base_footprint  # ← CORECTAT
+    robot_base_frame: base_link
     transform_tolerance: 0.1
     use_sim_time: False
     simulate_ahead_time: 2.0
@@ -305,7 +304,7 @@ waypoint_follower:
 velocity_smoother:
   ros__parameters:
     use_sim_time: False
-    enable_stamped_cmd_vel: false
+    enable_stamped_cmd_vel: true
     smoothing_frequency: 20.0
     scale_velocities: False
     feedback: "OPEN_LOOP"
@@ -313,7 +312,7 @@ velocity_smoother:
     min_velocity: [-0.26, 0.0, -1.5]
     max_accel: [1.0, 0.0, 1.2]
     max_decel: [-1.0, 0.0, -1.2]
-    odom_topic: "/diff_drive_controller/odom"
+    odom_topic: "/odom"
     odom_duration: 0.1
     deadband_velocity: [0.0, 0.0, 0.0]
     velocity_timeout: 1.0

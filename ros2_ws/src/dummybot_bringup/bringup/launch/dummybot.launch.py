@@ -11,6 +11,8 @@ from launch_ros.parameter_descriptions import ParameterValue
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
+from launch.actions import ExecuteProcess
+
 def generate_launch_description():
     # Declare arguments
     declared_arguments = []
@@ -97,6 +99,8 @@ def generate_launch_description():
         output="both",
         remappings=[
             ("~/robot_description", "/robot_description"),
+            ("/diff_drive_controller/cmd_vel", "/cmd_vel_stamped"),
+            ("/diff_drive_controller/odom", "/odom"),
         ],
     )
     
