@@ -60,6 +60,6 @@ def generate_launch_description():
   ld = LaunchDescription()
 
   ld.add_action(ldlidar_node)
-  #ld.add_action(base_link_to_laser_tf_node)
+  ld.add_action(base_link_to_laser_tf_node)
 
   return ld

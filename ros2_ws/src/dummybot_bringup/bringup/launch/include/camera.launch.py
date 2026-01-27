@@ -42,7 +42,7 @@ def generate_launch_description():
                 'camera_frame_id': 'camera_link_optical',
                 
                 # Calibrare camera
-                'camera_info_url': 'file:///home/pi/saim_xplorer/src/xplorer_bringup/bringup/config/hd_pro_webcam_c920_v2.yaml',
+                'camera_info_url': 'file:///home/saim/dummybot-ros2-encoder/ros2_ws/src/dummybot_bringup/bringup/config/hd_pro_webcam_c920_v2.yaml',
                 
                 # Device video
                 #'video_device': '/dev/video1',

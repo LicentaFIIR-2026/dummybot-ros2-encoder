@@ -190,7 +190,7 @@
       <geometry>
         <cylinder length="${lidar_len}" radius="${lidar_radius}"/>
       </geometry>
-      <material name="white"/>
+      <material name="red"/>
     </visual>
 
     <inertial>
@@ -206,7 +206,7 @@
     <joint name="base_laser_joint" type="fixed">
       <parent link="base_link"/>
       <child link="base_laser"/>
-      <origin xyz="0.110 0 0.210" rpy="0 0 -1.5708"/>
+      <origin xyz="0.110 0 0.210" rpy="0 0 0"/>
     </joint>  
 
     <joint name="camera_joint" type="fixed">

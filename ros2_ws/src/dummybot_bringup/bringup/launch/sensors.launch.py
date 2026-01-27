@@ -66,15 +66,15 @@ def generate_launch_description():
             PathJoinSubstitution([
                 bringup_dir, 'bringup','launch', 'include', 'ld19.launch.py'])]),
     )
-#    launch_camera = IncludeLaunchDescription(
-#        PythonLaunchDescriptionSource([
-#            PathJoinSubstitution([
-#                bringup_dir, 'bringup','launch', 'include', 'camera.launch.py'])]),
-#    )
+    launch_camera = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            PathJoinSubstitution([
+                bringup_dir, 'bringup','launch', 'include', 'camera.launch.py'])]),
+    )
 
     ld = LaunchDescription()
 #    ld.add_action(use_orbecc_cmd)
-#    ld.add_action(launch_camera)
+    ld.add_action(launch_camera)
 #    ld.add_action(launch_BNO055)
     ld.add_action(launch_lidar)
     return ld
