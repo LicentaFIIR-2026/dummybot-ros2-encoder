@@ -1,11 +1,19 @@
 #include "dummybot_hardware_interface.hpp"
+
+#include <chrono>
+#include <cmath>
+#include <limits>
+#include <memory>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <thread>
+
 #include <fcntl.h>
 #include <termios.h>
 #include <unistd.h>
-#include <cstring>
-#include <sstream>
-#include <chrono>
-#include <thread>
+
+#include "hardware_interface/types/hardware_interface_type_values.hpp"
 #include "rclcpp/rclcpp.hpp"
 
 namespace dummybot_hardware
@@ -18,106 +26,135 @@ namespace dummybot_hardware
 hardware_interface::CallbackReturn DummyBotHardwareInterface::on_init(
     const hardware_interface::HardwareInfo & info)
 {
-    // Call base class on_init
-    if (hardware_interface::SystemInterface::on_init(info) != hardware_interface::CallbackReturn::SUCCESS)
+    if (hardware_interface::SystemInterface::on_init(info) != 
+        hardware_interface::CallbackReturn::SUCCESS)
     {
         return hardware_interface::CallbackReturn::ERROR;
     }
 
-    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"), "Initializing...");
-
-    // Read parameters from URDF
-    serial_port_ = info_.hardware_parameters["serial_port"];
-    serial_baud_ = std::stoi(info_.hardware_parameters["serial_baud"]);
-    wheel_radius_ = std::stod(info_.hardware_parameters["wheel_radius"]);
-    wheel_separation_ = std::stod(info_.hardware_parameters["wheel_separation"]);
-    ticks_per_revolution_ = std::stoi(info_.hardware_parameters["ticks_per_revolution"]);
-
     RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"), 
-                "Parameters: port=%s, baud=%d, wheel_radius=%.4f, wheel_sep=%.4f, ticks_per_rev=%d",
-                serial_port_.c_str(), serial_baud_, wheel_radius_, wheel_separation_, ticks_per_revolution_);
+                "Initializing DummyBot Hardware Interface...");
 
-    // Initialize joint configurations
+    // Read hardware parameters from URDF
+    try {
+        serial_port_ = info_.hardware_parameters["serial_port"];
+        serial_baud_ = std::stoi(info_.hardware_parameters["serial_baud"]);
+        wheel_radius_ = std::stod(info_.hardware_parameters["wheel_radius"]);
+        wheel_separation_ = std::stod(info_.hardware_parameters["wheel_separation"]);
+        ticks_per_revolution_ = std::stoi(info_.hardware_parameters["ticks_per_revolution"]);
+        
+        RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
+            "Hardware params: port=%s, baud=%d, radius=%.4f, separation=%.4f, tpr=%d",
+            serial_port_.c_str(), serial_baud_, wheel_radius_, 
+            wheel_separation_, ticks_per_revolution_);
+    }
+    catch (const std::exception& e) {
+        RCLCPP_ERROR(rclcpp::get_logger("DummyBotHardwareInterface"),
+            "Failed to read hardware parameters: %s", e.what());
+        return hardware_interface::CallbackReturn::ERROR;
+    }
+
+    // Read PID parameters from URDF (INT pentru ESP32, ordine: kp kd ki ko)
+    try {
+        pid_kp_ = std::stoi(info_.hardware_parameters["pid_kp"]);
+        pid_kd_ = std::stoi(info_.hardware_parameters["pid_kd"]);
+        pid_ki_ = std::stoi(info_.hardware_parameters["pid_ki"]);
+        pid_ko_ = std::stoi(info_.hardware_parameters["pid_ko"]);
+        
+        RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
+            "PID Parameters: Kp=%d, Kd=%d, Ki=%d, Ko=%d",
+            pid_kp_, pid_kd_, pid_ki_, pid_ko_);
+    }
+    catch (const std::exception& e) {
+        RCLCPP_WARN(rclcpp::get_logger("DummyBotHardwareInterface"),
+            "PID parameters not found in URDF, using defaults: %s", e.what());
+        pid_kp_ = 280;
+        pid_kd_ = 70;
+        pid_ki_ = 0;
+        pid_ko_ = 14;
+    }
+
+    // Read Calibration parameters from URDF (FLOAT)
+    try {
+        calibration_fl_ = std::stod(info_.hardware_parameters["calibration_fl"]);
+        calibration_fr_ = std::stod(info_.hardware_parameters["calibration_fr"]);
+        calibration_rl_ = std::stod(info_.hardware_parameters["calibration_rl"]);
+        calibration_rr_ = std::stod(info_.hardware_parameters["calibration_rr"]);
+        
+        RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
+            "Calibration: FL=%.3f, FR=%.3f, RL=%.3f, RR=%.3f",
+            calibration_fl_, calibration_fr_, calibration_rl_, calibration_rr_);
+    }
+    catch (const std::exception& e) {
+        RCLCPP_WARN(rclcpp::get_logger("DummyBotHardwareInterface"),
+            "Calibration parameters not found in URDF, using defaults: %s", e.what());
+        calibration_fl_ = 0.875;
+        calibration_fr_ = 1.065;
+        calibration_rl_ = 1.025;
+        calibration_rr_ = 1.025;
+    }
+
+    // Initialize joint configuration
     joint_configs_.clear();
-    for (size_t i = 0; i < info_.joints.size(); ++i)
+    calibration_factors_.resize(4, 1.0);
+    
+    for (const hardware_interface::ComponentInfo & joint : info_.joints)
     {
         JointConfig config;
-        config.name = info_.joints[i].name;
+        config.name = joint.name;
         
-        // Map joint names to encoder indices
-        if (config.name.find("front_left") != std::string::npos) {
+        // Determine encoder index based on joint name
+        if (joint.name.find("front_left") != std::string::npos) {
             config.encoder_index = 0;  // FL
-        } else if (config.name.find("front_right") != std::string::npos) {
+            config.calibration_factor = calibration_fl_;
+        } else if (joint.name.find("front_right") != std::string::npos) {
             config.encoder_index = 1;  // FR
-        } else if (config.name.find("rear_left") != std::string::npos) {
+            config.calibration_factor = calibration_fr_;
+        } else if (joint.name.find("rear_left") != std::string::npos) {
             config.encoder_index = 2;  // RL
-        } else if (config.name.find("rear_right") != std::string::npos) {
+            config.calibration_factor = calibration_rl_;
+        } else if (joint.name.find("rear_right") != std::string::npos) {
             config.encoder_index = 3;  // RR
+            config.calibration_factor = calibration_rr_;
         } else {
             RCLCPP_ERROR(rclcpp::get_logger("DummyBotHardwareInterface"),
-                        "Unknown joint name: %s", config.name.c_str());
+                "Unknown joint name: %s", joint.name.c_str());
             return hardware_interface::CallbackReturn::ERROR;
         }
         
-        config.calibration_factor = 1.0;  // Default, will load from ESP32
         joint_configs_.push_back(config);
+        calibration_factors_[config.encoder_index] = config.calibration_factor;
+        
+        RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
+            "Joint configured: %s -> Encoder %d, Calibration %.3f", 
+            config.name.c_str(), config.encoder_index, config.calibration_factor);
     }
 
-    // Initialize state vectors
+    // Resize state/command vectors
     hw_commands_.resize(info_.joints.size(), 0.0);
     hw_positions_.resize(info_.joints.size(), 0.0);
     hw_velocities_.resize(info_.joints.size(), 0.0);
     hw_efforts_.resize(info_.joints.size(), 0.0);
     last_encoder_counts_.resize(4, 0);
-    calibration_factors_.resize(4, 1.0);
-    
-    first_read_ = true;
+
     serial_fd_ = -1;
+    first_read_ = true;
 
     RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"), 
-                "Initialized with %zu joints", info_.joints.size());
-
+                "Hardware interface initialized successfully");
     return hardware_interface::CallbackReturn::SUCCESS;
 }
 
 hardware_interface::CallbackReturn DummyBotHardwareInterface::on_configure(
     const rclcpp_lifecycle::State & /*previous_state*/)
 {
-    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"), "Configuring...");
-
-    // Open serial port
-    serial_fd_ = init_serial(serial_port_, serial_baud_);
-    if (serial_fd_ < 0) {
-        RCLCPP_ERROR(rclcpp::get_logger("DummyBotHardwareInterface"),
-                    "Failed to open serial port: %s", serial_port_.c_str());
-        return hardware_interface::CallbackReturn::ERROR;
-    }
-
     RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"), 
-                "Serial port opened: %s", serial_port_.c_str());
-
-    // Wait for ESP32 to be ready
-    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-
-    // Load calibration from ESP32 (optional, falls back to 1.0)
-    if (!load_calibration_from_esp32()) {
-        RCLCPP_WARN(rclcpp::get_logger("DummyBotHardwareInterface"),
-                   "Could not load calibration from ESP32, using defaults");
-    }
-
-    // Reset encoders
-    if (!reset_encoders()) {
-        RCLCPP_ERROR(rclcpp::get_logger("DummyBotHardwareInterface"),
-                    "Failed to reset encoders");
-       // return hardware_interface::CallbackReturn::ERROR;
-    }
-
-    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"), "Configuration complete");
+                "Configuring hardware interface...");
     return hardware_interface::CallbackReturn::SUCCESS;
 }
 
 // ============================================================================
-// STATE AND COMMAND INTERFACES
+// INTERFACE EXPORT
 // ============================================================================
 
 std::vector<hardware_interface::StateInterface> 
@@ -125,38 +162,29 @@ DummyBotHardwareInterface::export_state_interfaces()
 {
     std::vector<hardware_interface::StateInterface> state_interfaces;
     
-    for (size_t i = 0; i < info_.joints.size(); ++i)
+    for (size_t i = 0; i < info_.joints.size(); i++)
     {
-        state_interfaces.emplace_back(
-            hardware_interface::StateInterface(
-                info_.joints[i].name, hardware_interface::HW_IF_POSITION, &hw_positions_[i]));
+        state_interfaces.emplace_back(hardware_interface::StateInterface(
+            info_.joints[i].name, hardware_interface::HW_IF_POSITION, &hw_positions_[i]));
         
-        state_interfaces.emplace_back(
-            hardware_interface::StateInterface(
-                info_.joints[i].name, hardware_interface::HW_IF_VELOCITY, &hw_velocities_[i]));
+        state_interfaces.emplace_back(hardware_interface::StateInterface(
+            info_.joints[i].name, hardware_interface::HW_IF_VELOCITY, &hw_velocities_[i]));
     }
-
-    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
-               "Exported %zu state interfaces", state_interfaces.size());
-
+    
     return state_interfaces;
 }
 
-std::vector<hardware_interface::CommandInterface>
+std::vector<hardware_interface::CommandInterface> 
 DummyBotHardwareInterface::export_command_interfaces()
 {
     std::vector<hardware_interface::CommandInterface> command_interfaces;
     
-    for (size_t i = 0; i < info_.joints.size(); ++i)
+    for (size_t i = 0; i < info_.joints.size(); i++)
     {
-        command_interfaces.emplace_back(
-            hardware_interface::CommandInterface(
-                info_.joints[i].name, hardware_interface::HW_IF_VELOCITY, &hw_commands_[i]));
+        command_interfaces.emplace_back(hardware_interface::CommandInterface(
+            info_.joints[i].name, hardware_interface::HW_IF_VELOCITY, &hw_commands_[i]));
     }
-
-    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
-               "Exported %zu command interfaces", command_interfaces.size());
-
+    
     return command_interfaces;
 }
 
@@ -167,25 +195,97 @@ DummyBotHardwareInterface::export_command_interfaces()
 hardware_interface::CallbackReturn DummyBotHardwareInterface::on_activate(
     const rclcpp_lifecycle::State & /*previous_state*/)
 {
-    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"), "Activating...");
-    
-    // Reset state
+    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"), 
+                "Activating hardware interface...");
+
+    // Initialize serial
+    serial_fd_ = init_serial(serial_port_, serial_baud_);
+    if (serial_fd_ < 0) {
+        RCLCPP_ERROR(rclcpp::get_logger("DummyBotHardwareInterface"),
+                     "Failed to open serial port");
+        return hardware_interface::CallbackReturn::ERROR;
+    }
+
+    // Wait for ESP32 to be ready
+    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
+                "Waiting for ESP32 to be ready...");
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+
+    // 1. Update PID parameters on ESP32
+    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
+                "Updating PID parameters...");
+    if (!update_pid_parameters(pid_kp_, pid_kd_, pid_ki_, pid_ko_)) {
+        RCLCPP_WARN(rclcpp::get_logger("DummyBotHardwareInterface"),
+                    "Failed to update PID parameters");
+    } else {
+        RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
+                    "PID parameters updated successfully");
+    }
+
+    // Small delay between commands
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+    // 2. Send calibration to ESP32
+    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
+                "Sending calibration to ESP32...");
+    if (!send_calibration(calibration_fl_, calibration_fr_, calibration_rl_, calibration_rr_)) {
+        RCLCPP_WARN(rclcpp::get_logger("DummyBotHardwareInterface"),
+                    "Failed to send calibration");
+    } else {
+        RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
+                    "Calibration sent successfully");
+    }
+
+    // Small delay before reset
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+    // 3. Reset encoders
+    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
+                "Resetting encoders...");
+    if (!reset_encoders()) {
+        RCLCPP_ERROR(rclcpp::get_logger("DummyBotHardwareInterface"),
+                     "Failed to reset encoders");
+        return hardware_interface::CallbackReturn::ERROR;
+    }
+
+    // Wait for ESP32 to be ready after reset
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+    // TEST - Citește encoderele o dată pentru a verifica comunicarea
+    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
+                "Testing encoder communication...");
+    auto test_counts = read_encoders();
+    if (test_counts.empty()) {
+        RCLCPP_ERROR(rclcpp::get_logger("DummyBotHardwareInterface"),
+                     "Failed to read encoders during activation");
+        return hardware_interface::CallbackReturn::ERROR;
+    } else {
+        RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
+                    "Encoder test OK: FL=%d FR=%d RL=%d RR=%d", 
+                    test_counts[0], test_counts[1], test_counts[2], test_counts[3]);
+    }
+
+    // Initialize state with STEADY_TIME to match controller_manager
     first_read_ = true;
-    last_read_time_ = rclcpp::Clock(RCL_STEADY_TIME).now();
-    
-    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"), "Activated");
+    last_read_time_ = rclcpp::Time(0, 0, RCL_STEADY_TIME);
+
+    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"), 
+                "Hardware interface activated successfully");
     return hardware_interface::CallbackReturn::SUCCESS;
 }
 
 hardware_interface::CallbackReturn DummyBotHardwareInterface::on_deactivate(
     const rclcpp_lifecycle::State & /*previous_state*/)
 {
-    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"), "Deactivating...");
-    
+    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"), 
+                "Deactivating hardware interface...");
+
     // Stop motors
     send_motor_speeds(0, 0, 0, 0);
     
-    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"), "Deactivated");
+    // Close serial
+    close_serial();
+
     return hardware_interface::CallbackReturn::SUCCESS;
 }
 
@@ -199,41 +299,53 @@ hardware_interface::return_type DummyBotHardwareInterface::read(
     // Read encoder values from ESP32
     std::vector<int32_t> encoder_counts = read_encoders();
     
-    if (encoder_counts.size() != 4) {
-        RCLCPP_ERROR(rclcpp::get_logger("DummyBotHardwareInterface"),
-                    "Failed to read encoders");
+    if (encoder_counts.empty()) {
+        static auto clock = std::make_shared<rclcpp::Clock>(RCL_STEADY_TIME);
+        RCLCPP_WARN_THROTTLE(rclcpp::get_logger("DummyBotHardwareInterface"),
+                             *clock, 1000, "Failed to read encoders");
         return hardware_interface::return_type::ERROR;
+    }
+
+    if (first_read_) {
+        // First read: just store values
+        last_encoder_counts_ = encoder_counts;
+        last_read_time_ = time;
+        first_read_ = false;
+        return hardware_interface::return_type::OK;
     }
 
     // Calculate time delta
     rclcpp::Duration dt = time - last_read_time_;
     double dt_seconds = dt.seconds();
 
-    if (first_read_) {
-        // First read, just store positions
-        last_encoder_counts_ = encoder_counts;
-        first_read_ = false;
-    } else {
-        // Calculate position and velocity for each joint
-        for (size_t i = 0; i < joint_configs_.size(); ++i)
-        {
-            int encoder_idx = joint_configs_[i].encoder_index;
-            
-            // Position: convert ticks to radians
-            hw_positions_[i] = encoder_ticks_to_radians(encoder_counts[encoder_idx]);
-            
-            // Velocity: delta_position / delta_time
-            if (dt_seconds > 0.0) {
-                int32_t delta_ticks = encoder_counts[encoder_idx] - last_encoder_counts_[encoder_idx];
-                double delta_rad = encoder_ticks_to_radians(delta_ticks);
-                hw_velocities_[i] = delta_rad / dt_seconds;
-            }
-        }
-        
-        last_encoder_counts_ = encoder_counts;
+    if (dt_seconds <= 0.0) {
+        // Invalid time delta, skip this cycle
+        return hardware_interface::return_type::OK;
     }
 
+    // Update positions and velocities for each joint
+    for (size_t i = 0; i < joint_configs_.size(); i++)
+    {
+        int encoder_idx = joint_configs_[i].encoder_index;
+        double calib_factor = joint_configs_[i].calibration_factor;
+        
+        // Calculate delta ticks
+        int32_t delta_ticks = encoder_counts[encoder_idx] - last_encoder_counts_[encoder_idx];
+        
+        // Convert to radians (with calibration)
+        double delta_position = encoder_ticks_to_radians(delta_ticks) * calib_factor;
+        
+        // Update position (integrate)
+        hw_positions_[i] += delta_position;
+        
+        // Calculate velocity
+        hw_velocities_[i] = delta_position / dt_seconds;
+    }
+
+    // Store current values for next iteration
+    last_encoder_counts_ = encoder_counts;
     last_read_time_ = time;
+
     return hardware_interface::return_type::OK;
 }
 
@@ -243,22 +355,25 @@ hardware_interface::return_type DummyBotHardwareInterface::write(
     // Convert commanded velocities (rad/s) to motor speeds (ticks/frame)
     std::vector<int32_t> motor_speeds(4, 0);
     
-    for (size_t i = 0; i < joint_configs_.size(); ++i)
+    for (size_t i = 0; i < joint_configs_.size(); i++)
     {
         int encoder_idx = joint_configs_[i].encoder_index;
-        motor_speeds[encoder_idx] = radians_per_sec_to_ticks_per_frame(hw_commands_[i]);
+        double calib_factor = joint_configs_[i].calibration_factor;
+        
+        // Apply calibration factor to command
+        double calibrated_velocity = hw_commands_[i] / calib_factor;
+        
+        // Convert to ticks per frame
+        motor_speeds[encoder_idx] = radians_per_sec_to_ticks_per_frame(calibrated_velocity);
     }
 
-    // ADAUGĂ ACEST LOG:
-    //RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
-                //"Motor speeds: FL=%d FR=%d RL=%d RR=%d", 
-                //motor_speeds[0], motor_speeds[1], motor_speeds[2], motor_speeds[3]);
-
-    // Send to ESP32: m FL FR RL RR
+    // Send to ESP32
     if (!send_motor_speeds(motor_speeds[0], motor_speeds[1], 
-                          motor_speeds[2], motor_speeds[3])) {
-        RCLCPP_ERROR(rclcpp::get_logger("DummyBotHardwareInterface"),
-                    "Failed to send motor speeds");
+                           motor_speeds[2], motor_speeds[3]))
+    {
+        static auto clock = std::make_shared<rclcpp::Clock>(RCL_STEADY_TIME);
+        RCLCPP_WARN_THROTTLE(rclcpp::get_logger("DummyBotHardwareInterface"),
+                             *clock, 1000, "Failed to send motor speeds");
         return hardware_interface::return_type::ERROR;
     }
 
@@ -266,201 +381,213 @@ hardware_interface::return_type DummyBotHardwareInterface::write(
 }
 
 // ============================================================================
-// SERIAL COMMUNICATION HELPERS
+// SERIAL COMMUNICATION
 // ============================================================================
 
 int DummyBotHardwareInterface::init_serial(const std::string& port_name, int baud_rate)
 {
-    int fd = open(port_name.c_str(), O_RDWR | O_NOCTTY | O_NDELAY);
-    if (fd == -1) {
+    int fd = open(port_name.c_str(), O_RDWR | O_NOCTTY);
+    if (fd < 0) {
+        RCLCPP_ERROR(rclcpp::get_logger("DummyBotHardwareInterface"),
+            "Failed to open serial port: %s", port_name.c_str());
         return -1;
     }
 
-    struct termios options;
-    tcgetattr(fd, &options);
-    
-    // Set baud rate
-    speed_t speed;
-    switch(baud_rate) {
-        case 9600: speed = B9600; break;
-        case 115200: speed = B115200; break;
-        default: speed = B115200; break;
+    struct termios tty;
+    if (tcgetattr(fd, &tty) != 0) {
+        RCLCPP_ERROR(rclcpp::get_logger("DummyBotHardwareInterface"),
+            "Error getting serial attributes");
+        ::close(fd);
+        return -1;
     }
-    
-    cfsetispeed(&options, speed);
-    cfsetospeed(&options, speed);
-    
-    // 8N1
-    options.c_cflag &= ~PARENB;
-    options.c_cflag &= ~CSTOPB;
-    options.c_cflag &= ~CSIZE;
-    options.c_cflag |= CS8;
-    
-    // No flow control
-    options.c_cflag &= ~CRTSCTS;
-    
-    // Enable receiver, ignore modem control lines
-    options.c_cflag |= (CLOCAL | CREAD);
-    
-    // Raw input
-    options.c_lflag &= ~(ICANON | ECHO | ECHOE | ISIG);
-    
-    // Raw output
-    options.c_oflag &= ~OPOST;
-    
-    // No input processing
-    options.c_iflag &= ~(IXON | IXOFF | IXANY);
-    options.c_iflag &= ~(IGNBRK | BRKINT | PARMRK | ISTRIP | INLCR | IGNCR | ICRNL);
-    
-    // Timeouts
-    options.c_cc[VMIN] = 0;
-    options.c_cc[VTIME] = 1;  // 0.1 second timeout
-    
-    tcsetattr(fd, TCSANOW, &options);
-    tcflush(fd, TCIOFLUSH);
-    
+
+    // Set baud rate
+    speed_t speed = B115200;
+    if (baud_rate == 9600) speed = B9600;
+    else if (baud_rate == 19200) speed = B19200;
+    else if (baud_rate == 38400) speed = B38400;
+    else if (baud_rate == 57600) speed = B57600;
+    else if (baud_rate == 115200) speed = B115200;
+
+    cfsetospeed(&tty, speed);
+    cfsetispeed(&tty, speed);
+
+    // 8N1, no flow control
+    tty.c_cflag = (tty.c_cflag & ~CSIZE) | CS8;
+    tty.c_cflag &= ~(PARENB | PARODD);
+    tty.c_cflag &= ~CSTOPB;
+    tty.c_cflag &= ~CRTSCTS;
+    tty.c_cflag |= (CLOCAL | CREAD);
+
+    tty.c_lflag &= ~(ICANON | ECHO | ECHOE | ISIG);
+    tty.c_iflag &= ~(IXON | IXOFF | IXANY);
+    tty.c_oflag &= ~OPOST;
+
+    tty.c_cc[VMIN] = 0;
+    tty.c_cc[VTIME] = 1;
+
+    if (tcsetattr(fd, TCSANOW, &tty) != 0) {
+        RCLCPP_ERROR(rclcpp::get_logger("DummyBotHardwareInterface"),
+            "Error setting serial attributes");
+        ::close(fd);
+        return -1;
+    }
+
     return fd;
 }
 
 void DummyBotHardwareInterface::close_serial()
 {
     if (serial_fd_ >= 0) {
-        close(serial_fd_);
+        ::close(serial_fd_);
         serial_fd_ = -1;
     }
 }
 
 bool DummyBotHardwareInterface::send_command(const std::string& cmd)
 {
-    if (serial_fd_ < 0) return false;
-    
-    std::string full_cmd = cmd + "\n";
-    ssize_t bytes_written = ::write(serial_fd_, full_cmd.c_str(), full_cmd.length());
-    
-    if (bytes_written != static_cast<ssize_t>(full_cmd.length())) {
+    if (serial_fd_ < 0) {
         return false;
     }
-    
-    tcdrain(serial_fd_);  // Wait for transmission to complete
+
+    ssize_t written = ::write(serial_fd_, cmd.c_str(), cmd.length());
+    if (written < 0) {
+        RCLCPP_ERROR(rclcpp::get_logger("DummyBotHardwareInterface"),
+            "Failed to write to serial port");
+        return false;
+    }
+
     return true;
 }
 
 std::string DummyBotHardwareInterface::read_response(int timeout_ms)
 {
-    if (serial_fd_ < 0) return "";
-    
+    if (serial_fd_ < 0) {
+        return "";
+    }
+
     std::string response;
-    char buffer[256];
+    char buf[256];
     
     auto start_time = std::chrono::steady_clock::now();
     
     while (true) {
-        ssize_t bytes_read = ::read(serial_fd_, buffer, sizeof(buffer) - 1);
-        
-        if (bytes_read > 0) {
-            buffer[bytes_read] = '\0';
-            response += buffer;
-            
-            // Check if we have a complete line
-            if (response.find('\n') != std::string::npos) {
-                // Remove trailing newline
-                if (response.back() == '\n') response.pop_back();
-                if (response.back() == '\r') response.pop_back();
-                break;
-            }
-        }
-        
-        // Check timeout
-        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
-            std::chrono::steady_clock::now() - start_time);
+        auto now = std::chrono::steady_clock::now();
+        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - start_time);
         
         if (elapsed.count() > timeout_ms) {
             break;
         }
+
+        ssize_t n = ::read(serial_fd_, buf, sizeof(buf) - 1);
+        if (n > 0) {
+            buf[n] = '\0';
+            response += buf;
+            
+            // Check if we have a complete line
+            if (response.find('\n') != std::string::npos) {
+                break;
+            }
+        }
         
-        std::this_thread::sleep_for(std::chrono::milliseconds(5));
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
-    
+
     return response;
 }
 
 // ============================================================================
-// ESP32 PROTOCOL HELPERS
+// ESP32 PROTOCOL
 // ============================================================================
 
 bool DummyBotHardwareInterface::reset_encoders()
 {
-    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"), "Resetting encoders...");
-    
-    if (!send_command("r")) {
+    if (!send_command("r\n")) {
         return false;
     }
     
     std::string response = read_response(200);
     
-    if (response.find("OK") != std::string::npos) {
-        RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"), "Encoders reset");
-        return true;
-    }
+    // Reset local tracking
+    std::fill(last_encoder_counts_.begin(), last_encoder_counts_.end(), 0);
+    std::fill(hw_positions_.begin(), hw_positions_.end(), 0.0);
     
-    return false;
+    return !response.empty();
 }
 
 std::vector<int32_t> DummyBotHardwareInterface::read_encoders()
 {
-    std::vector<int32_t> result;
-    
-    // Flush input buffer first
+    // Flush any old data from serial buffer
     tcflush(serial_fd_, TCIFLUSH);
     
-    if (!send_command("e")) {
-        return result;
+    if (!send_command("e\n")) {
+        return {};
     }
     
-    std::string response = read_response(200);
+    std::string response = read_response(500);
     
+    if (response.empty()) {
+        return {};
+    }
+
     // Parse response: "FL FR RL RR"
+    std::vector<int32_t> counts;
     std::istringstream iss(response);
-    int32_t fl, fr, rl, rr;
     
-    if (iss >> fl >> fr >> rl >> rr) {
-        result.push_back(fl);
-        result.push_back(fr);
-        result.push_back(rl);
-        result.push_back(rr);
+    for (int i = 0; i < 4; i++) {
+        int32_t count;
+        if (iss >> count) {
+            counts.push_back(count);
+        } else {
+            return {};
+        }
     }
     
-    return result;
+    return counts;
 }
 
 bool DummyBotHardwareInterface::send_motor_speeds(int32_t fl, int32_t fr, int32_t rl, int32_t rr)
 {
-    std::ostringstream cmd;
-    cmd << "m " << fl << " " << fr << " " << rl << " " << rr;
+    char cmd[64];
+    snprintf(cmd, sizeof(cmd), "m %d %d %d %d\n", fl, fr, rl, rr);
     
-    if (!send_command(cmd.str())) {
+    return send_command(cmd);
+}
+
+bool DummyBotHardwareInterface::update_pid_parameters(int kp, int kd, int ki, int ko)
+{
+    char cmd[64];
+    snprintf(cmd, sizeof(cmd), "u %d %d %d %d\n", kp, kd, ki, ko);
+    
+    if (!send_command(cmd)) {
         return false;
     }
     
-    // Optional: read "OK" response
-    std::string response = read_response(100);
-    return (response.find("OK") != std::string::npos);
-}
-
-bool DummyBotHardwareInterface::load_calibration_from_esp32()
-{
-    // For now, we'll use default calibration factors (1.0)
-    // ESP32 stores calibration in EEPROM but doesn't expose a read command yet
-    // This can be extended later with a new ESP32 command like "g" (get calibration)
+    std::string response = read_response(500);
     
     RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
-               "Using default calibration factors (1.0 for all motors)");
+                "PID Update sent: Kp=%d, Kd=%d, Ki=%d, Ko=%d | Response: %s", 
+                kp, kd, ki, ko, response.c_str());
     
-    for (size_t i = 0; i < joint_configs_.size(); ++i) {
-        joint_configs_[i].calibration_factor = 1.0;
+    return !response.empty();
+}
+
+bool DummyBotHardwareInterface::send_calibration(double fl, double fr, double rl, double rr)
+{
+    char cmd[128];
+    snprintf(cmd, sizeof(cmd), "c %.3f %.3f %.3f %.3f\n", fl, fr, rl, rr);
+    
+    if (!send_command(cmd)) {
+        return false;
     }
     
-    return true;
+    std::string response = read_response(500);
+    
+    RCLCPP_INFO(rclcpp::get_logger("DummyBotHardwareInterface"),
+                "Calibration sent: FL=%.3f, FR=%.3f, RL=%.3f, RR=%.3f | Response: %s", 
+                fl, fr, rl, rr, response.c_str());
+    
+    return !response.empty();
 }
 
 // ============================================================================
@@ -469,25 +596,19 @@ bool DummyBotHardwareInterface::load_calibration_from_esp32()
 
 double DummyBotHardwareInterface::encoder_ticks_to_radians(int32_t ticks)
 {
-    // radians = (ticks / ticks_per_rev) * 2π
     return (static_cast<double>(ticks) / ticks_per_revolution_) * 2.0 * M_PI;
 }
 
 int32_t DummyBotHardwareInterface::radians_per_sec_to_ticks_per_frame(double rad_per_sec)
 {
-    // ticks_per_frame = (rad/s * ticks_per_rev) / (2π * PID_rate)
-    // PID rate is 30Hz (from ESP32 config)
-    const double PID_RATE = 30.0;
-    
-    double ticks_per_sec = (rad_per_sec * ticks_per_revolution_) / (2.0 * M_PI);
-    int32_t ticks_per_frame = static_cast<int32_t>(ticks_per_sec / PID_RATE);
-    
-    return ticks_per_frame;
+    // Assuming 50Hz update rate (0.02s per frame)
+    double ticks_per_sec = (rad_per_sec / (2.0 * M_PI)) * ticks_per_revolution_;
+    return static_cast<int32_t>(ticks_per_sec * 0.02);
 }
 
 }  // namespace dummybot_hardware
 
 #include "pluginlib/class_list_macros.hpp"
 PLUGINLIB_EXPORT_CLASS(
-    dummybot_hardware::DummyBotHardwareInterface, 
+    dummybot_hardware::DummyBotHardwareInterface,
     hardware_interface::SystemInterface)

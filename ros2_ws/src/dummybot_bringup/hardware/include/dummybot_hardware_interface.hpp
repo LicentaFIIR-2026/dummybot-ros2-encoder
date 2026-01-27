@@ -21,7 +21,7 @@ namespace dummybot_hardware
 struct JointConfig {
     std::string name;           // Joint name (ex: "front_left_wheel_joint")
     int encoder_index;          // 0=FL, 1=FR, 2=RL, 3=RR
-    double calibration_factor;  // Factor de calibrare (din EEPROM ESP32)
+    double calibration_factor;  // Factor de calibrare (aplicat local în ROS2)
 };
 
 class DummyBotHardwareInterface : public hardware_interface::SystemInterface
@@ -59,7 +59,19 @@ private:
     double wheel_separation_;
     int ticks_per_revolution_;
     
-    // Calibration factors (loaded from ESP32 or URDF)
+    // PID Parameters (INT pentru ESP32) - ordine: kp kd ki ko
+    int pid_kp_;
+    int pid_kd_;
+    int pid_ki_;
+    int pid_ko_;
+    
+    // Calibration factors (FLOAT din URDF, trimise la ESP32)
+    double calibration_fl_;
+    double calibration_fr_;
+    double calibration_rl_;
+    double calibration_rr_;
+    
+    // Calibration factors (loaded from ESP32 for local use)
     std::vector<double> calibration_factors_;  // FL, FR, RL, RR
     
     // Serial communication
@@ -72,7 +84,7 @@ private:
     std::vector<double> hw_commands_;      // Commanded velocities (rad/s)
     std::vector<double> hw_positions_;     // Joint positions (rad)
     std::vector<double> hw_velocities_;    // Joint velocities (rad/s)
-    std::vector<double> hw_efforts_;       // Joint efforts (N⋅m) - not used
+    std::vector<double> hw_efforts_;       // Joint efforts (N·m) - not used
     
     // Encoder tracking
     std::vector<int32_t> last_encoder_counts_;
@@ -89,7 +101,8 @@ private:
     bool reset_encoders();
     std::vector<int32_t> read_encoders();
     bool send_motor_speeds(int32_t fl, int32_t fr, int32_t rl, int32_t rr);
-    bool load_calibration_from_esp32();
+    bool update_pid_parameters(int kp, int kd, int ki, int ko);
+    bool send_calibration(double fl, double fr, double rl, double rr);
     
     // Helper methods - Conversions
     double encoder_ticks_to_radians(int32_t ticks);

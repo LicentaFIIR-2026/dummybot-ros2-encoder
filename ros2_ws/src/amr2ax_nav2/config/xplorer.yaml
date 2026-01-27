@@ -75,9 +75,9 @@ behavior_server:
     transform_tolerance: 0.2
     simulate_ahead_time: 3.0
     # SYNCED with diff_drive_controller
-    max_rotational_vel: 3.0
-    min_rotational_vel: 0.3
-    rotational_acc_lim: 5.2
+    max_rotational_vel: 6.0
+    min_rotational_vel: 0.6
+    rotational_acc_lim: 8.2
 
 bt_navigator:
   ros__parameters:
@@ -132,14 +132,14 @@ controller_server:
       vy_std: 0.0
       wz_std: 0.3
       # SYNCED with diff_drive_controller limits
-      vx_max: 3.0
-      vx_min: -3.0
+      vx_max: 6.0
+      vx_min: -6.0
       vy_max: 0.0           # No lateral movement (diff-drive)
       wz_max: 3.0
-      ax_max: 5.0
-      ax_min: -5.0
+      ax_max: 6.0
+      ax_min: -6.0
       ay_max: 0.0
-      az_max: 5.2
+      az_max: 8.2
       iteration_count: 1
       prune_distance: 1.2
       transform_tolerance: 0.15
@@ -387,10 +387,10 @@ velocity_smoother:
     feedback: "OPEN_LOOP"
     # SYNCED with diff_drive_controller limits
     # Format: [linear.x, linear.y, angular.z]
-    max_velocity: [3.0, 0.0, 3.0]
-    min_velocity: [-3.0, 0.0, -3.0]
-    max_accel: [6.0, 0.0, 6.2]
-    max_decel: [-6.0, 0.0, -6.2]
+    max_velocity: [4.0, 0.0, 4.0]
+    min_velocity: [-4.0, 0.0, -4.0]
+    max_accel: [8.0, 0.0, 8.2]
+    max_decel: [-8.0, 0.0, -8.2]
     odom_topic: "odom"
     odom_duration: 0.15
     deadband_velocity: [0.02, 0.0, 0.05]

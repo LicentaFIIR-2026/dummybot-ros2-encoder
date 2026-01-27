@@ -60,9 +60,21 @@
   <xacro:property name="lidar_z_offset" value="0.1775"/>   <!-- 17.75cm deasupra base_chassis -->
   
   <!-- ESP32 Hardware Interface -->
-  <xacro:property name="serial_port" value="/dev/ttyESP32"/>
+  <xacro:property name="serial_port" value="/dev/ttyUSB0"/>
   <xacro:property name="serial_baud" value="115200"/>
   <xacro:property name="ticks_per_revolution" value="1245"/>
+  
+  <!-- PID Controller Parameters (INT pentru ESP32, ordine: kp kd ki ko) -->
+  <xacro:property name="pid_kp" value="300"/>
+  <xacro:property name="pid_kd" value="70"/>
+  <xacro:property name="pid_ki" value="0"/>
+  <xacro:property name="pid_ko" value="14"/>
+  
+  <!-- Calibration Factors (FLOAT) -->
+  <xacro:property name="calibration_fl" value="0.875"/>
+  <xacro:property name="calibration_fr" value="1.065"/>
+  <xacro:property name="calibration_rl" value="1.025"/>
+  <xacro:property name="calibration_rr" value="1.025"/>
 
   <!-- Materials -->
   <material name="black">
@@ -245,10 +257,19 @@
   <!-- ============================================ -->
   <xacro:dummybot_ros2_control 
     name="DummyBotSystem"
+    prefix=""
     serial_port="${serial_port}"
     serial_baud="${serial_baud}"
     wheel_radius="${wheel_radius}"
     wheel_separation="${track_width}"
-    ticks_per_revolution="${ticks_per_revolution}"/>
+    ticks_per_revolution="${ticks_per_revolution}"
+    pid_kp="${pid_kp}"
+    pid_kd="${pid_kd}"
+    pid_ki="${pid_ki}"
+    pid_ko="${pid_ko}"
+    calibration_fl="${calibration_fl}"
+    calibration_fr="${calibration_fr}"
+    calibration_rl="${calibration_rl}"
+    calibration_rr="${calibration_rr}"/>
 
 </robot>

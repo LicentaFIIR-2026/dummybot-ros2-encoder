@@ -1,27 +1,50 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="dummybot_ros2_control" params="
-    name
-    serial_port
-    serial_baud
-    wheel_radius
-    wheel_separation
-    ticks_per_revolution">
-
+  <xacro:macro name="dummybot_ros2_control" params="name prefix 
+                                                     serial_port 
+                                                     serial_baud 
+                                                     wheel_radius 
+                                                     wheel_separation 
+                                                     ticks_per_revolution
+                                                     pid_kp
+                                                     pid_kd
+                                                     pid_ki
+                                                     pid_ko
+                                                     calibration_fl
+                                                     calibration_fr
+                                                     calibration_rl
+                                                     calibration_rr">
+    
     <ros2_control name="${name}" type="system">
       
       <hardware>
         <plugin>dummybot_hardware/DummyBotHardwareInterface</plugin>
+        
+        <!-- Serial Communication Parameters -->
         <param name="serial_port">${serial_port}</param>
         <param name="serial_baud">${serial_baud}</param>
+        
+        <!-- Robot Physical Parameters -->
         <param name="wheel_radius">${wheel_radius}</param>
         <param name="wheel_separation">${wheel_separation}</param>
         <param name="ticks_per_revolution">${ticks_per_revolution}</param>
+        
+        <!-- PID Controller Parameters (INT, ordine: kp kd ki ko) -->
+        <param name="pid_kp">${pid_kp}</param>
+        <param name="pid_kd">${pid_kd}</param>
+        <param name="pid_ki">${pid_ki}</param>
+        <param name="pid_ko">${pid_ko}</param>
+        
+        <!-- Calibration Factors (FLOAT) -->
+        <param name="calibration_fl">${calibration_fl}</param>
+        <param name="calibration_fr">${calibration_fr}</param>
+        <param name="calibration_rl">${calibration_rl}</param>
+        <param name="calibration_rr">${calibration_rr}</param>
       </hardware>
 
-      <!-- Front Left Wheel -->
-      <joint name="front_left_wheel_joint">
+      <!-- Front Left Wheel Joint -->
+      <joint name="${prefix}front_left_wheel_joint">
         <command_interface name="velocity">
           <param name="min">-10</param>
           <param name="max">10</param>
@@ -30,8 +53,8 @@
         <state_interface name="velocity"/>
       </joint>
 
-      <!-- Front Right Wheel -->
-      <joint name="front_right_wheel_joint">
+      <!-- Front Right Wheel Joint -->
+      <joint name="${prefix}front_right_wheel_joint">
         <command_interface name="velocity">
           <param name="min">-10</param>
           <param name="max">10</param>
@@ -40,8 +63,8 @@
         <state_interface name="velocity"/>
       </joint>
 
-      <!-- Rear Left Wheel -->
-      <joint name="rear_left_wheel_joint">
+      <!-- Rear Left Wheel Joint -->
+      <joint name="${prefix}rear_left_wheel_joint">
         <command_interface name="velocity">
           <param name="min">-10</param>
           <param name="max">10</param>
@@ -50,8 +73,8 @@
         <state_interface name="velocity"/>
       </joint>
 
-      <!-- Rear Right Wheel -->
-      <joint name="rear_right_wheel_joint">
+      <!-- Rear Right Wheel Joint -->
+      <joint name="${prefix}rear_right_wheel_joint">
         <command_interface name="velocity">
           <param name="min">-10</param>
           <param name="max">10</param>
