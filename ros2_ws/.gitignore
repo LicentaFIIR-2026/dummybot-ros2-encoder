@@ -1,0 +1,37 @@
+nano .gitignore
+```
+
+**Copiază:**
+```
+# Build files
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# ROS
+*.bag
+*.db3
+
+# Logs  
+*.log
+navigation_log.txt
+
+# PDF/Graph debug files
+*.pdf
+*.gv
+
+# External repos
+src/ros-mcp-server/
+
+# Backup files
+*~
+*.swp
+*.bak
+
+# Test scripts outside workspace
+../scripts/

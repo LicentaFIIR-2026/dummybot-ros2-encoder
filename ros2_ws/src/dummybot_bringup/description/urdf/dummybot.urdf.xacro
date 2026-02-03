@@ -23,11 +23,11 @@
   <xacro:property name="track_width" value="0.390"/>       <!-- FR-RR distanță LATERALĂ (39cm) -->
   
   <!-- Chassis -->
-  <xacro:property name="chassis_length" value="0.470"/>    <!-- 36cm pe X (față-spate, "lățimea" ta) -->
-  <xacro:property name="chassis_width" value="0.365"/>     <!-- 46.5cm pe Y (lateral, "lungimea" ta) -->
-  <xacro:property name="chassis_height" value="0.150"/>    <!-- 16cm înălțime (Z) -->
+  <xacro:property name="chassis_length" value="0.495"/>    <!-- 36cm pe X (față-spate, "lățimea" ta) -->
+  <xacro:property name="chassis_width" value="0.362"/>     <!-- 46.5cm pe Y (lateral, "lungimea" ta) -->
+  <xacro:property name="chassis_height" value="0.142"/>    <!-- 16cm înălțime (Z) -->
   
-  <xacro:property name="ground_clearance" value="0.060"/>  <!-- 5cm de la sol la baza chassis -->
+  <xacro:property name="ground_clearance" value="0.050"/>  <!-- 5cm de la sol la baza chassis -->
   
   <!-- Poziționare roți față de chassis -->
   <!-- FR/FL la 5cm de față → +36/2 - 5 = +13cm = +0.13m -->
@@ -40,8 +40,8 @@
   <!-- Centru roți spate: -37.4/2 = -18.7cm -->
   <xacro:property name="front_wheel_x" value="0.195"/>     <!-- +18.7cm -->
   <xacro:property name="rear_wheel_x" value="-0.195"/>     <!-- -18.7cm -->
-  <xacro:property name="left_wheel_y" value="-0.200"/>     <!-- +18.7cm -->
-  <xacro:property name="right_wheel_y" value="0.200"/>     <!-- -18.7cm -->
+  <xacro:property name="left_wheel_y" value="0.200"/>     <!-- +18.7cm -->
+  <xacro:property name="right_wheel_y" value="-0.200"/>     <!-- -18.7cm -->
 
   <!-- Offset vertical roți: centru la 5.8cm de sol, minus ground_clearance de 5cm -->
   <xacro:property name="wheel_z_offset" value="0.008"/>    <!-- 5.8cm - 5cm = 0.8cm -->
@@ -97,7 +97,7 @@
   <joint name="base_link_chassis_joint" type="fixed">
     <parent link="base_link"/>
     <child link="base_chassis"/>
-    <origin xyz="0 0 ${ground_clearance + chassis_height/2}" rpy="0 0 0"/>
+    <origin xyz="0.0325 0 ${ground_clearance + chassis_height/2}" rpy="0 0 0"/>
   </joint>
 
   <!-- ============================================ -->
@@ -218,7 +218,7 @@
     <joint name="base_laser_joint" type="fixed">
       <parent link="base_link"/>
       <child link="base_laser"/>
-      <origin xyz="0.110 0 0.210" rpy="0 0 0"/>
+      <origin xyz="0.185 0 0.210" rpy="0 0 0"/>
     </joint>  
 
     <joint name="camera_joint" type="fixed">

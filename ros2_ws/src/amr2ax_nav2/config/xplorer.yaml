@@ -240,8 +240,8 @@ local_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         enabled: true
-        inflation_radius: 0.42
-        cost_scaling_factor: 11.0
+        inflation_radius: 0.42 #0.30 pentru casa
+        cost_scaling_factor: 11.0 #5.0 pentru casa
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
         enabled: true
@@ -285,8 +285,8 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         enabled: true
-        inflation_radius: 0.42
-        cost_scaling_factor: 11.0
+        inflation_radius: 0.42 #0.30 pentru casa
+        cost_scaling_factor: 11.0 #5.0 pentru casa
       always_send_full_costmap: true
   global_costmap_client:
     ros__parameters:

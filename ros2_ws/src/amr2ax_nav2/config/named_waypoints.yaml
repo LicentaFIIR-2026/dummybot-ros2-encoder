@@ -1,0 +1,13 @@
+waypoints:
+  usa-spate:
+    x: 1.103
+    y: 2.728
+    yaw: -102.4
+  hol-spate:
+    x: 4.293
+    y: 2.709
+    yaw: 0.7
+  home:
+    x: -0.754
+    y: -1.425
+    yaw: -178.0

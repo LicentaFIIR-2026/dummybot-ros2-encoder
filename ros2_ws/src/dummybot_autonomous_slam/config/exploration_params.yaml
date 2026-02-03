@@ -1,0 +1,20 @@
+frontier_explorer:
+  ros__parameters:
+    # Mărimea minimă a unei frontiere (în celule)
+    frontier_min_size: 15
+    
+    # Raza maximă de explorare (metri)
+    exploration_radius: 4.0
+    
+    # Toleranță pentru considerarea unui goal ca atins
+    goal_tolerance: 0.3
+    
+    # Distanța minimă între frontiere (metri)
+    min_frontier_distance: 0.5
+    
+    # Raza robotului pentru verificări (metri)
+    robot_radius: 0.25
+    
+    # Timp maxim de explorare (secunde)
+    # 600s = 10 minute, ajustează după nevoie
+    max_exploration_time: 600.0

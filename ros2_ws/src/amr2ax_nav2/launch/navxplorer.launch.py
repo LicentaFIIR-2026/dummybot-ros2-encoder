@@ -13,6 +13,7 @@ def generate_launch_description():
     config_dir = os.path.join(get_package_share_directory('amr2ax_nav2'), 'config')
 #    map_file = os.path.join(maps_dir, 'b42.yaml')
     map_file = os.path.join(maps_dir, 'cb204_13.12.05v4.yaml')
+    #map_file = os.path.join(maps_dir, 'harta_casa_edited.yaml')
 #    map_file = os.path.join(maps_dir, 'test.yaml')
 #    map_file = os.path.join(maps_dir, 'demo_map_4x4.yaml')    
     param_file = os.path.join(param_dir, 'xplorer.yaml')

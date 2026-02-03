@@ -52,7 +52,7 @@ def generate_launch_description():
     executable='static_transform_publisher',
     name='base_link_to_base_laser_ld19',
     #arguments=['0.030','0','0.078','0','0','0','base_link','base_laser']
-    arguments=['0.110','0','0.210','0','0','0','base_link','base_laser']
+    arguments=['0.185','0','0.210','0','0','0','base_link','base_laser']
   )
 
 

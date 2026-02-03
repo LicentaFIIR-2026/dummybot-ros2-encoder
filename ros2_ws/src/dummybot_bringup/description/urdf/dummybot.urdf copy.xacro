@@ -19,15 +19,15 @@
   <xacro:property name="wheel_width" value="0.028"/>       <!-- 28mm grosime -->
   
   <!-- Distanțe între roți -->
-  <xacro:property name="wheelbase" value="0.374"/>         <!-- FR-FL distanță FAȚĂ-SPATE (37.4cm) -->
+  <xacro:property name="wheelbase" value="0.400"/>         <!-- FR-FL distanță FAȚĂ-SPATE (37.4cm) -->
   <xacro:property name="track_width" value="0.390"/>       <!-- FR-RR distanță LATERALĂ (39cm) -->
   
   <!-- Chassis -->
-  <xacro:property name="chassis_length" value="0.360"/>    <!-- 36cm pe X (față-spate, "lățimea" ta) -->
-  <xacro:property name="chassis_width" value="0.465"/>     <!-- 46.5cm pe Y (lateral, "lungimea" ta) -->
-  <xacro:property name="chassis_height" value="0.160"/>    <!-- 16cm înălțime (Z) -->
+  <xacro:property name="chassis_length" value="0.470"/>    <!-- 36cm pe X (față-spate, "lățimea" ta) -->
+  <xacro:property name="chassis_width" value="0.365"/>     <!-- 46.5cm pe Y (lateral, "lungimea" ta) -->
+  <xacro:property name="chassis_height" value="0.150"/>    <!-- 16cm înălțime (Z) -->
   
-  <xacro:property name="ground_clearance" value="0.050"/>  <!-- 5cm de la sol la baza chassis -->
+  <xacro:property name="ground_clearance" value="0.060"/>  <!-- 5cm de la sol la baza chassis -->
   
   <!-- Poziționare roți față de chassis -->
   <!-- FR/FL la 5cm de față → +36/2 - 5 = +13cm = +0.13m -->
@@ -38,12 +38,17 @@
   <!-- Să recalculăm cu wheelbase = 37.4cm: -->
   <!-- Centru roți față: +37.4/2 = +18.7cm -->
   <!-- Centru roți spate: -37.4/2 = -18.7cm -->
-  <xacro:property name="front_wheel_x" value="0.187"/>     <!-- +18.7cm -->
-  <xacro:property name="rear_wheel_x" value="-0.187"/>     <!-- -18.7cm -->
-  
+  <xacro:property name="front_wheel_x" value="0.195"/>     <!-- +18.7cm -->
+  <xacro:property name="rear_wheel_x" value="-0.195"/>     <!-- -18.7cm -->
+  <xacro:property name="left_wheel_y" value="-0.200"/>     <!-- +18.7cm -->
+  <xacro:property name="right_wheel_y" value="0.200"/>     <!-- -18.7cm -->
+
   <!-- Offset vertical roți: centru la 5.8cm de sol, minus ground_clearance de 5cm -->
   <xacro:property name="wheel_z_offset" value="0.008"/>    <!-- 5.8cm - 5cm = 0.8cm -->
-  
+  <xacro:property name="lidar_len" value="0.037" />
+  <xacro:property name="lidar_radius" value="0.018" />
+  <xacro:property name="lidar_mass" value="0.015" /> 
+
   <!-- LiDAR poziționare -->
   <!-- "12cm de la fața carcasei până la început LiDAR" -->
   <!-- Dacă fața chassis e la +18cm, iar LiDAR începe la +12cm de la față... -->
@@ -55,9 +60,21 @@
   <xacro:property name="lidar_z_offset" value="0.1775"/>   <!-- 17.75cm deasupra base_chassis -->
   
   <!-- ESP32 Hardware Interface -->
-  <xacro:property name="serial_port" value="/dev/ttyESP32"/>
+  <xacro:property name="serial_port" value="/dev/ttyUSB0"/>
   <xacro:property name="serial_baud" value="115200"/>
-  <xacro:property name="ticks_per_revolution" value="1760"/>
+  <xacro:property name="ticks_per_revolution" value="1245"/>
+  
+  <!-- PID Controller Parameters (INT pentru ESP32, ordine: kp kd ki ko) -->
+  <xacro:property name="pid_kp" value="300"/>
+  <xacro:property name="pid_kd" value="70"/>
+  <xacro:property name="pid_ki" value="0"/>
+  <xacro:property name="pid_ko" value="14"/>
+  
+  <!-- Calibration Factors (FLOAT) -->
+  <xacro:property name="calibration_fl" value="0.875"/>
+  <xacro:property name="calibration_fr" value="1.065"/>
+  <xacro:property name="calibration_rl" value="1.025"/>
+  <xacro:property name="calibration_rr" value="1.025"/>
 
   <!-- Materials -->
   <material name="black">
@@ -80,7 +97,7 @@
   <joint name="base_link_chassis_joint" type="fixed">
     <parent link="base_link"/>
     <child link="base_chassis"/>
-    <origin xyz="0 0 ${ground_clearance}" rpy="0 0 ${-pi/2}"/>
+    <origin xyz="0 0 ${ground_clearance + chassis_height/2}" rpy="0 0 0"/>
   </joint>
 
   <!-- ============================================ -->
@@ -88,20 +105,20 @@
   <!-- ============================================ -->
   <link name="base_chassis">
     <visual>
-      <origin xyz="0 0 ${chassis_height/2}" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
       </geometry>
       <material name="dark_grey"/>
     </visual>
     <collision>
-      <origin xyz="0 0 ${chassis_height/2}" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
       </geometry>
     </collision>
     <inertial>
-      <origin xyz="0 0 ${chassis_height/2}" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <mass value="5.0"/>
       <inertia ixx="0.0833" ixy="0.0" ixz="0.0" 
                iyy="0.1042" iyz="0.0" 
@@ -117,7 +134,7 @@
     <link name="${prefix}_wheel_link">
       <visual>
         <!-- FĂRĂ rotație aici -->
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
         <geometry>
           <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
         </geometry>
@@ -125,13 +142,13 @@
       </visual>
       <collision>
         <!-- FĂRĂ rotație aici -->
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
         <geometry>
           <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
         </geometry>
       </collision>
       <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
         <mass value="0.5"/>
         <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
                 iyy="0.0001" iyz="0.0"
@@ -140,12 +157,12 @@
     </link>
 
     <joint name="${prefix}_wheel_joint" type="continuous">
-      <parent link="base_chassis"/>
+      <parent link="base_link"/>
       <child link="${prefix}_wheel_link"/>
       <!-- ROTAȚIE AICI în joint origin -->
-      <origin xyz="${x} ${y} ${wheel_z_offset}" rpy="0 ${pi/2} 0"/>
+      <origin xyz="${x} ${y} ${wheel_radius}" rpy="0 0 0"/>
       <!-- Axa Y = roata se rotește în jurul axei laterale -->
-      <axis xyz="0 0 1"/>
+      <axis xyz="0 1 0"/>
     </joint>
     
   </xacro:macro>
@@ -160,57 +177,99 @@
   
   <!-- CORECT: Swap X cu Y -->
   <!-- Front Left (față + stânga) -->
-  <xacro:wheel prefix="front_left"  x="${track_width/2}"  y="${-front_wheel_x}"/>
+  <xacro:wheel prefix="front_left"  x="${front_wheel_x}"  y="${left_wheel_y}"/>
 
   <!-- Front Right (față + dreapta) -->
-  <xacro:wheel prefix="front_right" x="${track_width/2}"  y="${front_wheel_x}"/>
+  <xacro:wheel prefix="front_right" x="${front_wheel_x}"  y="${right_wheel_y}"/>
 
   <!-- Rear Left (spate + stânga) -->
-  <xacro:wheel prefix="rear_left"   x="${-track_width/2}"  y="${-rear_wheel_x}"/>
+  <xacro:wheel prefix="rear_left"   x="${rear_wheel_x}"  y="${left_wheel_y}"/>
 
   <!-- Rear Right (spate + dreapta) -->
-  <xacro:wheel prefix="rear_right"  x="${-track_width/2}"  y="${rear_wheel_x}"/>
+  <xacro:wheel prefix="rear_right"  x="${rear_wheel_x}"  y="${right_wheel_y}"/>
 
-  <!-- ============================================ -->
-  <!-- LiDAR -->
-  <!-- ============================================ -->
-  <link name="laser_frame">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+  <!-- LIDAR LD19 Link -->
+  <link name="base_laser">
+    <collision>
+      <origin xyz="0 0 ${lidar_len/2}" rpy="0 0 0"/>
       <geometry>
-        <box size="0.035 0.035 0.035"/>
+        <cylinder length="${lidar_len}" radius="${lidar_radius}"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 ${lidar_len/2}" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="${lidar_len}" radius="${lidar_radius}"/>
       </geometry>
       <material name="red"/>
     </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.035 0.035 0.035"/>
-      </geometry>
-    </collision>
+
     <inertial>
-      <mass value="0.15"/>
-      <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
-               iyy="0.0001" iyz="0.0"
-               izz="0.0001"/>
-    </inertial>
+      <origin xyz="0 0 ${lidar_len/2}  " rpy="0 0 0"/>
+      <mass value="${lidar_mass}"/>
+      <inertia
+        ixx="${lidar_mass * 0.4 * (lidar_radius * lidar_radius)}" ixy="0.0" ixz="0.0"
+        iyy="${lidar_mass * 0.4 * (lidar_radius * lidar_radius)}" iyz="0.0"
+        izz="${lidar_mass * 0.4 * (lidar_radius * lidar_radius)}"/>
+      </inertial>
+    </link>
+
+    <joint name="base_laser_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="base_laser"/>
+      <origin xyz="0.110 0 0.210" rpy="0 0 0"/>
+    </joint>  
+
+    <joint name="camera_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="camera_link"/>
+        <origin xyz="0.225 0 0.140" rpy="0 0 0"/>
+    </joint>
+
+  <link name="camera_link">
+      <visual>
+          <geometry>
+              <box size="0.024 0.094 0.029"/>
+          </geometry>
+          <material name="black"/>
+      </visual>
+      <visual>
+          <origin xyz="0 0 -0.05"/>
+          <geometry>
+              <cylinder radius="0.002" length="0.1"/>
+          </geometry>
+          <material name="black"/>
+      </visual>
   </link>
 
-  <joint name="laser_joint" type="fixed">
-    <parent link="base_chassis"/>
-    <child link="laser_frame"/>
-    <origin xyz="0 0.079 0.1775" rpy="0 0 ${-pi/2}"/>
+
+  <joint name="camera_optical_joint" type="fixed">
+      <parent link="camera_link"/>
+      <child link="camera_link_optical"/>
+      <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
   </joint>
+
+  <link name="camera_link_optical"></link>
 
   <!-- ============================================ -->
   <!-- ROS2 CONTROL -->
   <!-- ============================================ -->
   <xacro:dummybot_ros2_control 
     name="DummyBotSystem"
+    prefix=""
     serial_port="${serial_port}"
     serial_baud="${serial_baud}"
     wheel_radius="${wheel_radius}"
     wheel_separation="${track_width}"
-    ticks_per_revolution="${ticks_per_revolution}"/>
+    ticks_per_revolution="${ticks_per_revolution}"
+    pid_kp="${pid_kp}"
+    pid_kd="${pid_kd}"
+    pid_ki="${pid_ki}"
+    pid_ko="${pid_ko}"
+    calibration_fl="${calibration_fl}"
+    calibration_fr="${calibration_fr}"
+    calibration_rl="${calibration_rl}"
+    calibration_rr="${calibration_rr}"/>
 
 </robot>
