@@ -1,0 +1,33 @@
+<root main_tree_to_execute="MainTree">
+  <BehaviorTree ID="MainTree">
+    <PipelineSequence name="RouteFollowingPipeline">
+      
+      <!-- Verifică starea bateriei -->
+      <RateController hz="1.0">
+        <Condition ID="BatteryNotLow"/>
+      </RateController>
+
+      <!-- Urmează ruta definită -->
+      <RecoveryNode number_of_retries="6" name="RouteWithRecovery">
+        
+        <!-- Comportamentul principal: urmărește ruta -->
+        <FollowRoute route_id="{route_id}" />
+        
+        <!-- Comportamente de recuperare -->
+        <ReactiveFallback name="RecoveryActions">
+          <GoalUpdated/>
+          <RoundRobin name="RecoverySequence">
+            <!-- Încercări de recuperare în ordine -->
+            <ClearEntireCostmap name="ClearLocalCostmap-Route" service_name="local_costmap/clear_entirely_local_costmap"/>
+            <ClearEntireCostmap name="ClearGlobalCostmap-Route" service_name="global_costmap/clear_entirely_global_costmap"/>
+            <Spin spin_dist="1.57"/>
+            <Wait wait_duration="5"/>
+            <BackUp backup_dist="0.30" backup_speed="0.10"/>
+          </RoundRobin>
+        </ReactiveFallback>
+        
+      </RecoveryNode>
+      
+    </PipelineSequence>
+  </BehaviorTree>
+</root>

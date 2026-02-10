@@ -376,7 +376,7 @@ waypoint_follower:
     wait_at_waypoint:
       plugin: "nav2_waypoint_follower::WaitAtWaypoint"
       enabled: true
-      waypoint_pause_duration: 2000
+      waypoint_pause_duration: 5000
 
 velocity_smoother:
   ros__parameters:
@@ -436,5 +436,30 @@ lifecycle_manager_navigation:
   ros__parameters:
     use_sim_time: false
     autostart: true
-    node_names: ['controller_server', 'planner_server', 'behavior_server', 
+    node_names: ['controller_server', 'planner_server', 'behavior_server', 'route_server', 
                  'bt_navigator', 'waypoint_follower', 'velocity_smoother']
+
+
+route_server:
+  ros__parameters:
+    use_sim_time: false
+    enable_stamped_cmd_vel: true
+    
+    # Graph configuration
+    graph_file_loader: "GeoJsonGraphFileLoader"
+    graph_filepath: "/home/saim/dummybot-ros2-encoder/ros2_ws/src/amr2ax_nav2/config/route_graph.json"
+    
+    # Planificare
+    max_iterations: 100000
+    max_planning_time: 10.0
+    
+    # Scoring - MODIFICAT: adăugat DynamicEdgesScorer
+    edge_cost_functions: ["DistanceScorer", "DynamicEdgesScorer"]
+    
+    DistanceScorer:
+      plugin: "nav2_route::DistanceScorer"
+      weight: 1.0
+    
+    DynamicEdgesScorer:
+      plugin: "nav2_route::DynamicEdgesScorer"
+      weight: 1.0   
