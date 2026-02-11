@@ -13,6 +13,7 @@ install(
   PROGRAMS 
     scripts/clicked_point_to_goal_update.py
     scripts/send_dynamic_follow_goal.py
+    scripts/semantic_localizer.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

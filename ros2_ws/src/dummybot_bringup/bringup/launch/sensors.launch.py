@@ -26,6 +26,32 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     bringup_dir = FindPackageShare('dummybot_bringup')
 
+    # Argument pentru a activa/dezactiva YOLO
+    use_yolo_arg = DeclareLaunchArgument(
+        'use_yolo',
+        default_value='false',
+        description='Launch YOLO26 object detection'
+    )
+    
+    use_yolo = LaunchConfiguration('use_yolo')
+
+    # MediaPipe Object Detection
+    use_mediapipe_arg = DeclareLaunchArgument(
+        'use_mediapipe',
+        default_value='true',
+        description='Launch MediaPipe object detection'
+    )
+    use_mediapipe = LaunchConfiguration('use_mediapipe')
+
+    launch_mediapipe = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            PathJoinSubstitution([
+                FindPackageShare('media_pipe_ros2'),
+                'launch',
+                'mediapipe_object_detector.launch.py'])]),
+        condition=IfCondition(use_mediapipe)
+    )
+
 #    use_orbecc = LaunchConfiguration('use_orbecc')
 #    use_orbecc_cmd = DeclareLaunchArgument(
 #        'use_orbecc',
@@ -71,10 +97,22 @@ def generate_launch_description():
             PathJoinSubstitution([
                 bringup_dir, 'bringup','launch', 'include', 'camera.launch.py'])]),
     )
+    
+    # YOLO26 Object Detection
+    launch_yolo = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            PathJoinSubstitution([
+                bringup_dir, 'bringup','launch', 'include', 'yolo26.launch.py'])]),
+        condition=IfCondition(use_yolo)
+    )
 
     ld = LaunchDescription()
 #    ld.add_action(use_orbecc_cmd)
+    ld.add_action(use_yolo_arg)
     ld.add_action(launch_camera)
 #    ld.add_action(launch_BNO055)
     ld.add_action(launch_lidar)
+    ld.add_action(launch_yolo)
+    ld.add_action(use_mediapipe_arg)
+    ld.add_action(launch_mediapipe)
     return ld

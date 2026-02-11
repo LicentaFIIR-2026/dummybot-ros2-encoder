@@ -10,6 +10,10 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        ('share/' + package_name + '/launch', [
+            'launch/mediapipe_object_detector.launch.py',
+            'launch/mediapipe_standalone.launch.py',
+        ]),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -24,6 +28,9 @@ setup(
             'hand_follower = media_pipe_ros2.hand_follower:main',
             'pose_detector = media_pipe_ros2.pose_detector:main',
             'pose_follower = media_pipe_ros2.pose_follower:main',
+            'object_detector = media_pipe_ros2.object_detector:main',
+            'mediapipe_standalone = media_pipe_ros2.mediapipe_standalone:main',
+            'ros2_bridge = media_pipe_ros2.ros2_bridge:main',
         ],
     },
 )
