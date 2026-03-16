@@ -1,0 +1,221 @@
+{
+  "test_type": "adaptive_forward",
+  "run_number": 2,
+  "timestamp": "2026-02-26T12:29:17.732090+00:00",
+  "robot_start_pose": [
+    1.0,
+    0.0,
+    -1.6171
+  ],
+  "start_offset_m": 0.0,
+  "replanning": {
+    "segments": [
+      {
+        "segment": 1,
+        "timestamp": "2026-02-26T12:29:16.721280+00:00",
+        "plan_ms": 20.21,
+        "route_type": "SUS",
+        "route_nodes": [
+          0,
+          2,
+          3,
+          6,
+          8,
+          9
+        ],
+        "route_edges": [
+          12,
+          32,
+          20,
+          28,
+          34
+        ],
+        "route_cost": 241.882,
+        "penalties": {
+          "12": 16.58,
+          "32": 0.0,
+          "20": 7.24,
+          "28": 13.21,
+          "34": 11.06
+        },
+        "reason": "initial",
+        "outcome": "rejected"
+      }
+    ],
+    "total_reroutes": 0,
+    "outcome": "rejected"
+  },
+  "route_analysis": {
+    "initial_route": [
+      0,
+      2,
+      3,
+      6,
+      8,
+      9
+    ],
+    "final_route": [
+      0,
+      2,
+      3,
+      6,
+      8,
+      9
+    ],
+    "initial_route_type": "SUS",
+    "route_changed": false,
+    "planning_total_ms": 20.21,
+    "n_segments": 1
+  },
+  "timing": {
+    "prescan_duration_s": 1.46,
+    "navigation_duration_s": 0.138,
+    "total_duration_s": 1.596
+  },
+  "execution": {
+    "duration_s": 0.138,
+    "nav2_success": false,
+    "validated_success": false,
+    "distance_traveled_m": 0.0,
+    "avg_velocity_ms": 0.0,
+    "max_velocity_ms": 0.0,
+    "final_pose": [
+      -0.9145,
+      1.9302,
+      -5.5931
+    ],
+    "trajectory_points": 1,
+    "xy_error_m": 5.6436,
+    "yaw_error_rad": 1.6171
+  },
+  "trajectory": [
+    [
+      -0.9145,
+      1.9302,
+      787.126
+    ]
+  ],
+  "min_object_distance": {
+    "min_distance_m": 5.088,
+    "closest_class": "potted plant"
+  },
+  "penalties_before": {
+    "10": 16.7,
+    "11": 16.7,
+    "12": 16.58,
+    "13": 16.58,
+    "16": 2.16,
+    "17": 2.16,
+    "18": 13.52,
+    "19": 13.52,
+    "20": 7.24,
+    "21": 7.24,
+    "22": 12.5,
+    "23": 12.5,
+    "24": 16.24,
+    "25": 16.24,
+    "26": 22.98,
+    "27": 22.98,
+    "28": 13.21,
+    "29": 13.21,
+    "30": 20.14,
+    "31": 20.14,
+    "34": 11.06,
+    "35": 11.06,
+    "36": 21.59,
+    "37": 21.59
+  },
+  "penalties_after": {
+    "10": 16.7,
+    "11": 16.7,
+    "12": 16.58,
+    "13": 16.58,
+    "16": 2.16,
+    "17": 2.16,
+    "18": 13.52,
+    "19": 13.52,
+    "20": 7.24,
+    "21": 7.24,
+    "22": 12.5,
+    "23": 12.5,
+    "24": 16.24,
+    "25": 16.24,
+    "26": 22.98,
+    "27": 22.98,
+    "28": 13.21,
+    "29": 13.21,
+    "30": 20.14,
+    "31": 20.14,
+    "34": 11.06,
+    "35": 11.06,
+    "36": 21.59,
+    "37": 21.59
+  },
+  "system_metrics": {
+    "samples": 1,
+    "duration_s": 0,
+    "cpu": {
+      "mean": 15.9,
+      "max": 15.9,
+      "min": 15.9,
+      "std": 0.0
+    },
+    "memory": {
+      "mean": 13.1,
+      "max": 13.1,
+      "min": 13.1,
+      "std": 0.0
+    },
+    "swap": {
+      "mean": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "std": 0.0
+    },
+    "cpu_temp": {
+      "mean": 60.0,
+      "max": 60.0,
+      "min": 60.0,
+      "std": 0.0
+    },
+    "battery_start": -1.0,
+    "battery_end": -1.0,
+    "time_series": [
+      {
+        "t": 1772108956.7,
+        "cpu_pct": 15.9,
+        "mem_pct": 13.1,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 60.0,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          15.8,
+          16.1,
+          16.2,
+          15.3
+        ]
+      }
+    ]
+  },
+  "semantic": {
+    "objects_count": 11,
+    "objects_by_class": {
+      "potted plant": 9,
+      "bench": 1,
+      "chair": 1
+    },
+    "valid_count": 11,
+    "timestamp": "2026-02-26T12:28:51.276652+00:00"
+  },
+  "prescan_snapshot": {
+    "objects_count": 11,
+    "objects_by_class": {
+      "potted plant": 9,
+      "bench": 1,
+      "chair": 1
+    },
+    "valid_count": 11,
+    "timestamp": "2026-02-26T12:28:51.276652+00:00"
+  }
+}

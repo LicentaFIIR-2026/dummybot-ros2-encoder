@@ -1,0 +1,166 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "description": "SAIM Xplorer Semantic Object Map",
+    "frame": "map",
+    "generated_by": "semantic_localizer",
+    "last_updated": "2026-02-26T13:15:14.989714+00:00",
+    "object_count": 7
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0804,
+          2.9827
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_7",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.855,
+        "observation_count": 38,
+        "best_score": 0.424,
+        "first_seen": "2026-02-26T13:13:01.518602+00:00",
+        "last_seen": "2026-02-26T13:13:27.376191+00:00",
+        "ttl_seconds": 120.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.4196,
+          -1.7285
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_9",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.609,
+        "observation_count": 15,
+        "best_score": 0.879,
+        "first_seen": "2026-02-26T13:13:26.091664+00:00",
+        "last_seen": "2026-02-26T13:13:28.592593+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.6715,
+          -0.7708
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_10",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.506,
+        "observation_count": 1,
+        "best_score": 0.409,
+        "first_seen": "2026-02-26T13:13:52.154065+00:00",
+        "last_seen": "2026-02-26T13:13:52.154065+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.9886,
+          4.8265
+        ]
+      },
+      "properties": {
+        "obj_id": "person_11",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.689,
+        "observation_count": 30,
+        "best_score": 0.878,
+        "first_seen": "2026-02-26T13:14:22.836315+00:00",
+        "last_seen": "2026-02-26T13:14:33.453341+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.947,
+          0.5737
+        ]
+      },
+      "properties": {
+        "obj_id": "person_12",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.816,
+        "observation_count": 18,
+        "best_score": 51.382,
+        "first_seen": "2026-02-26T13:14:33.063194+00:00",
+        "last_seen": "2026-02-26T13:14:33.453320+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.3911,
+          1.897
+        ]
+      },
+      "properties": {
+        "obj_id": "person_13",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.781,
+        "observation_count": 10,
+        "best_score": 5.551,
+        "first_seen": "2026-02-26T13:14:33.819654+00:00",
+        "last_seen": "2026-02-26T13:14:33.820811+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.5857,
+          0.1563
+        ]
+      },
+      "properties": {
+        "obj_id": "person_14",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.872,
+        "observation_count": 10,
+        "best_score": 28.711,
+        "first_seen": "2026-02-26T13:14:53.055564+00:00",
+        "last_seen": "2026-02-26T13:14:53.057020+00:00",
+        "ttl_seconds": 60.0
+      }
+    }
+  ]
+}

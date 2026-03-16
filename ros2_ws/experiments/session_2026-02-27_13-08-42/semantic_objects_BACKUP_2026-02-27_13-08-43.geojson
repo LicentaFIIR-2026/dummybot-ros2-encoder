@@ -1,0 +1,144 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "description": "SAIM Xplorer Semantic Object Map",
+    "frame": "map",
+    "generated_by": "semantic_localizer",
+    "last_updated": "2026-02-27T11:08:20.062979+00:00",
+    "object_count": 6
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6173,
+          2.1349
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_0",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.502,
+        "observation_count": 1,
+        "best_score": 9.782,
+        "first_seen": "2026-02-26T15:13:48.994390+00:00",
+        "last_seen": "2026-02-26T15:13:48.994390+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0529,
+          -2.757
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_3",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.526,
+        "observation_count": 2,
+        "best_score": 0.781,
+        "first_seen": "2026-02-26T15:14:54.227754+00:00",
+        "last_seen": "2026-02-26T15:14:54.228899+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.6714,
+          -3.6211
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_4",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.67,
+        "observation_count": 6,
+        "best_score": 1.037,
+        "first_seen": "2026-02-26T15:14:54.645070+00:00",
+        "last_seen": "2026-02-26T15:14:54.646965+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.3483,
+          4.124
+        ]
+      },
+      "properties": {
+        "obj_id": "microwave_5",
+        "class_name": "microwave",
+        "class_id": 68,
+        "mobility": "static",
+        "confidence": 0.554,
+        "observation_count": 1,
+        "best_score": 5.833,
+        "first_seen": "2026-02-26T15:15:24.555572+00:00",
+        "last_seen": "2026-02-26T15:15:24.555572+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0296,
+          3.1977
+        ]
+      },
+      "properties": {
+        "obj_id": "microwave_8",
+        "class_name": "microwave",
+        "class_id": 68,
+        "mobility": "static",
+        "confidence": 0.526,
+        "observation_count": 3,
+        "best_score": 7.719,
+        "first_seen": "2026-02-27T11:04:52.563570+00:00",
+        "last_seen": "2026-02-27T11:05:55.163356+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1093,
+          2.2605
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_9",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.844,
+        "observation_count": 95,
+        "best_score": 5.578,
+        "first_seen": "2026-02-27T11:06:22.283068+00:00",
+        "last_seen": "2026-02-27T11:07:26.848106+00:00",
+        "ttl_seconds": 120.0
+      }
+    }
+  ]
+}

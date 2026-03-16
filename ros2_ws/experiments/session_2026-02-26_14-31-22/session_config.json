@@ -1,0 +1,120 @@
+{
+  "session_id": "session_2026-02-26_14-31-22",
+  "timestamp": "2026-02-26T12:31:30.782904+00:00",
+  "graph": {
+    "nodes": 10,
+    "coords": {
+      "0": {
+        "name": "start",
+        "x": 1.0,
+        "y": 0.0
+      },
+      "1": {
+        "name": "in1",
+        "x": 2.0,
+        "y": -0.15
+      },
+      "2": {
+        "name": "in2",
+        "x": 1.7,
+        "y": 0.8
+      },
+      "3": {
+        "name": "int2",
+        "x": 3.0,
+        "y": 0.5
+      },
+      "4": {
+        "name": "int3",
+        "x": 3.0,
+        "y": -0.15
+      },
+      "5": {
+        "name": "altB",
+        "x": 4.0,
+        "y": -0.15
+      },
+      "6": {
+        "name": "altA",
+        "x": 4.7,
+        "y": 1.0
+      },
+      "7": {
+        "name": "int4",
+        "x": 5.0,
+        "y": 0.22
+      },
+      "8": {
+        "name": "goal_old",
+        "x": 5.7,
+        "y": 1.0
+      },
+      "9": {
+        "name": "goal",
+        "x": 6.6,
+        "y": 0.7
+      }
+    }
+  },
+  "semantic": {
+    "objects_count": 0,
+    "objects_by_class": {},
+    "valid_count": 0,
+    "timestamp": "2026-02-26T12:31:25.271792+00:00"
+  },
+  "penalties_at_start": {
+    "10": 16.7,
+    "11": 16.7,
+    "12": 16.58,
+    "13": 16.58,
+    "16": 2.16,
+    "17": 2.16,
+    "18": 13.52,
+    "19": 13.52,
+    "20": 7.24,
+    "21": 7.24,
+    "22": 12.5,
+    "23": 12.5,
+    "24": 16.24,
+    "25": 16.24,
+    "26": 22.98,
+    "27": 22.98,
+    "28": 13.21,
+    "29": 13.21,
+    "30": 20.14,
+    "31": 20.14,
+    "34": 11.06,
+    "35": 11.06,
+    "36": 21.59,
+    "37": 21.59
+  },
+  "validation": {
+    "max_start_offset_m": 1.5,
+    "min_success_dist_m": 1.0,
+    "max_success_error_m": 2.0,
+    "min_success_duration_s": 3.0,
+    "max_consecutive_fails": 2
+  },
+  "params": {
+    "odom_topic": "/odom",
+    "sample_hz": 2.0,
+    "valid_classes": [
+      "backpack",
+      "bench",
+      "book",
+      "bottle",
+      "chair",
+      "cup",
+      "laptop",
+      "person",
+      "potted plant",
+      "suitcase",
+      "tv"
+    ],
+    "has_psutil": true
+  },
+  "target_headings": {
+    "node0_yaw_rad": 0.07369232927344045,
+    "node9_yaw_rad": -3.084113748254901
+  }
+}

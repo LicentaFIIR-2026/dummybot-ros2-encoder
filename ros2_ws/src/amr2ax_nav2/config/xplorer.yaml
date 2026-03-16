@@ -14,24 +14,24 @@ amcl:
     do_beamskip: false
     global_frame_id: "map"
     lambda_short: 0.1
-    laser_likelihood_max_dist: 1.2
+    laser_likelihood_max_dist: 2.0   # FIX: ERA 1.2 — prea restrictiv pentru cameră 9x4m
     laser_max_range: 8.0
     laser_min_range: 0.03
     laser_model_type: "likelihood_field"
     max_beams: 300
-    max_particles: 4000
+    max_particles: 5000
     min_particles: 800
     odom_frame_id: "odom"
     pf_err: 0.05
     pf_z: 0.99
-    recovery_alpha_fast: 0.0
-    recovery_alpha_slow: 0.0
+    recovery_alpha_fast: 0.1      # FIX: ERA 0.0 — recovery complet dezactivat!
+    recovery_alpha_slow: 0.001    # FIX: ERA 0.0 — fără asta AMCL nu se auto-corectează
     resample_interval: 1
     robot_model_type: "nav2_amcl::DifferentialMotionModel"
     save_pose_rate: 0.5
-    sigma_hit: 0.08
+    sigma_hit: 0.15               # FIX: ERA 0.08 — prea strâns vs noise STL-19P (STD 15mm@2-12m)
     tf_broadcast: true
-    transform_tolerance: 0.20
+    transform_tolerance: 0.30
     update_min_a: 0.05
     update_min_d: 0.10
     z_hit: 0.65
@@ -41,10 +41,11 @@ amcl:
     scan_topic: scan
     map_topic: map    
     set_initial_pose: true
-    always_reset_initial_pose: true
+    always_reset_initial_pose: false
+    #first_map_only: false   
     initial_pose:
-      x: 1.0
-      y: -1.27
+      x: 1.1
+      y: 0.32
       z: 0.00
       yaw: 0.0
       
@@ -72,12 +73,11 @@ behavior_server:
     local_frame: odom
     global_frame: map
     robot_base_frame: base_link
-    transform_tolerance: 0.2
+    transform_timeout: 0.3
     simulate_ahead_time: 3.0
-    # SYNCED with diff_drive_controller
-    max_rotational_vel: 6.0
-    min_rotational_vel: 0.6
-    rotational_acc_lim: 8.2
+    max_rotational_vel: 1.0
+    min_rotational_vel: 0.4
+    rotational_acc_lim: 2.2
 
 bt_navigator:
   ros__parameters:
@@ -85,17 +85,26 @@ bt_navigator:
     use_sim_time: false
     global_frame: map
     robot_base_frame: base_link
-    odom_topic: "odom"
-    enable_stamped_cmd_vel: true
-    bt_loop_duration: 10
-    default_server_timeout: 20
+    odom_topic: "/odom"
+    bt_loop_duration: 10          # ms - durata unui tick BT
+    # IMPORTANT: default_server_timeout este in MILISECUNDE in Jazzy!
+    # 20ms = timeout instant -> cauzeaza "Timed out waiting for follow_path/compute_path"
+    # CORECT: 10000ms = 10s, suficient pentru planner (max 3s) si controller start
+    default_server_timeout: 10000
+    wait_for_service_timeout: 1000
+    action_server_result_timeout: 900.0
 
     navigators: ["navigate_to_pose", "navigate_through_poses"]
     navigate_to_pose:
       plugin: "nav2_bt_navigator::NavigateToPoseNavigator"
     navigate_through_poses:
       plugin: "nav2_bt_navigator::NavigateThroughPosesNavigator"
-    
+
+    # BT XML simplu fara replanning agresiv la 1Hz care cauzeaza timeout
+    # la follow_path cand controller_server e deja ocupat (a primit path de la alt BT tick)
+    default_nav_to_pose_bt_xml: "/home/saim/dummybot-ros2-encoder/ros2_ws/src/amr2ax_nav2/behavior_trees/navigate_to_pose_simple.xml"
+
+    # Parametrii pentru codurile de eroare
     error_code_names: ["follow_path_error_code", "compute_path_error_code"]
 
 
@@ -118,8 +127,8 @@ controller_server:
     goal_checker_plugin: "goal_checker"
     goal_checker:
       plugin: "nav2_controller::SimpleGoalChecker"
-      xy_goal_tolerance: 0.20
-      yaw_goal_tolerance: 0.20
+      xy_goal_tolerance: 0.15
+      yaw_goal_tolerance: 0.15
       stateful: true
 
     controller_plugins: ["FollowPath"]
@@ -210,7 +219,7 @@ controller_server:
 local_costmap:
   local_costmap:
     ros__parameters:
-      update_frequency: 5.0
+      update_frequency: 5.0  # REDUCED from 10.0 for stable docking
       publish_frequency: 5.0
       global_frame: odom
       robot_base_frame: base_link
@@ -219,10 +228,18 @@ local_costmap:
       always_send_full_costmap: true
       width: 3
       height: 3
-      resolution: 0.025
+      resolution: 0.025 #0.05
+      #robot_radius: 0.18
       footprint: "[ [0.235, 0.220], [0.235, -0.220], [-0.235, -0.220], [-0.235, 0.220] ]"
-      footprint_padding: 0.01
-      plugins: ["obstacle_layer", "inflation_layer"]
+      footprint_padding: 0.01 #0.04
+#      plugins: ["voxel_layer", "inflation_layer"]
+      #plugins: ["obstacle_layer", "voxel_layer", "inflation_layer"]
+      plugins: ["obstacle_layer", "inflation_layer"]  # FIXED: Removed static_layer
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        enabled: true
+        inflation_radius: 0.39  # Must be > circumscribed_radius (0.357m)
+        cost_scaling_factor: 11.0  # Gentle gradient for docking
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: true
@@ -235,17 +252,47 @@ local_costmap:
           data_type: "LaserScan"
           raytrace_max_range: 8.0
           raytrace_min_range: 0.03
-          obstacle_max_range: 7.0
+          obstacle_max_range: 5.0
           obstacle_min_range: 0.03
-      inflation_layer:
-        plugin: "nav2_costmap_2d::InflationLayer"
-        enabled: true
-        inflation_radius: 0.42 #0.30 pentru casa
-        cost_scaling_factor: 11.0 #5.0 pentru casa
+#      voxel_layer:
+#        plugin: "nav2_costmap_2d::VoxelLayer"
+#        enabled: true
+#        publish_voxel_map: true
+#        footprint_clearing_enabled: true
+#        origin_z: 0.0
+#        z_resolution: 0.05
+#        z_voxels: 12
+#        max_obstacle_height: 2.0
+#        mark_threshold: 0
+#        observation_sources: scan
+#        observation_sources: scan vx53l5
+#        scan:
+#          topic: /scan
+#          min_obstacle_height: 0.254
+#          max_obstacle_height: 2.0
+#          clearing: true
+#          marking: true
+#          data_type: "LaserScan"
+#          raytrace_max_range: 4.24  # max diagonal of 3m costmap
+#          raytrace_min_range: 0.0
+#          obstacle_max_range: 2.5
+#          obstacle_min_range: 0.0
+#        vx53l5:
+#          topic: /pointcloud
+#          min_obstacle_height: 0.05
+#          max_obstacle_height: 0.7
+#          clearing: true
+#          marking: true
+#          data_type: "PointCloud2"
+#          raytrace_max_range: 2.0
+#          raytrace_min_range: 0.5
+#          obstacle_max_range: 1.5
+#          obstacle_min_range: 0.5  
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
         enabled: true
         map_subscribe_transient_local: true
+      #always_send_full_costmap: true
   local_costmap_client:
     ros__parameters:
       use_sim_time: false
@@ -263,7 +310,33 @@ global_costmap:
       use_sim_time: false
       footprint: "[ [0.235, 0.220], [0.235, -0.220], [-0.235, -0.220], [-0.235, 0.220] ]"
       footprint_padding: 0.01
+      #robot_radius: 0.33
+      #resolution: 0.05
+      #track_unknown_space: true
+      #plugins: ["static_layer", "voxel_layer", "inflation_layer"]
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
+#      voxel_layer:
+#        plugin: "nav2_costmap_2d::VoxelLayer"
+#        enabled: true
+#        publish_voxel_map: false
+#        footprint_clearing_enabled: true
+#        origin_z: 0.0
+#        z_resolution: 0.05
+#        z_voxels: 12
+#        max_obstacle_height: 2.0
+#        mark_threshold: 0
+#        observation_sources: lidar
+#        lidar:
+#          topic: scan
+#          min_obstacle_height: 0.254
+#          max_obstacle_height: 0.8
+#          clearing: true
+#          marking: true
+#          data_type: "LaserScan"
+#          raytrace_max_range: 11.0
+#          raytrace_min_range: 0.0
+#          obstacle_max_range: 10.0
+#          obstacle_min_range: 0.2
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: true
@@ -285,8 +358,8 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         enabled: true
-        inflation_radius: 0.42 #0.30 pentru casa
-        cost_scaling_factor: 11.0 #5.0 pentru casa
+        inflation_radius: 0.39
+        cost_scaling_factor: 11.0
       always_send_full_costmap: true
   global_costmap_client:
     ros__parameters:
@@ -300,6 +373,9 @@ map_server:
   ros__parameters:
     enable_stamped_cmd_vel: true 
     use_sim_time: false
+    # Overridden in launch by the "map" launch configuration or provided default value.
+    # To use in yaml, remove the default "map" value in the tb3_simulation_launch.py file & provide full path to map below.
+#    yaml_filename: "cb201.yaml"
     yaml_filename: "cb204v1.yaml"    
 
 map_saver:
@@ -319,40 +395,40 @@ planner_server:
     planner_plugins: ["GridBased"]
     GridBased:
       plugin: "nav2_smac_planner::SmacPlannerHybrid"
-      downsample_costmap: false
-      downsampling_factor: 1
-      tolerance: 0.60
-      allow_unknown: true
-      max_iterations: 800000
-      max_on_approach_iterations: 1000
-      max_planning_time: 8.0
-      motion_model_for_search: "REEDS_SHEPP"
-      angle_quantization_bins: 64
-      analytic_expansion_ratio: 3.0
-      analytic_expansion_max_length: 2.5
-      analytic_expansion_max_cost: 200.0
-      analytic_expansion_max_cost_override: false
-      minimum_turning_radius: 0.20
-      reverse_penalty: 1.5
-      change_penalty: 0.15
-      non_straight_penalty: 1.1
-      cost_penalty: 1.8
-      retrospective_penalty: 0.012
-      lookup_table_size: 4.0
-      cache_obstacle_heuristic: false
-      debug_visualizations: false
+      downsample_costmap: false          # whether or not to downsample the map
+      downsampling_factor: 1              # multiplier for the resolution of the costmap layer (e.g. 2 on a 5cm costmap would be 10cm)
+      tolerance: 0.25                     # increase tolerance to accept nearby valid endpoints when goal lies on/near obstacles
+      allow_unknown: true                 # allow traveling in unknown space
+      max_iterations: 800000             # maximum total iterations to search for before failing (in case unreachable), set to -1 to disable
+      max_on_approach_iterations: 1000    # Maximum number of iterations after within tolerances to continue to try to find exact solution
+      max_planning_time: 5.0              # redus de la 8.0 - harta 9x4m, distante scurte
+      motion_model_for_search: "REEDS_SHEPP"    # Hybrid-A* Dubin, Redds-Shepp
+      angle_quantization_bins: 72         # Number of angle bins for search
+      analytic_expansion_ratio: 3.5       # The ratio to attempt analytic expansions during search for final approach.
+      analytic_expansion_max_length: 2.5  # For Hybrid/Lattice nodes: The maximum length of the analytic expansion to be considered valid to prevent unsafe shortcutting
+      analytic_expansion_max_cost: 200.0  # The maximum single cost for any part of an analytic expansion to contain and be valid, except when necessary on approach to goal
+      analytic_expansion_max_cost_override: false  #  Whether or not to override the maximum cost setting if within critical distance to goal (ie probably required)
+      minimum_turning_radius: 0.1        # minimum turning radius in m of path / vehicle
+      reverse_penalty: 1.5                # Penalty to apply if motion is reversing, must be => 1
+      change_penalty: 0.0                 # Penalty to apply if motion is changing directions (L to R), must be >= 0
+      non_straight_penalty: 1.2           # Penalty to apply if motion is non-straight, must be => 1
+      cost_penalty: 2.0                   # Penalty to apply to higher cost areas when adding into the obstacle map dynamic programming distance expansion heuristic. This drives the robot more towards the center of passages. A value between 1.3 - 3.5 is reasonable.
+      retrospective_penalty: 0.015
+      lookup_table_size: 5.0              # Size of the dubin/reeds-sheep distance window to cache, in meters.
+      cache_obstacle_heuristic: false     # Cache the obstacle map dynamic programming distance expansion heuristic between subsiquent replannings of the same goal location. Dramatically speeds up replanning performance (40x) if costmap is largely static.
+      debug_visualizations: false         # For Hybrid nodes: Whether to publish expansions on the /expansions topic as an array of poses (the orientation has no meaning) and the path's footprints on the /planned_footprints topic. WARNING: heavy to compute and to display, for debug only as it degrades the performance.
       use_quadratic_cost_penalty: false
       downsample_obstacle_heuristic: true
       allow_primitive_interpolation: false
-      smooth_path: true
+      smooth_path: true                   # If true, does a simple and quick smoothing post-processing to the path
 
-      smoother:
-        max_iterations: 800
-        w_smooth: 0.3
-        w_data: 0.2
-        tolerance: 1.0e-6
-        do_refinement: true
-        refinement_num: 2
+planner_server_rclcpp_node:
+  ros__parameters:
+    use_sim_time: false
+
+#planner_server_rclcpp_node:
+#  ros__parameters:
+#    use_sim_time: false
 
 smoother_server:
   ros__parameters:
@@ -376,24 +452,22 @@ waypoint_follower:
     wait_at_waypoint:
       plugin: "nav2_waypoint_follower::WaitAtWaypoint"
       enabled: true
-      waypoint_pause_duration: 5000
+      waypoint_pause_duration: 2000
 
 velocity_smoother:
   ros__parameters:
     enable_stamped_cmd_vel: true 
     use_sim_time: false
-    smoothing_frequency: 20.0
+    smoothing_frequency: 15.0    # SPEED: ERA 8.0 — smoother-ul reacționează mai repede la schimbări de viteză
     scale_velocities: false
     feedback: "OPEN_LOOP"
-    # SYNCED with diff_drive_controller limits
-    # Format: [linear.x, linear.y, angular.z]
-    max_velocity: [4.0, 0.0, 4.0]
-    min_velocity: [-4.0, 0.0, -4.0]
-    max_accel: [8.0, 0.0, 8.2]
-    max_decel: [-8.0, 0.0, -8.2]
-    odom_topic: "odom"
-    odom_duration: 0.15
-    deadband_velocity: [0.02, 0.0, 0.05]
+    max_velocity: [0.5, 0.0, 3.14]   # SPEED: ERA [1.5, 0.0, 3.0] — match cu vx_max din MPPI
+    min_velocity: [-0.3, 0.0, -3.14]  # SPEED: ERA [-1.5, 0.0, -3.0] — match cu vx_min
+    max_accel: [4.5, 0.0, 4.5]      # SPEED: ERA [3.0, 0.0, 3.5] — match cu ax_max
+    max_decel: [-4.5, 0.0, -4.5]    # SPEED: ERA [-3.0, 0.0, -3.5] — match cu ax_min
+    odom_topic: "/odom"
+    odom_duration: 0.1               # SPEED: ERA 0.15 — răspuns mai rapid
+    deadband_velocity: [0.01, 0.0, 0.03]  # SPEED: ERA [0.02, 0.0, 0.05] — deadband mai mic
     velocity_timeout: 1.5
 
 collision_monitor:
@@ -405,7 +479,7 @@ collision_monitor:
     cmd_vel_in_topic: "cmd_vel_smoothed"
     cmd_vel_out_topic: "cmd_vel"
     state_topic: "collision_monitor_state"
-    transform_tolerance: 0.2
+    transform_tolerance: 0.3
     source_timeout: 2.0
     base_shift_correction: true
     stop_pub_timeout: 2.0
@@ -431,35 +505,82 @@ collision_monitor:
       max_height: 0.4
       enabled: true
 
+# Docking Server
+docking_server:
+  ros__parameters:
+    enable_stamped_cmd_vel: true 
+    controller_frequency: 30.0
+    initial_perception_timeout: 10.0
+    wait_charge_timeout: 5.0
+    dock_approach_timeout: 30.0
+    undock_linear_tolerance: 0.05
+    undock_angular_tolerance: 0.05
+    max_retries: 3
+    base_frame: "base_link"
+    fixed_frame: "odom"
+    dock_backwards: false
+    dock_prestaging_tolerance: 0.5
+    
+    dock_plugins: ['xplorer_dock']
+    xplorer_dock:
+      plugin: 'opennav_docking::SimpleChargingDock'
+      docking_threshold: 0.40
+      staging_x_offset: -0.30
+      
+      use_external_detection_pose: true
+      external_detection_timeout: 2.0
+      external_detection_topic: '/detected_dock_pose'
+      #subscribe_toggle: true
+      
+      external_detection_translation_x: 0.0
+      external_detection_translation_y: 0.0
+      external_detection_translation_z: 0.0
+      #external_detection_rotation_roll: 0.0
+      #external_detection_rotation_pitch: 0.0
+      external_detection_rotation_roll: -1.5708
+      external_detection_rotation_pitch: 1.5708
+      external_detection_rotation_yaw: 0.0
+      
+      filter_coef: 0.3
+      
+      use_battery_status: false
+      use_stall_detection: false
+      #stall_joint_names: ['left_front_wheel_joint', 'right_front_wheel_joint', 'left_rear_wheel_joint', 'right_rear_wheel_joint']  # ← ADĂUGAT
+      #stall_velocity_threshold: 0.15  # ← ADĂUGAT (2cm/s)
+      #stall_effort_threshold: 0.0  # ← ADĂUGAT (nu folosim effort)      
+      
+    docks: ['test_dock']
+    test_dock:
+      type: 'xplorer_dock'
+      frame: 'map'
+      pose: [0.40, 0.34, 0.0] # TF odom→tag36h11:-0.219 -0.213 -0.708
+      #pose: [0.5, 0.85, -0.908] # TF odom→tag36h11:-0.219 -0.213 -0.708
+      #pose: [0.10, 0.18, -3.14]  # TF odom→tag36h11:0
+
+    
+    controller:
+      k_phi: 1.8
+      k_delta: 0.6
+      beta: 0.4
+      lambda: 2.0      
+      v_linear_min: 0.05
+      v_linear_max: 0.15
+      #use_collision_detection: false
+      v_angular_max: 0.75
+      slowdown_radius: 0.25
+      use_collision_detection: true
+      costmap_topic: "/local_costmap/costmap_raw"
+      footprint_topic: "/local_costmap/published_footprint"
+      transform_tolerance: 0.1
+      projection_time: 5.0
+      simulation_step: 0.1
+      dock_collision_threshold: 0.8
+
 # Lifecycle Manager
 lifecycle_manager_navigation:
   ros__parameters:
     use_sim_time: false
     autostart: true
-    node_names: ['controller_server', 'planner_server', 'behavior_server', 'route_server', 
-                 'bt_navigator', 'waypoint_follower', 'velocity_smoother']
-
-
-route_server:
-  ros__parameters:
-    use_sim_time: false
-    enable_stamped_cmd_vel: true
-    
-    # Graph configuration
-    graph_file_loader: "GeoJsonGraphFileLoader"
-    graph_filepath: "/home/saim/dummybot-ros2-encoder/ros2_ws/src/amr2ax_nav2/config/route_graph.json"
-    
-    # Planificare
-    max_iterations: 100000
-    max_planning_time: 10.0
-    
-    # Scoring - MODIFICAT: adăugat DynamicEdgesScorer
-    edge_cost_functions: ["DistanceScorer", "DynamicEdgesScorer"]
-    
-    DistanceScorer:
-      plugin: "nav2_route::DistanceScorer"
-      weight: 1.0
-    
-    DynamicEdgesScorer:
-      plugin: "nav2_route::DynamicEdgesScorer"
-      weight: 1.0   
+    node_names: ['controller_server', 'planner_server', 'behavior_server', 
+                 'bt_navigator', 'waypoint_follower', 'velocity_smoother', 
+                 'docking_server']

@@ -1,0 +1,276 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "description": "SAIM Xplorer Semantic Object Map",
+    "frame": "map",
+    "generated_by": "semantic_localizer",
+    "last_updated": "2026-02-26T12:47:40.260060+00:00",
+    "object_count": 12
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.2885,
+          1.7225
+        ]
+      },
+      "properties": {
+        "obj_id": "person_7",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.835,
+        "observation_count": 9,
+        "best_score": 2.038,
+        "first_seen": "2026-02-26T12:47:07.231230+00:00",
+        "last_seen": "2026-02-26T12:47:07.232401+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.8463,
+          2.5143
+        ]
+      },
+      "properties": {
+        "obj_id": "person_8",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.783,
+        "observation_count": 10,
+        "best_score": 1.03,
+        "first_seen": "2026-02-26T12:47:07.618741+00:00",
+        "last_seen": "2026-02-26T12:47:07.619877+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3262,
+          1.8369
+        ]
+      },
+      "properties": {
+        "obj_id": "bench_9",
+        "class_name": "bench",
+        "class_id": 13,
+        "mobility": "static",
+        "confidence": 0.607,
+        "observation_count": 3,
+        "best_score": 6.725,
+        "first_seen": "2026-02-26T12:47:07.619884+00:00",
+        "last_seen": "2026-02-26T12:47:07.620707+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.7994,
+          1.8105
+        ]
+      },
+      "properties": {
+        "obj_id": "person_10",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.756,
+        "observation_count": 10,
+        "best_score": 1.575,
+        "first_seen": "2026-02-26T12:47:08.139248+00:00",
+        "last_seen": "2026-02-26T12:47:08.140383+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0825,
+          0.3651
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_11",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.648,
+        "observation_count": 7,
+        "best_score": 0.497,
+        "first_seen": "2026-02-26T12:47:19.259136+00:00",
+        "last_seen": "2026-02-26T12:47:19.260327+00:00",
+        "ttl_seconds": 120.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.095,
+          -0.3672
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_12",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.794,
+        "observation_count": 17,
+        "best_score": 0.479,
+        "first_seen": "2026-02-26T12:47:19.678886+00:00",
+        "last_seen": "2026-02-26T12:47:21.791821+00:00",
+        "ttl_seconds": 120.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.5509,
+          -0.6223
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_13",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.768,
+        "observation_count": 7,
+        "best_score": 0.485,
+        "first_seen": "2026-02-26T12:47:20.509697+00:00",
+        "last_seen": "2026-02-26T12:47:20.512692+00:00",
+        "ttl_seconds": 120.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.9847,
+          -0.312
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_14",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.787,
+        "observation_count": 14,
+        "best_score": 2.707,
+        "first_seen": "2026-02-26T12:47:20.944576+00:00",
+        "last_seen": "2026-02-26T12:47:21.390967+00:00",
+        "ttl_seconds": 120.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.965,
+          1.5749
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_15",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.764,
+        "observation_count": 8,
+        "best_score": 0.68,
+        "first_seen": "2026-02-26T12:47:22.230058+00:00",
+        "last_seen": "2026-02-26T12:47:22.231323+00:00",
+        "ttl_seconds": 120.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7305,
+          2.7242
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_16",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.579,
+        "observation_count": 7,
+        "best_score": 0.435,
+        "first_seen": "2026-02-26T12:47:22.922211+00:00",
+        "last_seen": "2026-02-26T12:47:22.923230+00:00",
+        "ttl_seconds": 120.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.6842,
+          6.8285
+        ]
+      },
+      "properties": {
+        "obj_id": "person_17",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.821,
+        "observation_count": 8,
+        "best_score": 0.981,
+        "first_seen": "2026-02-26T12:47:24.427334+00:00",
+        "last_seen": "2026-02-26T12:47:24.428571+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4111,
+          6.6919
+        ]
+      },
+      "properties": {
+        "obj_id": "person_18",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.826,
+        "observation_count": 20,
+        "best_score": 1.108,
+        "first_seen": "2026-02-26T12:47:24.956968+00:00",
+        "last_seen": "2026-02-26T12:47:25.348457+00:00",
+        "ttl_seconds": 60.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "session": "session_2026-02-26_14-37-18",
+  "timestamp": "2026-02-26T12:39:19.447901+00:00",
+  "tests": {
+    "adaptive": {
+      "total_runs": 2,
+      "validated_success_fwd": "0/2",
+      "validated_success_ret": "0/2",
+      "forward": {
+        "time_s": {},
+        "dist_m": {},
+        "error_m": {}
+      },
+      "return": {
+        "time_s": {},
+        "dist_m": {}
+      },
+      "navigation_only": {
+        "fwd_time_s": {},
+        "ret_time_s": {},
+        "prescan_time_s": {}
+      },
+      "reroutes_fwd": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "n": 2
+      },
+      "reroutes_ret": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "n": 2
+      },
+      "total_reroutes": 0,
+      "runs_with_reroute": 0,
+      "planning_ms": {
+        "mean": 5.242,
+        "std": 6.072,
+        "min": 0,
+        "max": 11.07,
+        "n": 4
+      },
+      "route_analysis": {
+        "route_types": [
+          "DIRECT",
+          "DIRECT",
+          "AT_GOAL",
+          "AT_GOAL"
+        ],
+        "routes_changed": 0,
+        "total_legs": 4
+      }
+    }
+  }
+}

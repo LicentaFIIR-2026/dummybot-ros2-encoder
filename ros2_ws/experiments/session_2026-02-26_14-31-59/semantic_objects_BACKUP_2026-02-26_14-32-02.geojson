@@ -1,0 +1,56 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "description": "SAIM Xplorer Semantic Object Map",
+    "frame": "map",
+    "generated_by": "semantic_localizer",
+    "last_updated": "2026-02-26T12:31:56.843237+00:00",
+    "object_count": 2
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.0695,
+          -0.0575
+        ]
+      },
+      "properties": {
+        "obj_id": "person_0",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.915,
+        "observation_count": 161,
+        "best_score": 18.006,
+        "first_seen": "2026-02-26T12:30:44.644327+00:00",
+        "last_seen": "2026-02-26T12:31:56.470466+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7742,
+          4.5946
+        ]
+      },
+      "properties": {
+        "obj_id": "person_1",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.536,
+        "observation_count": 4,
+        "best_score": 0.294,
+        "first_seen": "2026-02-26T12:31:18.974671+00:00",
+        "last_seen": "2026-02-26T12:31:42.214811+00:00",
+        "ttl_seconds": 60.0
+      }
+    }
+  ]
+}

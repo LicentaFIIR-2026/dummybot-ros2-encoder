@@ -12,7 +12,9 @@ def generate_launch_description():
     param_dir = os.path.join(get_package_share_directory('amr2ax_nav2'), 'config')
     config_dir = os.path.join(get_package_share_directory('amr2ax_nav2'), 'config')
 #    map_file = os.path.join(maps_dir, 'b42.yaml')
-    map_file = os.path.join(maps_dir, 'cb204_13.12.05v4.yaml')
+     #map_file = os.path.join(maps_dir, 'cb204_13.12.05v4.yaml')
+     #map_file = os.path.join(maps_dir, 'cb204_13.12.05v4_edited.yaml')
+    map_file = os.path.join(maps_dir, 'holcb2024cb202_edited.yaml')
     #map_file = os.path.join(maps_dir, 'harta_casa_edited.yaml')
 #    map_file = os.path.join(maps_dir, 'test.yaml')
 #    map_file = os.path.join(maps_dir, 'demo_map_4x4.yaml')    
@@ -25,7 +27,7 @@ def generate_launch_description():
     # Argumentul pentru domain_id
     arg_domain_id = DeclareLaunchArgument(
         'domain_id',
-        default_value='0',
+        default_value='67',
         description='ROS Domain ID (0-232)'
     )
 

@@ -1,0 +1,100 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "description": "SAIM Xplorer Semantic Object Map",
+    "frame": "map",
+    "generated_by": "semantic_localizer",
+    "last_updated": "2026-02-27T11:15:20.062953+00:00",
+    "object_count": 4
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.3734,
+          2.1699
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_1",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.651,
+        "observation_count": 111,
+        "best_score": 14.874,
+        "first_seen": "2026-02-27T11:08:53.893684+00:00",
+        "last_seen": "2026-02-27T11:09:28.165270+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.6378,
+          1.8627
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_3",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.566,
+        "observation_count": 3,
+        "best_score": 1.941,
+        "first_seen": "2026-02-27T11:10:27.733443+00:00",
+        "last_seen": "2026-02-27T11:10:27.734662+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.8517,
+          4.987
+        ]
+      },
+      "properties": {
+        "obj_id": "tv_6",
+        "class_name": "tv",
+        "class_id": 62,
+        "mobility": "static",
+        "confidence": 0.593,
+        "observation_count": 13,
+        "best_score": 2.503,
+        "first_seen": "2026-02-27T11:14:03.086371+00:00",
+        "last_seen": "2026-02-27T11:14:04.158714+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.78,
+          2.6933
+        ]
+      },
+      "properties": {
+        "obj_id": "tv_7",
+        "class_name": "tv",
+        "class_id": 62,
+        "mobility": "static",
+        "confidence": 0.623,
+        "observation_count": 5,
+        "best_score": 20.008,
+        "first_seen": "2026-02-27T11:15:03.507917+00:00",
+        "last_seen": "2026-02-27T11:15:03.911048+00:00",
+        "ttl_seconds": -1.0
+      }
+    }
+  ]
+}

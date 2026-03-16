@@ -1,0 +1,83 @@
+{
+  "test_type": "baseline_forward",
+  "run_number": 2,
+  "timestamp": "2026-02-27T15:09:10.893258+00:00",
+  "robot_start_pose": [
+    1.6183,
+    3.1831,
+    -1.9419
+  ],
+  "start_offset_m": 0.791,
+  "timing": {
+    "prescan_duration_s": 0.0,
+    "navigation_duration_s": 0.022,
+    "total_duration_s": 0.022
+  },
+  "execution": {
+    "duration_s": 0.022,
+    "nav2_success": true,
+    "validated_success": false,
+    "distance_traveled_m": 0.0,
+    "avg_velocity_ms": 0,
+    "max_velocity_ms": 0,
+    "final_pose": null,
+    "trajectory_points": 0,
+    "xy_error_m": 4.4162,
+    "yaw_error_rad": 1.866
+  },
+  "trajectory": [],
+  "min_object_distance": null,
+  "system_metrics": {
+    "samples": 1,
+    "duration_s": 0,
+    "cpu": {
+      "mean": 38.6,
+      "max": 38.6,
+      "min": 38.6,
+      "std": 0.0
+    },
+    "memory": {
+      "mean": 13.5,
+      "max": 13.5,
+      "min": 13.5,
+      "std": 0.0
+    },
+    "swap": {
+      "mean": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "std": 0.0
+    },
+    "cpu_temp": {
+      "mean": 62.8,
+      "max": 62.8,
+      "min": 62.8,
+      "std": 0.0
+    },
+    "battery_start": -1.0,
+    "battery_end": -1.0,
+    "time_series": [
+      {
+        "t": 1772204949.084,
+        "cpu_pct": 38.6,
+        "mem_pct": 13.5,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 62.8,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          40.7,
+          38.6,
+          38.0,
+          37.0
+        ]
+      }
+    ]
+  },
+  "semantic": {
+    "objects_count": 0,
+    "objects_by_class": {},
+    "valid_count": 0,
+    "timestamp": "2026-02-27T15:08:18.454166+00:00"
+  }
+}

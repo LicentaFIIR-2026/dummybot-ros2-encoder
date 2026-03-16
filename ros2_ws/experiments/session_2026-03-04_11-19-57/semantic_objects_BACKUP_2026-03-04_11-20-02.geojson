@@ -1,0 +1,1178 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "description": "SAIM Xplorer Semantic Object Map",
+    "frame": "map",
+    "generated_by": "semantic_localizer",
+    "last_updated": "2026-03-04T09:19:57.806025+00:00",
+    "object_count": 53
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.5386,
+          -1.4011
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_2",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.611,
+        "observation_count": 4,
+        "best_score": 0.975,
+        "first_seen": "2026-03-04T09:14:03.628299+00:00",
+        "last_seen": "2026-03-04T09:17:28.535188+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0086,
+          -0.332
+        ]
+      },
+      "properties": {
+        "obj_id": "bench_3",
+        "class_name": "bench",
+        "class_id": 13,
+        "mobility": "static",
+        "confidence": 0.682,
+        "observation_count": 114,
+        "best_score": 5.38,
+        "first_seen": "2026-03-04T09:14:04.007040+00:00",
+        "last_seen": "2026-03-04T09:14:23.675090+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2957,
+          5.185
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_4",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.524,
+        "observation_count": 2,
+        "best_score": 0.765,
+        "first_seen": "2026-03-04T09:15:52.147944+00:00",
+        "last_seen": "2026-03-04T09:15:52.149072+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7699,
+          6.6472
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_5",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.68,
+        "observation_count": 5,
+        "best_score": 0.895,
+        "first_seen": "2026-03-04T09:15:52.535619+00:00",
+        "last_seen": "2026-03-04T09:15:52.536683+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.3935,
+          5.8275
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_6",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.558,
+        "observation_count": 5,
+        "best_score": 2.109,
+        "first_seen": "2026-03-04T09:15:52.536691+00:00",
+        "last_seen": "2026-03-04T09:15:52.538269+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7595,
+          6.3713
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_7",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.557,
+        "observation_count": 2,
+        "best_score": 0.666,
+        "first_seen": "2026-03-04T09:15:52.537494+00:00",
+        "last_seen": "2026-03-04T09:15:52.538223+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.5498,
+          6.6397
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_8",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.833,
+        "observation_count": 44,
+        "best_score": 1.486,
+        "first_seen": "2026-03-04T09:15:53.011534+00:00",
+        "last_seen": "2026-03-04T09:15:54.628750+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.883,
+          6.2943
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_9",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.765,
+        "observation_count": 6,
+        "best_score": 0.843,
+        "first_seen": "2026-03-04T09:15:53.013014+00:00",
+        "last_seen": "2026-03-04T09:15:54.629793+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.6393,
+          5.3474
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_10",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.711,
+        "observation_count": 10,
+        "best_score": 2.629,
+        "first_seen": "2026-03-04T09:15:53.014133+00:00",
+        "last_seen": "2026-03-04T09:15:53.016817+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.5157,
+          6.6439
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_11",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.609,
+        "observation_count": 6,
+        "best_score": 0.67,
+        "first_seen": "2026-03-04T09:15:53.015030+00:00",
+        "last_seen": "2026-03-04T09:15:53.016848+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.542,
+          6.5668
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_12",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.694,
+        "observation_count": 12,
+        "best_score": 0.946,
+        "first_seen": "2026-03-04T09:15:53.015863+00:00",
+        "last_seen": "2026-03-04T09:15:53.847964+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.6613,
+          4.4614
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_13",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.686,
+        "observation_count": 9,
+        "best_score": 4.803,
+        "first_seen": "2026-03-04T09:15:53.491494+00:00",
+        "last_seen": "2026-03-04T09:15:53.494286+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9273,
+          5.2283
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_14",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.672,
+        "observation_count": 5,
+        "best_score": 0.925,
+        "first_seen": "2026-03-04T09:15:53.492703+00:00",
+        "last_seen": "2026-03-04T09:15:53.494275+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9755,
+          4.3474
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_15",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.79,
+        "observation_count": 34,
+        "best_score": 1.496,
+        "first_seen": "2026-03-04T09:15:53.846185+00:00",
+        "last_seen": "2026-03-04T09:15:55.764777+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.6466,
+          3.8234
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_16",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.609,
+        "observation_count": 7,
+        "best_score": 4.792,
+        "first_seen": "2026-03-04T09:15:53.847158+00:00",
+        "last_seen": "2026-03-04T09:15:53.847996+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.862,
+          2.5553
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_17",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.698,
+        "observation_count": 16,
+        "best_score": 7.174,
+        "first_seen": "2026-03-04T09:15:54.628790+00:00",
+        "last_seen": "2026-03-04T09:15:54.966572+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.2249,
+          4.9565
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_18",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.5,
+        "observation_count": 1,
+        "best_score": 3.469,
+        "first_seen": "2026-03-04T09:15:54.629804+00:00",
+        "last_seen": "2026-03-04T09:15:54.629804+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1684,
+          5.661
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_19",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.78,
+        "observation_count": 10,
+        "best_score": 1.217,
+        "first_seen": "2026-03-04T09:16:03.041424+00:00",
+        "last_seen": "2026-03-04T09:16:03.452123+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3302,
+          3.2954
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_20",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.812,
+        "observation_count": 28,
+        "best_score": 4.5,
+        "first_seen": "2026-03-04T09:16:03.450027+00:00",
+        "last_seen": "2026-03-04T09:16:04.436253+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0796,
+          3.759
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_21",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.588,
+        "observation_count": 3,
+        "best_score": 1.391,
+        "first_seen": "2026-03-04T09:16:03.452136+00:00",
+        "last_seen": "2026-03-04T09:16:03.453249+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6115,
+          5.3261
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_22",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.553,
+        "observation_count": 3,
+        "best_score": 0.44,
+        "first_seen": "2026-03-04T09:16:03.954980+00:00",
+        "last_seen": "2026-03-04T09:16:03.956138+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4222,
+          2.7863
+        ]
+      },
+      "properties": {
+        "obj_id": "refrigerator_25",
+        "class_name": "refrigerator",
+        "class_id": 72,
+        "mobility": "static",
+        "confidence": 0.618,
+        "observation_count": 2,
+        "best_score": 0.759,
+        "first_seen": "2026-03-04T09:16:04.875579+00:00",
+        "last_seen": "2026-03-04T09:16:04.876376+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3467,
+          0.5405
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_26",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.819,
+        "observation_count": 215,
+        "best_score": 1.507,
+        "first_seen": "2026-03-04T09:16:06.414344+00:00",
+        "last_seen": "2026-03-04T09:18:24.810680+00:00",
+        "ttl_seconds": 120.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1758,
+          0.2109
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_38",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.917,
+        "observation_count": 49,
+        "best_score": 40.191,
+        "first_seen": "2026-03-04T09:16:26.755365+00:00",
+        "last_seen": "2026-03-04T09:19:10.024014+00:00",
+        "ttl_seconds": 120.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.3743,
+          -1.5634
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_45",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.674,
+        "observation_count": 37,
+        "best_score": 1.156,
+        "first_seen": "2026-03-04T09:17:23.861933+00:00",
+        "last_seen": "2026-03-04T09:17:27.974810+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.969,
+          0.2074
+        ]
+      },
+      "properties": {
+        "obj_id": "bench_46",
+        "class_name": "bench",
+        "class_id": 13,
+        "mobility": "static",
+        "confidence": 0.593,
+        "observation_count": 5,
+        "best_score": 3.479,
+        "first_seen": "2026-03-04T09:17:30.706508+00:00",
+        "last_seen": "2026-03-04T09:17:32.196554+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4536,
+          -1.826
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_47",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.634,
+        "observation_count": 5,
+        "best_score": 5.767,
+        "first_seen": "2026-03-04T09:17:59.485209+00:00",
+        "last_seen": "2026-03-04T09:17:59.978656+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7356,
+          -1.4323
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_48",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.801,
+        "observation_count": 21,
+        "best_score": 4.304,
+        "first_seen": "2026-03-04T09:17:59.486860+00:00",
+        "last_seen": "2026-03-04T09:18:00.425089+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.5592,
+          1.4896
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_49",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.792,
+        "observation_count": 20,
+        "best_score": 0.908,
+        "first_seen": "2026-03-04T09:18:22.289055+00:00",
+        "last_seen": "2026-03-04T09:18:23.953519+00:00",
+        "ttl_seconds": 120.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3744,
+          0.9322
+        ]
+      },
+      "properties": {
+        "obj_id": "bench_56",
+        "class_name": "bench",
+        "class_id": 13,
+        "mobility": "static",
+        "confidence": 0.586,
+        "observation_count": 3,
+        "best_score": 8.207,
+        "first_seen": "2026-03-04T09:18:38.858318+00:00",
+        "last_seen": "2026-03-04T09:18:38.859783+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.872,
+          -0.3614
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_57",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.581,
+        "observation_count": 6,
+        "best_score": 5.396,
+        "first_seen": "2026-03-04T09:18:51.701020+00:00",
+        "last_seen": "2026-03-04T09:18:51.703416+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.8201,
+          -0.9822
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_58",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.549,
+        "observation_count": 7,
+        "best_score": 7.76,
+        "first_seen": "2026-03-04T09:18:51.702217+00:00",
+        "last_seen": "2026-03-04T09:18:51.703428+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7456,
+          -1.3396
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_59",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.539,
+        "observation_count": 3,
+        "best_score": 4.916,
+        "first_seen": "2026-03-04T09:18:52.060831+00:00",
+        "last_seen": "2026-03-04T09:18:52.062237+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.2737,
+          6.9825
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_60",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.647,
+        "observation_count": 6,
+        "best_score": 2.895,
+        "first_seen": "2026-03-04T09:18:55.200925+00:00",
+        "last_seen": "2026-03-04T09:18:55.202101+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0034,
+          4.3262
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_61",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.536,
+        "observation_count": 4,
+        "best_score": 4.85,
+        "first_seen": "2026-03-04T09:18:55.202115+00:00",
+        "last_seen": "2026-03-04T09:18:55.203247+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.8621,
+          -1.7658
+        ]
+      },
+      "properties": {
+        "obj_id": "laptop_62",
+        "class_name": "laptop",
+        "class_id": 63,
+        "mobility": "static",
+        "confidence": 0.677,
+        "observation_count": 12,
+        "best_score": 17.558,
+        "first_seen": "2026-03-04T09:19:00.671081+00:00",
+        "last_seen": "2026-03-04T09:19:01.019277+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.7642,
+          -0.9256
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_63",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.554,
+        "observation_count": 6,
+        "best_score": 10.407,
+        "first_seen": "2026-03-04T09:19:02.659341+00:00",
+        "last_seen": "2026-03-04T09:19:03.024292+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.5509,
+          -1.5651
+        ]
+      },
+      "properties": {
+        "obj_id": "person_64",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.896,
+        "observation_count": 10,
+        "best_score": 13.356,
+        "first_seen": "2026-03-04T09:19:03.530799+00:00",
+        "last_seen": "2026-03-04T09:19:03.531819+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.069,
+          -0.9417
+        ]
+      },
+      "properties": {
+        "obj_id": "bench_65",
+        "class_name": "bench",
+        "class_id": 13,
+        "mobility": "static",
+        "confidence": 0.583,
+        "observation_count": 2,
+        "best_score": 4.152,
+        "first_seen": "2026-03-04T09:19:05.795343+00:00",
+        "last_seen": "2026-03-04T09:19:05.796527+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0497,
+          0.542
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_66",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.84,
+        "observation_count": 30,
+        "best_score": 1.348,
+        "first_seen": "2026-03-04T09:19:06.579000+00:00",
+        "last_seen": "2026-03-04T09:19:08.814363+00:00",
+        "ttl_seconds": 120.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.363,
+          0.0982
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_67",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.903,
+        "observation_count": 10,
+        "best_score": 1.9,
+        "first_seen": "2026-03-04T09:19:09.228141+00:00",
+        "last_seen": "2026-03-04T09:19:09.229163+00:00",
+        "ttl_seconds": 120.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.8934,
+          0.0781
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_68",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.909,
+        "observation_count": 9,
+        "best_score": 5.91,
+        "first_seen": "2026-03-04T09:19:09.626589+00:00",
+        "last_seen": "2026-03-04T09:19:09.627680+00:00",
+        "ttl_seconds": 120.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8582,
+          -0.0646
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_69",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.812,
+        "observation_count": 8,
+        "best_score": 1.509,
+        "first_seen": "2026-03-04T09:19:10.542090+00:00",
+        "last_seen": "2026-03-04T09:19:10.543348+00:00",
+        "ttl_seconds": 120.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.132,
+          5.9076
+        ]
+      },
+      "properties": {
+        "obj_id": "person_70",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.882,
+        "observation_count": 10,
+        "best_score": 2.507,
+        "first_seen": "2026-03-04T09:19:14.580269+00:00",
+        "last_seen": "2026-03-04T09:19:14.583720+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.0622,
+          3.3312
+        ]
+      },
+      "properties": {
+        "obj_id": "person_71",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.916,
+        "observation_count": 120,
+        "best_score": 5.592,
+        "first_seen": "2026-03-04T09:19:15.008866+00:00",
+        "last_seen": "2026-03-04T09:19:21.004544+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.2627,
+          6.9831
+        ]
+      },
+      "properties": {
+        "obj_id": "person_72",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.903,
+        "observation_count": 17,
+        "best_score": 2.295,
+        "first_seen": "2026-03-04T09:19:17.231783+00:00",
+        "last_seen": "2026-03-04T09:19:17.799791+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.2484,
+          6.0712
+        ]
+      },
+      "properties": {
+        "obj_id": "person_73",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.88,
+        "observation_count": 3,
+        "best_score": 2.498,
+        "first_seen": "2026-03-04T09:19:17.232988+00:00",
+        "last_seen": "2026-03-04T09:19:17.233934+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.7177,
+          6.5646
+        ]
+      },
+      "properties": {
+        "obj_id": "person_74",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.903,
+        "observation_count": 10,
+        "best_score": 1.836,
+        "first_seen": "2026-03-04T09:19:21.442043+00:00",
+        "last_seen": "2026-03-04T09:19:21.443344+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4625,
+          4.5838
+        ]
+      },
+      "properties": {
+        "obj_id": "person_75",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.904,
+        "observation_count": 10,
+        "best_score": 2.596,
+        "first_seen": "2026-03-04T09:19:21.906823+00:00",
+        "last_seen": "2026-03-04T09:19:21.908242+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0158,
+          0.8504
+        ]
+      },
+      "properties": {
+        "obj_id": "person_76",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.89,
+        "observation_count": 20,
+        "best_score": 1.853,
+        "first_seen": "2026-03-04T09:19:22.397426+00:00",
+        "last_seen": "2026-03-04T09:19:22.909747+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.946,
+          2.6265
+        ]
+      },
+      "properties": {
+        "obj_id": "person_77",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.891,
+        "observation_count": 19,
+        "best_score": 3.119,
+        "first_seen": "2026-03-04T09:19:23.313355+00:00",
+        "last_seen": "2026-03-04T09:19:47.616321+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.4275,
+          -0.1144
+        ]
+      },
+      "properties": {
+        "obj_id": "person_78",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.853,
+        "observation_count": 10,
+        "best_score": 11.891,
+        "first_seen": "2026-03-04T09:19:46.698711+00:00",
+        "last_seen": "2026-03-04T09:19:46.699870+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.6712,
+          0.3235
+        ]
+      },
+      "properties": {
+        "obj_id": "person_79",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.932,
+        "observation_count": 10,
+        "best_score": 7.787,
+        "first_seen": "2026-03-04T09:19:47.166120+00:00",
+        "last_seen": "2026-03-04T09:19:47.167291+00:00",
+        "ttl_seconds": 60.0
+      }
+    }
+  ]
+}

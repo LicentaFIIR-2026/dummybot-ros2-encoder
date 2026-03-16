@@ -1,0 +1,135 @@
+{
+  "session": "session_2026-03-10_15-23-31",
+  "timestamp": "2026-03-10T13:25:38.232388+00:00",
+  "route_name": "FIIR_CB204_CB202_Hall",
+  "tests": {
+    "adaptive": {
+      "total_runs": 1,
+      "validated_success_fwd": "1/1",
+      "validated_success_ret": "1/1",
+      "forward": {
+        "time_s": {
+          "mean": 74.084,
+          "std": 0,
+          "min": 74.084,
+          "max": 74.084,
+          "n": 1
+        },
+        "dist_m": {
+          "mean": 5.832,
+          "std": 0,
+          "min": 5.832,
+          "max": 5.832,
+          "n": 1
+        },
+        "error_m": {
+          "mean": 1.345,
+          "std": 0,
+          "min": 1.345,
+          "max": 1.345,
+          "n": 1
+        }
+      },
+      "return": {
+        "time_s": {
+          "mean": 15.246,
+          "std": 0,
+          "min": 15.246,
+          "max": 15.246,
+          "n": 1
+        },
+        "dist_m": {
+          "mean": 3.724,
+          "std": 0,
+          "min": 3.724,
+          "max": 3.724,
+          "n": 1
+        }
+      },
+      "navigation_only": {
+        "fwd_time_s": {
+          "mean": 74.084,
+          "std": 0,
+          "min": 74.084,
+          "max": 74.084,
+          "n": 1
+        },
+        "ret_time_s": {
+          "mean": 15.246,
+          "std": 0,
+          "min": 15.246,
+          "max": 15.246,
+          "n": 1
+        },
+        "prescan_time_s": {
+          "mean": 14.57,
+          "std": 0,
+          "min": 14.57,
+          "max": 14.57,
+          "n": 1
+        }
+      },
+      "reroutes_fwd": {
+        "mean": 8,
+        "std": 0,
+        "min": 8,
+        "max": 8,
+        "n": 1
+      },
+      "reroutes_ret": {
+        "mean": 1,
+        "std": 0,
+        "min": 1,
+        "max": 1,
+        "n": 1
+      },
+      "total_reroutes": 9,
+      "runs_with_reroute": 2,
+      "planning_ms": {
+        "mean": 7.206,
+        "std": 2.601,
+        "min": 3.62,
+        "max": 10.43,
+        "n": 5
+      },
+      "route_analysis": {
+        "route_types": [
+          "MIX",
+          "MIX"
+        ],
+        "routes_changed": 2,
+        "total_legs": 2
+      },
+      "min_object_distance_m": {
+        "mean": 0.196,
+        "std": 0.18,
+        "min": 0.069,
+        "max": 0.323,
+        "n": 2
+      },
+      "system_metrics_summary": {
+        "cpu_pct": {
+          "mean": 47.1,
+          "std": 0.424,
+          "min": 46.8,
+          "max": 47.4,
+          "n": 2
+        },
+        "mem_pct": {
+          "mean": 13.8,
+          "std": 0.0,
+          "min": 13.8,
+          "max": 13.8,
+          "n": 2
+        },
+        "cpu_temp_max_c": {
+          "mean": 71.3,
+          "std": 0.424,
+          "min": 71.0,
+          "max": 71.6,
+          "n": 2
+        }
+      }
+    }
+  }
+}

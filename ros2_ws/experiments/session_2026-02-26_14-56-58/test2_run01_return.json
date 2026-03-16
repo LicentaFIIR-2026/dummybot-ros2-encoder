@@ -1,0 +1,691 @@
+{
+  "test_type": "baseline_return",
+  "run_number": 1,
+  "timestamp": "2026-02-26T12:59:27.386986+00:00",
+  "robot_start_pose": [
+    6.5264,
+    0.3835,
+    3.1302
+  ],
+  "start_offset_m": 0.325,
+  "timing": {
+    "prescan_duration_s": 0.0,
+    "navigation_duration_s": 40.953,
+    "total_duration_s": 40.953
+  },
+  "execution": {
+    "duration_s": 40.953,
+    "nav2_success": true,
+    "validated_success": false,
+    "distance_traveled_m": 0.0,
+    "avg_velocity_ms": 0,
+    "max_velocity_ms": 0,
+    "final_pose": null,
+    "trajectory_points": 0,
+    "xy_error_m": 0.0251,
+    "yaw_error_rad": 0.2256
+  },
+  "trajectory": [],
+  "min_object_distance": null,
+  "system_metrics": {
+    "samples": 41,
+    "duration_s": 40.1,
+    "cpu": {
+      "mean": 46.8,
+      "max": 51.2,
+      "min": 42.0,
+      "std": 2.0
+    },
+    "memory": {
+      "mean": 13.6,
+      "max": 13.6,
+      "min": 13.6,
+      "std": 0.0
+    },
+    "swap": {
+      "mean": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "std": 0.0
+    },
+    "cpu_temp": {
+      "mean": 67.3,
+      "max": 68.3,
+      "min": 66.1,
+      "std": 0.5
+    },
+    "battery_start": -1.0,
+    "battery_end": -1.0,
+    "time_series": [
+      {
+        "t": 1772110725.504,
+        "cpu_pct": 42.0,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 66.1,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          44.6,
+          40.7,
+          40.5,
+          42.4
+        ]
+      },
+      {
+        "t": 1772110726.513,
+        "cpu_pct": 50.5,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.8,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          51.0,
+          49.0,
+          50.5,
+          52.0
+        ]
+      },
+      {
+        "t": 1772110727.517,
+        "cpu_pct": 50.3,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 66.1,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          55.3,
+          49.5,
+          49.5,
+          45.9
+        ]
+      },
+      {
+        "t": 1772110728.519,
+        "cpu_pct": 47.9,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          51.5,
+          47.4,
+          46.5,
+          45.8
+        ]
+      },
+      {
+        "t": 1772110729.52,
+        "cpu_pct": 48.0,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          53.1,
+          48.0,
+          45.5,
+          46.5
+        ]
+      },
+      {
+        "t": 1772110730.521,
+        "cpu_pct": 44.8,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 66.7,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          45.3,
+          45.5,
+          45.0,
+          43.4
+        ]
+      },
+      {
+        "t": 1772110731.523,
+        "cpu_pct": 47.2,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          49.5,
+          46.0,
+          49.0,
+          43.9
+        ]
+      },
+      {
+        "t": 1772110732.524,
+        "cpu_pct": 47.5,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          49.0,
+          46.5,
+          48.0,
+          46.0
+        ]
+      },
+      {
+        "t": 1772110733.525,
+        "cpu_pct": 46.9,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          50.0,
+          46.5,
+          46.5,
+          45.0
+        ]
+      },
+      {
+        "t": 1772110734.527,
+        "cpu_pct": 46.6,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.8,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          49.5,
+          48.0,
+          43.3,
+          46.9
+        ]
+      },
+      {
+        "t": 1772110735.531,
+        "cpu_pct": 46.7,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.8,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          50.5,
+          43.4,
+          45.9,
+          46.5
+        ]
+      },
+      {
+        "t": 1772110736.532,
+        "cpu_pct": 45.3,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          47.9,
+          43.3,
+          43.3,
+          47.4
+        ]
+      },
+      {
+        "t": 1772110737.534,
+        "cpu_pct": 46.6,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          50.0,
+          45.5,
+          43.4,
+          46.5
+        ]
+      },
+      {
+        "t": 1772110738.536,
+        "cpu_pct": 46.9,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.8,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          49.5,
+          44.3,
+          46.9,
+          48.0
+        ]
+      },
+      {
+        "t": 1772110739.537,
+        "cpu_pct": 44.4,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          48.5,
+          42.9,
+          43.4,
+          42.0
+        ]
+      },
+      {
+        "t": 1772110740.539,
+        "cpu_pct": 47.2,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          51.0,
+          44.3,
+          46.5,
+          45.8
+        ]
+      },
+      {
+        "t": 1772110741.54,
+        "cpu_pct": 44.8,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          49.5,
+          42.3,
+          43.3,
+          44.4
+        ]
+      },
+      {
+        "t": 1772110742.541,
+        "cpu_pct": 45.9,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          49.5,
+          43.4,
+          47.5,
+          44.4
+        ]
+      },
+      {
+        "t": 1772110743.542,
+        "cpu_pct": 44.3,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          48.5,
+          43.3,
+          41.2,
+          43.8
+        ]
+      },
+      {
+        "t": 1772110744.543,
+        "cpu_pct": 47.8,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          53.6,
+          47.5,
+          46.5,
+          45.4
+        ]
+      },
+      {
+        "t": 1772110745.544,
+        "cpu_pct": 43.9,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          46.4,
+          43.4,
+          42.4,
+          41.4
+        ]
+      },
+      {
+        "t": 1772110746.546,
+        "cpu_pct": 42.9,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          45.9,
+          45.0,
+          40.2,
+          41.4
+        ]
+      },
+      {
+        "t": 1772110747.548,
+        "cpu_pct": 44.7,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          46.9,
+          43.6,
+          46.1,
+          41.8
+        ]
+      },
+      {
+        "t": 1772110748.55,
+        "cpu_pct": 45.0,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.8,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          47.9,
+          42.9,
+          44.9,
+          45.4
+        ]
+      },
+      {
+        "t": 1772110749.551,
+        "cpu_pct": 47.4,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 66.7,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          50.0,
+          45.9,
+          44.3,
+          48.5
+        ]
+      },
+      {
+        "t": 1772110750.552,
+        "cpu_pct": 47.9,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 66.7,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          51.1,
+          45.5,
+          46.5,
+          48.0
+        ]
+      },
+      {
+        "t": 1772110751.553,
+        "cpu_pct": 46.4,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.8,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          47.4,
+          44.3,
+          48.0,
+          46.9
+        ]
+      },
+      {
+        "t": 1772110752.555,
+        "cpu_pct": 49.4,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.8,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          52.6,
+          46.9,
+          46.4,
+          50.0
+        ]
+      },
+      {
+        "t": 1772110753.556,
+        "cpu_pct": 47.7,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          51.0,
+          46.0,
+          47.1,
+          48.5
+        ]
+      },
+      {
+        "t": 1772110754.559,
+        "cpu_pct": 47.1,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          46.3,
+          42.4,
+          52.0,
+          46.9
+        ]
+      },
+      {
+        "t": 1772110755.56,
+        "cpu_pct": 48.7,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          52.1,
+          50.5,
+          47.5,
+          46.4
+        ]
+      },
+      {
+        "t": 1772110756.561,
+        "cpu_pct": 48.8,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.8,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          54.3,
+          45.4,
+          48.0,
+          47.4
+        ]
+      },
+      {
+        "t": 1772110757.562,
+        "cpu_pct": 44.6,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.8,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          45.3,
+          44.4,
+          44.4,
+          43.9
+        ]
+      },
+      {
+        "t": 1772110758.563,
+        "cpu_pct": 45.9,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          50.0,
+          45.8,
+          43.8,
+          43.9
+        ]
+      },
+      {
+        "t": 1772110759.57,
+        "cpu_pct": 47.3,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.8,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          50.0,
+          45.4,
+          46.9,
+          45.5
+        ]
+      },
+      {
+        "t": 1772110760.571,
+        "cpu_pct": 47.3,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          45.3,
+          51.5,
+          48.0,
+          45.5
+        ]
+      },
+      {
+        "t": 1772110761.572,
+        "cpu_pct": 50.3,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 68.3,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          54.3,
+          45.9,
+          51.0,
+          50.0
+        ]
+      },
+      {
+        "t": 1772110762.574,
+        "cpu_pct": 47.0,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.2,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          52.1,
+          43.8,
+          46.4,
+          46.5
+        ]
+      },
+      {
+        "t": 1772110763.576,
+        "cpu_pct": 48.3,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.8,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          51.0,
+          49.5,
+          48.0,
+          45.9
+        ]
+      },
+      {
+        "t": 1772110764.58,
+        "cpu_pct": 51.2,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 68.3,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          53.2,
+          49.5,
+          52.6,
+          49.5
+        ]
+      },
+      {
+        "t": 1772110765.582,
+        "cpu_pct": 45.6,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.8,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          47.4,
+          42.3,
+          44.9,
+          46.4
+        ]
+      }
+    ]
+  },
+  "semantic": {
+    "objects_count": 11,
+    "objects_by_class": {
+      "potted plant": 2,
+      "person": 7,
+      "bottle": 2
+    },
+    "valid_count": 11,
+    "timestamp": "2026-02-26T12:59:14.988427+00:00"
+  },
+  "spin_before": {
+    "duration_s": 5.01,
+    "success": true
+  }
+}

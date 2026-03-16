@@ -1,0 +1,61 @@
+{
+  "test_type": "semantic_forward",
+  "run_number": 1,
+  "timestamp": "2026-02-23T15:00:49.318507+00:00",
+  "planning": {
+    "duration_ms": 167.65,
+    "points": 113,
+    "route_type": "MIX",
+    "route_nodes": [
+      0,
+      2,
+      3,
+      6,
+      8,
+      9
+    ],
+    "route_node_names": [
+      "start",
+      "in2",
+      "int2",
+      "altA",
+      "goal_old",
+      "goal"
+    ],
+    "route_edges": [
+      12,
+      32,
+      20,
+      28,
+      34
+    ],
+    "route_cost": 139.591,
+    "penalties_per_edge": {
+      "12": 15.36,
+      "32": 0.0,
+      "20": 9.56,
+      "28": 0.0,
+      "34": 0.0
+    }
+  },
+  "execution": {
+    "duration_s": 22.723,
+    "success": true,
+    "distance_traveled_m": 0.0,
+    "avg_velocity_ms": 0.0,
+    "max_velocity_ms": 0.0,
+    "final_pose": null,
+    "trajectory_points": 0,
+    "xy_error_m": null,
+    "yaw_error_rad": null
+  },
+  "trajectory": [],
+  "semantic": {
+    "objects_count": 60,
+    "objects_by_class": {
+      "unknown": 60
+    },
+    "valid_count": 0,
+    "timestamp": ""
+  }
+}

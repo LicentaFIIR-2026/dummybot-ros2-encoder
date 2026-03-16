@@ -1,0 +1,98 @@
+{
+  "session": "session_2026-03-10_18-15-33",
+  "timestamp": "2026-03-10T16:18:16.874510+00:00",
+  "route_name": "FIIR_CB204_CB202_Hall",
+  "tests": {
+    "baseline": {
+      "total_runs": 2,
+      "validated_success_fwd": "2/2",
+      "validated_success_ret": "2/2",
+      "forward": {
+        "time_s": {
+          "mean": 24.153,
+          "std": 2.458,
+          "min": 22.415,
+          "max": 25.891,
+          "n": 2
+        },
+        "dist_m": {
+          "mean": 6.289,
+          "std": 0.031,
+          "min": 6.267,
+          "max": 6.311,
+          "n": 2
+        },
+        "error_m": {
+          "mean": 0.16,
+          "std": 0.007,
+          "min": 0.155,
+          "max": 0.165,
+          "n": 2
+        }
+      },
+      "return": {
+        "time_s": {
+          "mean": 31.109,
+          "std": 0.202,
+          "min": 30.967,
+          "max": 31.252,
+          "n": 2
+        },
+        "dist_m": {
+          "mean": 6.427,
+          "std": 0.126,
+          "min": 6.338,
+          "max": 6.516,
+          "n": 2
+        }
+      },
+      "navigation_only": {
+        "fwd_time_s": {
+          "mean": 24.153,
+          "std": 2.458,
+          "min": 22.415,
+          "max": 25.891,
+          "n": 2
+        },
+        "ret_time_s": {
+          "mean": 31.109,
+          "std": 0.202,
+          "min": 30.967,
+          "max": 31.252,
+          "n": 2
+        },
+        "prescan_time_s": {}
+      },
+      "min_object_distance_m": {
+        "mean": 0.082,
+        "std": 0.037,
+        "min": 0.036,
+        "max": 0.114,
+        "n": 4
+      },
+      "system_metrics_summary": {
+        "cpu_pct": {
+          "mean": 49.15,
+          "std": 2.247,
+          "min": 46.5,
+          "max": 51.7,
+          "n": 4
+        },
+        "mem_pct": {
+          "mean": 8.7,
+          "std": 0.0,
+          "min": 8.7,
+          "max": 8.7,
+          "n": 4
+        },
+        "cpu_temp_max_c": {
+          "mean": 68.425,
+          "std": 0.25,
+          "min": 68.3,
+          "max": 68.8,
+          "n": 4
+        }
+      }
+    }
+  }
+}

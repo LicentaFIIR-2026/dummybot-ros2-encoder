@@ -1,0 +1,67 @@
+{
+  "test_type": "compute_route",
+  "timestamp": "2026-02-27T15:06:23.865759+00:00",
+  "planning": {
+    "duration_ms": 12.99,
+    "points": 117,
+    "route_type": "MIX",
+    "route_nodes": [
+      0,
+      2,
+      3,
+      6,
+      8,
+      9
+    ],
+    "route_node_names": [
+      "start",
+      "in2",
+      "int2",
+      "altA",
+      "goal_old",
+      "goal"
+    ],
+    "route_edges": [
+      12,
+      32,
+      20,
+      28,
+      34
+    ],
+    "route_cost": 12.636,
+    "penalties_per_edge": {
+      "12": 27.58,
+      "32": 26.99,
+      "20": 35.37,
+      "28": 31.37,
+      "34": 15.38
+    }
+  },
+  "details": {
+    "visited": [
+      "altA",
+      "goal_old",
+      "in2",
+      "int2",
+      "int3"
+    ],
+    "min_dists": {
+      "in1": 0.648,
+      "in2": 0.007,
+      "int2": 0.001,
+      "int3": 0.357,
+      "altB": 0.717,
+      "altA": 0.01,
+      "int4": 0.658,
+      "goal_old": 0.088
+    }
+  },
+  "semantic": {
+    "objects_count": 1,
+    "objects_by_class": {
+      "bottle": 1
+    },
+    "valid_count": 1,
+    "timestamp": "2026-02-27T15:06:18.454273+00:00"
+  }
+}

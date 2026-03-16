@@ -1,0 +1,78 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "description": "SAIM Xplorer Semantic Object Map",
+    "frame": "map",
+    "generated_by": "semantic_localizer",
+    "last_updated": "2026-02-26T12:48:40.260207+00:00",
+    "object_count": 3
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2861,
+          -1.029
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_0",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.727,
+        "observation_count": 150,
+        "best_score": 0.52,
+        "first_seen": "2026-02-26T12:47:51.563819+00:00",
+        "last_seen": "2026-02-26T12:48:38.527893+00:00",
+        "ttl_seconds": 120.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.5714,
+          -1.5632
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_1",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.721,
+        "observation_count": 213,
+        "best_score": 0.328,
+        "first_seen": "2026-02-26T12:47:52.497216+00:00",
+        "last_seen": "2026-02-26T12:48:40.099146+00:00",
+        "ttl_seconds": 120.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.9701,
+          -0.4876
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_2",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.725,
+        "observation_count": 153,
+        "best_score": 1.186,
+        "first_seen": "2026-02-26T12:47:55.678198+00:00",
+        "last_seen": "2026-02-26T12:48:38.880781+00:00",
+        "ttl_seconds": 120.0
+      }
+    }
+  ]
+}

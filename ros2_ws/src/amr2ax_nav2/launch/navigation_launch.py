@@ -27,6 +27,8 @@ from nav2_common.launch import RewrittenYaml
 
 
 def generate_launch_description():
+    set_domain_id = SetEnvironmentVariable(
+        'ROS_DOMAIN_ID', '42')
     # Get the launch directory
     bringup_dir = get_package_share_directory('amr2ax_nav2')
 
@@ -163,7 +165,7 @@ def generate_launch_description():
                 respawn_delay=2.0,
                 parameters=[configured_params],
                 arguments=['--ros-args', '--log-level', log_level],
-                remappings=remappings),
+                remappings=remappings),  
             Node(
                 package='nav2_bt_navigator',
                 executable='bt_navigator',

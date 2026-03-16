@@ -1,0 +1,222 @@
+{
+  "test_type": "adaptive_forward",
+  "run_number": 1,
+  "timestamp": "2026-02-26T12:46:25.147547+00:00",
+  "robot_start_pose": [
+    0.9515,
+    -0.0808,
+    0.2408
+  ],
+  "start_offset_m": 0.094,
+  "replanning": {
+    "segments": [
+      {
+        "segment": 1,
+        "timestamp": "2026-02-26T12:46:23.529701+00:00",
+        "plan_ms": 8.13,
+        "route_type": "DIRECT",
+        "route_nodes": [
+          2,
+          4,
+          5,
+          7,
+          9
+        ],
+        "route_edges": [
+          16,
+          18,
+          26,
+          37
+        ],
+        "route_cost": 505.411,
+        "penalties": {
+          "16": 23.63,
+          "18": 32.57,
+          "26": 25.8,
+          "37": 19.07
+        },
+        "reason": "initial",
+        "outcome": "success"
+      }
+    ],
+    "total_reroutes": 0,
+    "final_route": [
+      2,
+      4,
+      5,
+      7,
+      9
+    ],
+    "outcome": "success"
+  },
+  "route_analysis": {
+    "initial_route": [
+      2,
+      4,
+      5,
+      7,
+      9
+    ],
+    "final_route": [
+      2,
+      4,
+      5,
+      7,
+      9
+    ],
+    "initial_route_type": "DIRECT",
+    "route_changed": false,
+    "planning_total_ms": 8.13,
+    "n_segments": 1
+  },
+  "timing": {
+    "prescan_duration_s": 44.14,
+    "navigation_duration_s": 0.021,
+    "total_duration_s": 44.16
+  },
+  "execution": {
+    "duration_s": 0.021,
+    "nav2_success": true,
+    "validated_success": false,
+    "distance_traveled_m": 0.0,
+    "avg_velocity_ms": 0,
+    "max_velocity_ms": 0,
+    "final_pose": null,
+    "trajectory_points": 0,
+    "xy_error_m": 5.6701,
+    "yaw_error_rad": 0.3154
+  },
+  "trajectory": [],
+  "min_object_distance": null,
+  "penalties_before": {
+    "10": 29.28,
+    "11": 29.28,
+    "12": 27.58,
+    "13": 27.58,
+    "14": 26.58,
+    "15": 26.58,
+    "16": 23.63,
+    "17": 23.63,
+    "18": 32.57,
+    "19": 32.57,
+    "20": 35.37,
+    "21": 35.37,
+    "22": 34.19,
+    "23": 34.19,
+    "24": 32.8,
+    "25": 32.8,
+    "26": 25.8,
+    "27": 25.8,
+    "28": 31.37,
+    "29": 31.37,
+    "30": 20.73,
+    "31": 20.73,
+    "32": 26.99,
+    "33": 26.99,
+    "34": 15.38,
+    "35": 15.38,
+    "36": 19.07,
+    "37": 19.07
+  },
+  "penalties_after": {
+    "10": 29.28,
+    "11": 29.28,
+    "12": 27.58,
+    "13": 27.58,
+    "14": 26.58,
+    "15": 26.58,
+    "16": 23.63,
+    "17": 23.63,
+    "18": 32.57,
+    "19": 32.57,
+    "20": 35.37,
+    "21": 35.37,
+    "22": 34.19,
+    "23": 34.19,
+    "24": 32.8,
+    "25": 32.8,
+    "26": 25.8,
+    "27": 25.8,
+    "28": 31.37,
+    "29": 31.37,
+    "30": 20.73,
+    "31": 20.73,
+    "32": 26.99,
+    "33": 26.99,
+    "34": 15.38,
+    "35": 15.38,
+    "36": 19.07,
+    "37": 19.07
+  },
+  "system_metrics": {
+    "samples": 1,
+    "duration_s": 0,
+    "cpu": {
+      "mean": 100.0,
+      "max": 100.0,
+      "min": 100.0,
+      "std": 0.0
+    },
+    "memory": {
+      "mean": 14.0,
+      "max": 14.0,
+      "min": 14.0,
+      "std": 0.0
+    },
+    "swap": {
+      "mean": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "std": 0.0
+    },
+    "cpu_temp": {
+      "mean": 65.0,
+      "max": 65.0,
+      "min": 65.0,
+      "std": 0.0
+    },
+    "battery_start": -1.0,
+    "battery_end": -1.0,
+    "time_series": [
+      {
+        "t": 1772109983.52,
+        "cpu_pct": 100.0,
+        "mem_pct": 14.0,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 65.0,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          0.0,
+          0.0,
+          100.0,
+          100.0
+        ]
+      }
+    ]
+  },
+  "semantic": {
+    "objects_count": 13,
+    "objects_by_class": {
+      "chair": 2,
+      "person": 7,
+      "microwave": 1,
+      "bench": 2,
+      "potted plant": 1
+    },
+    "valid_count": 12,
+    "timestamp": "2026-02-26T12:46:14.988371+00:00"
+  },
+  "prescan_snapshot": {
+    "objects_count": 13,
+    "objects_by_class": {
+      "chair": 2,
+      "person": 7,
+      "microwave": 1,
+      "bench": 2,
+      "potted plant": 1
+    },
+    "valid_count": 12,
+    "timestamp": "2026-02-26T12:46:14.988371+00:00"
+  }
+}

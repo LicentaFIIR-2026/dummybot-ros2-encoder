@@ -1,0 +1,42 @@
+semantic_localizer:
+  ros__parameters:
+    # ── Processing ──
+    min_confidence: 0.45
+    max_process_rate_hz: 3.0       # Hz - keep low on RPi5!
+    max_object_distance: 8.0       # meters
+
+    # ── Topics ──
+    lidar_topic: '/scan'
+    detections_topic: '/yolo26/detections'
+    camera_info_topic: '/camera/camera_info'
+
+    # ── Frames ──
+    map_frame: 'map'
+    base_frame: 'base_link'
+    laser_frame: 'base_laser'
+    camera_frame: 'camera_link_optical'
+
+    # ── Camera-LiDAR alignment ──
+    camera_lidar_yaw_offset: 0.0
+
+    # ── LiDAR ray selection ──
+    ray_percentile: 25.0           # 25th percentile = closest surface
+    min_valid_rays: 2
+
+    # ── Object tracking (in-memory) ──
+    tracking_distance_threshold: 0.5   # meters - match radius
+    tracking_timeout: 5.0              # seconds before forgetting from live tracking
+    min_detections_stable: 3           # detections before "stable"
+    median_filter_window: 5            # temporal median window size
+
+    # ── Semantic Map Manager (persistence) ──
+    semantic_objects_filepath: '/home/saim/dummybot-ros2-encoder/ros2_ws/maps/semantic_objects.geojson'
+    route_graph_filepath: '/home/saim/dummybot-ros2-encoder/ros2_ws/maps/route_graph_fiir.geojson'
+    output_graph_filepath: '/home/saim/dummybot-ros2-encoder/ros2_ws/maps/route_graph_fiir_semantic.geojson'
+    save_interval: 30.0                # save objects/graph every 30s
+    cleanup_interval: 10.0             # TTL cleanup every 10s
+    edge_proximity: 1.5                # max distance object↔edge for annotation (meters)
+
+    # ── Route Server auto-reload ──
+    nav2_graph_filepath: '/home/saim/dummybot-ros2-encoder/ros2_ws/maps/route_graph_fiir_nav2.geojson'
+    convert_script_path: '/home/saim/dummybot-ros2-encoder/ros2_ws/convert_geojson_for_route_server.py'

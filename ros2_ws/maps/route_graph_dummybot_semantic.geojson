@@ -1,0 +1,1110 @@
+{
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::3857"
+    }
+  },
+  "type": "FeatureCollection",
+  "name": "graph",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "frame": "map",
+        "id": 0,
+        "name": "start"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.0,
+          -0.15
+        ]
+      },
+      "properties": {
+        "frame": "map",
+        "id": 1,
+        "name": "in1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.7,
+          0.8
+        ]
+      },
+      "properties": {
+        "frame": "map",
+        "id": 2,
+        "name": "in2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0,
+          0.5
+        ]
+      },
+      "properties": {
+        "frame": "map",
+        "id": 3,
+        "name": "int2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0,
+          -0.15
+        ]
+      },
+      "properties": {
+        "frame": "map",
+        "id": 4,
+        "name": "int3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.0,
+          -0.15
+        ]
+      },
+      "properties": {
+        "frame": "map",
+        "id": 5,
+        "name": "altB"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7,
+          1.0
+        ]
+      },
+      "properties": {
+        "frame": "map",
+        "id": 6,
+        "name": "altA"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0,
+          0.22
+        ]
+      },
+      "properties": {
+        "frame": "map",
+        "id": 7,
+        "name": "int4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7,
+          1.0
+        ]
+      },
+      "properties": {
+        "frame": "map",
+        "id": 8,
+        "name": "goal_old"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.6,
+          0.7
+        ]
+      },
+      "properties": {
+        "frame": "map",
+        "id": 9,
+        "name": "goal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              2.0,
+              -0.15
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 10,
+        "startid": 0,
+        "endid": 1,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              2.0,
+              -0.15
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 11,
+        "startid": 1,
+        "endid": 0,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              1.7,
+              0.8
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 12,
+        "startid": 0,
+        "endid": 2,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              1.7,
+              0.8
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 13,
+        "startid": 2,
+        "endid": 0,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              2.0,
+              -0.15
+            ],
+            [
+              3.0,
+              -0.15
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 16,
+        "startid": 1,
+        "endid": 4,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 0.78,
+          "speed_limit": 60,
+          "class": "bench",
+          "semantic_objects": [
+            {
+              "obj_id": "bench_30",
+              "class": "bench",
+              "mobility": "static",
+              "x": 3.74,
+              "y": -1.285,
+              "confidence": 0.52,
+              "observations": 4,
+              "distance_to_edge": 1.355
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.0,
+              -0.15
+            ],
+            [
+              2.0,
+              -0.15
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 17,
+        "startid": 4,
+        "endid": 1,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 0.78,
+          "speed_limit": 60,
+          "class": "bench",
+          "semantic_objects": [
+            {
+              "obj_id": "bench_30",
+              "class": "bench",
+              "mobility": "static",
+              "x": 3.74,
+              "y": -1.285,
+              "confidence": 0.52,
+              "observations": 4,
+              "distance_to_edge": 1.355
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              1.7,
+              0.8
+            ],
+            [
+              3.0,
+              -0.15
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 16,
+        "startid": 2,
+        "endid": 4,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 0.78,
+          "speed_limit": 60,
+          "class": "bench",
+          "semantic_objects": [
+            {
+              "obj_id": "bench_30",
+              "class": "bench",
+              "mobility": "static",
+              "x": 3.74,
+              "y": -1.285,
+              "confidence": 0.52,
+              "observations": 4,
+              "distance_to_edge": 1.355
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.0,
+              -0.15
+            ],
+            [
+              1.7,
+              0.8
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 17,
+        "startid": 4,
+        "endid": 2,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 0.78,
+          "speed_limit": 60,
+          "class": "bench",
+          "semantic_objects": [
+            {
+              "obj_id": "bench_30",
+              "class": "bench",
+              "mobility": "static",
+              "x": 3.74,
+              "y": -1.285,
+              "confidence": 0.52,
+              "observations": 4,
+              "distance_to_edge": 1.355
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.0,
+              -0.15
+            ],
+            [
+              4.0,
+              -0.15
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 18,
+        "startid": 4,
+        "endid": 5,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 3.97,
+          "speed_limit": 60,
+          "class": "bench",
+          "semantic_objects": [
+            {
+              "obj_id": "bench_11",
+              "class": "bench",
+              "mobility": "static",
+              "x": 4.479,
+              "y": -1.188,
+              "confidence": 0.58,
+              "observations": 5,
+              "distance_to_edge": 1.143
+            },
+            {
+              "obj_id": "bench_30",
+              "class": "bench",
+              "mobility": "static",
+              "x": 3.74,
+              "y": -1.285,
+              "confidence": 0.52,
+              "observations": 4,
+              "distance_to_edge": 1.135
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              4.0,
+              -0.15
+            ],
+            [
+              3.0,
+              -0.15
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 19,
+        "startid": 5,
+        "endid": 4,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 3.97,
+          "speed_limit": 60,
+          "class": "bench",
+          "semantic_objects": [
+            {
+              "obj_id": "bench_11",
+              "class": "bench",
+              "mobility": "static",
+              "x": 4.479,
+              "y": -1.188,
+              "confidence": 0.58,
+              "observations": 5,
+              "distance_to_edge": 1.143
+            },
+            {
+              "obj_id": "bench_30",
+              "class": "bench",
+              "mobility": "static",
+              "x": 3.74,
+              "y": -1.285,
+              "confidence": 0.52,
+              "observations": 4,
+              "distance_to_edge": 1.135
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.0,
+              0.5
+            ],
+            [
+              4.7,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 20,
+        "startid": 3,
+        "endid": 6,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              4.7,
+              1.0
+            ],
+            [
+              3.0,
+              0.5
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 21,
+        "startid": 6,
+        "endid": 3,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.0,
+              0.5
+            ],
+            [
+              4.0,
+              -0.15
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 22,
+        "startid": 3,
+        "endid": 5,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 3.81,
+          "speed_limit": 60,
+          "class": "bench",
+          "semantic_objects": [
+            {
+              "obj_id": "bench_11",
+              "class": "bench",
+              "mobility": "static",
+              "x": 4.479,
+              "y": -1.188,
+              "confidence": 0.58,
+              "observations": 5,
+              "distance_to_edge": 1.143
+            },
+            {
+              "obj_id": "bench_30",
+              "class": "bench",
+              "mobility": "static",
+              "x": 3.74,
+              "y": -1.285,
+              "confidence": 0.52,
+              "observations": 4,
+              "distance_to_edge": 1.164
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              4.0,
+              -0.15
+            ],
+            [
+              3.0,
+              0.5
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 23,
+        "startid": 5,
+        "endid": 3,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 3.81,
+          "speed_limit": 60,
+          "class": "bench",
+          "semantic_objects": [
+            {
+              "obj_id": "bench_11",
+              "class": "bench",
+              "mobility": "static",
+              "x": 4.479,
+              "y": -1.188,
+              "confidence": 0.58,
+              "observations": 5,
+              "distance_to_edge": 1.143
+            },
+            {
+              "obj_id": "bench_30",
+              "class": "bench",
+              "mobility": "static",
+              "x": 3.74,
+              "y": -1.285,
+              "confidence": 0.52,
+              "observations": 4,
+              "distance_to_edge": 1.164
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              4.7,
+              1.0
+            ],
+            [
+              5.0,
+              0.22
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 24,
+        "startid": 6,
+        "endid": 7,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              5.0,
+              0.22
+            ],
+            [
+              4.7,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 25,
+        "startid": 7,
+        "endid": 6,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              4.0,
+              -0.15
+            ],
+            [
+              5.0,
+              0.22
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 26,
+        "startid": 5,
+        "endid": 7,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 3.83,
+          "speed_limit": 60,
+          "class": "bench",
+          "semantic_objects": [
+            {
+              "obj_id": "bench_11",
+              "class": "bench",
+              "mobility": "static",
+              "x": 4.479,
+              "y": -1.188,
+              "confidence": 0.58,
+              "observations": 5,
+              "distance_to_edge": 1.14
+            },
+            {
+              "obj_id": "bench_30",
+              "class": "bench",
+              "mobility": "static",
+              "x": 3.74,
+              "y": -1.285,
+              "confidence": 0.52,
+              "observations": 4,
+              "distance_to_edge": 1.164
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              5.0,
+              0.22
+            ],
+            [
+              4.0,
+              -0.15
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 27,
+        "startid": 7,
+        "endid": 5,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 3.83,
+          "speed_limit": 60,
+          "class": "bench",
+          "semantic_objects": [
+            {
+              "obj_id": "bench_11",
+              "class": "bench",
+              "mobility": "static",
+              "x": 4.479,
+              "y": -1.188,
+              "confidence": 0.58,
+              "observations": 5,
+              "distance_to_edge": 1.14
+            },
+            {
+              "obj_id": "bench_30",
+              "class": "bench",
+              "mobility": "static",
+              "x": 3.74,
+              "y": -1.285,
+              "confidence": 0.52,
+              "observations": 4,
+              "distance_to_edge": 1.164
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              4.7,
+              1.0
+            ],
+            [
+              5.7,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 28,
+        "startid": 6,
+        "endid": 8,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              5.7,
+              1.0
+            ],
+            [
+              4.7,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 29,
+        "startid": 8,
+        "endid": 6,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              5.0,
+              0.22
+            ],
+            [
+              5.7,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 30,
+        "startid": 7,
+        "endid": 8,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              5.7,
+              1.0
+            ],
+            [
+              5.0,
+              0.22
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 31,
+        "startid": 8,
+        "endid": 7,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              1.7,
+              0.8
+            ],
+            [
+              3.0,
+              0.5
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 32,
+        "startid": 2,
+        "endid": 3,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.0,
+              0.5
+            ],
+            [
+              1.7,
+              0.8
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 33,
+        "startid": 3,
+        "endid": 2,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              5.7,
+              1.0
+            ],
+            [
+              6.6,
+              0.7
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 34,
+        "startid": 8,
+        "endid": 9,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              6.6,
+              0.7
+            ],
+            [
+              5.7,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 35,
+        "startid": 9,
+        "endid": 8,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              6.6,
+              0.7
+            ],
+            [
+              5.0,
+              0.22
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 36,
+        "startid": 9,
+        "endid": 7,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              5.0,
+              0.22
+            ],
+            [
+              6.6,
+              0.7
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 37,
+        "startid": 7,
+        "endid": 9,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    }
+  ]
+}

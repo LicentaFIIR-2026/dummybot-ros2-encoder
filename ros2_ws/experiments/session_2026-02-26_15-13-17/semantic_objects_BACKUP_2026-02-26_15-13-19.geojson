@@ -1,0 +1,78 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "description": "SAIM Xplorer Semantic Object Map",
+    "frame": "map",
+    "generated_by": "semantic_localizer",
+    "last_updated": "2026-02-26T13:12:54.848073+00:00",
+    "object_count": 3
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7177,
+          4.7617
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_0",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.816,
+        "observation_count": 26,
+        "best_score": 1.953,
+        "first_seen": "2026-02-26T12:39:43.837016+00:00",
+        "last_seen": "2026-02-26T12:39:44.617898+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7966,
+          -1.7609
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_6",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.711,
+        "observation_count": 14,
+        "best_score": 1.308,
+        "first_seen": "2026-02-26T12:41:31.931603+00:00",
+        "last_seen": "2026-02-26T12:41:34.494556+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.6678,
+          -0.6365
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_7",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.764,
+        "observation_count": 24,
+        "best_score": 0.442,
+        "first_seen": "2026-02-26T13:12:35.140772+00:00",
+        "last_seen": "2026-02-26T13:12:36.363722+00:00",
+        "ttl_seconds": 120.0
+      }
+    }
+  ]
+}

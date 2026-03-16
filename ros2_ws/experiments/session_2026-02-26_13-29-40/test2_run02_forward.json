@@ -1,0 +1,70 @@
+{
+  "test_type": "semantic_forward",
+  "run_number": 2,
+  "timestamp": "2026-02-26T11:30:49.288573+00:00",
+  "robot_start_pose": [
+    2.2616,
+    2.6149,
+    0.4086
+  ],
+  "start_offset_m": 1.165,
+  "planning": {
+    "duration_ms": 6.6,
+    "points": 83,
+    "route_type": "JOS",
+    "route_nodes": [
+      2,
+      3,
+      5,
+      7,
+      9
+    ],
+    "route_node_names": [
+      "in2",
+      "int2",
+      "altB",
+      "int4",
+      "goal"
+    ],
+    "route_edges": [
+      32,
+      22,
+      26,
+      37
+    ],
+    "route_cost": 12.63,
+    "penalties_per_edge": {
+      "32": 0.0,
+      "22": 0.0,
+      "26": 0.0,
+      "37": 0.0
+    }
+  },
+  "execution": {
+    "duration_s": 0.717,
+    "nav2_success": true,
+    "validated_success": false,
+    "distance_traveled_m": 0.0,
+    "avg_velocity_ms": 0,
+    "max_velocity_ms": 0,
+    "final_pose": null,
+    "trajectory_points": 0,
+    "xy_error_m": 3.7557,
+    "yaw_error_rad": 0.4505
+  },
+  "trajectory": [],
+  "min_object_distance": null,
+  "cpu": {
+    "start": 37.2,
+    "end": 33.9
+  },
+  "semantic": {
+    "objects_count": 2,
+    "objects_by_class": {
+      "bottle": 1,
+      "microwave": 1
+    },
+    "valid_count": 1,
+    "timestamp": "2026-02-26T11:30:35.785129+00:00"
+  }
+}

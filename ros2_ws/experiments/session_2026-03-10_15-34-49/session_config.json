@@ -1,0 +1,95 @@
+{
+  "session_id": "session_2026-03-10_15-34-49",
+  "timestamp": "2026-03-10T13:35:02.026520+00:00",
+  "route_config": "route_config.yaml",
+  "route_name": "FIIR_CB204_CB202_Hall",
+  "graph_file": "route_graph_fiir.geojson",
+  "start_node_id": 0,
+  "goal_node_id": 7,
+  "start_yaw_deg": 4.2,
+  "goal_yaw_deg": -176.7,
+  "route_alternatives": {
+    "SUS": [
+      3,
+      2,
+      5
+    ],
+    "JOS": [
+      4,
+      2,
+      6
+    ]
+  },
+  "graph": {
+    "nodes": 7,
+    "coords": {
+      "0": {
+        "name": "start",
+        "x": 1.0,
+        "y": 0.0
+      },
+      "3": {
+        "name": "in_top",
+        "x": 2.4,
+        "y": 1.0
+      },
+      "2": {
+        "name": "center",
+        "x": 3.4,
+        "y": 0.0
+      },
+      "4": {
+        "name": "in_bot",
+        "x": 2.4,
+        "y": -0.5
+      },
+      "5": {
+        "name": "out_top",
+        "x": 4.8,
+        "y": 1.0
+      },
+      "6": {
+        "name": "out_bot",
+        "x": 4.8,
+        "y": -0.5
+      },
+      "7": {
+        "name": "goal",
+        "x": 6.7,
+        "y": 0.0
+      }
+    }
+  },
+  "semantic": {
+    "objects_count": 0,
+    "objects_by_class": {},
+    "valid_count": 0,
+    "timestamp": "2026-03-10T13:34:52.601209+00:00"
+  },
+  "penalties_at_start": {},
+  "validation": {
+    "max_start_offset_m": 2.0,
+    "min_success_dist_m": 1.0,
+    "max_success_error_m": 2.0,
+    "min_success_duration_s": 3.0,
+    "max_consecutive_fails": 2
+  },
+  "params": {
+    "odom_topic": "/odom",
+    "sample_hz": 2.0,
+    "valid_classes": [
+      "backpack",
+      "bench",
+      "book",
+      "bottle",
+      "chair",
+      "cup",
+      "laptop",
+      "person",
+      "potted plant",
+      "suitcase",
+      "tv"
+    ],
+    "has_psutil": true
+  }
+}

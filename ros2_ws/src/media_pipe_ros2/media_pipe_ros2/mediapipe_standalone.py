@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
-mediapipe_standalone.py
------------------------
-Proces separat de Nav2/ros2_control.
-Citeste /camera/image_raw prin rclpy minimal (thread separat).
-Face inferenta MediaPipe EfficientDet pe thread principal.
-Trimite rezultatele prin Unix socket catre ros2_bridge.py
+mediapipe_standalone.py - ULTRA OPTIMIZED
+------------------------------------------
+OPTIMIZĂRI DRASTICE:
+- 0.5 Hz (o detecție la 2 secunde)
+- Rezoluție redusă la 320x240
+- Doar 1 obiect detectat
+- Doar clasa 'bottle'
+- Score threshold ridicat
 """
 
 import time
@@ -26,15 +28,18 @@ from cv_bridge import CvBridge
 
 SOCKET_PATH     = '/tmp/mediapipe_detections.sock'
 MODEL_PATH      = '/home/saim/mediapipe_models/efficientdet_lite0_int8.tflite'
-DETECTION_HZ    = 3.0
-SCORE_THRESHOLD = 0.45
-MAX_RESULTS     = 5
 
-TARGET_CLASSES = {
-    'person', 'chair', 'bottle', 'cup',
-    'backpack', 'suitcase', 'laptop', 'tv',
-    'couch', 'dining table', 'potted plant'
-}
+# OPTIMIZĂRI DRASTICE
+DETECTION_HZ    = 0.5   # 0.5 Hz = o detecție la 2 secunde!
+SCORE_THRESHOLD = 0.50  # Threshold mai strict
+MAX_RESULTS     = 1     # Doar 1 obiect
+
+# Rezoluție redusă AGRESIV
+CAMERA_WIDTH  = 320  # În loc de 640
+CAMERA_HEIGHT = 240  # În loc de 480
+
+# Doar bottle!
+TARGET_CLASSES = {'bottle'}
 
 
 class CameraReader(Node):
@@ -45,16 +50,19 @@ class CameraReader(Node):
         self.bridge = CvBridge()
         self._lock  = threading.Lock()
         self._frame = None
-        self.create_subscription(
-            Image,
-            '/camera/image_raw',
-            self._cb,
-            1
-        )
+        self.create_subscription(Image, '/camera/image_raw', self._cb, 1)
 
     def _cb(self, msg):
         try:
             frame = self.bridge.imgmsg_to_cv2(msg, 'bgr8')
+            
+            # RESIZE AGRESIV: 320x240 cu interpolation mai rapid
+            frame = cv2.resize(
+                frame, 
+                (CAMERA_WIDTH, CAMERA_HEIGHT), 
+                interpolation=cv2.INTER_NEAREST  # Cel mai rapid
+            )
+            
             with self._lock:
                 self._frame = frame
         except Exception:
@@ -83,105 +91,108 @@ def init_socket():
     server.bind(SOCKET_PATH)
     server.listen(1)
     server.settimeout(5.0)
-    print(f'[standalone] Socket creat: {SOCKET_PATH}')
-    print(f'[standalone] Astept conexiune de la ros2_bridge...')
+    print(f'[standalone] Socket: {SOCKET_PATH}')
+    print(f'[standalone] Waiting for ros2_bridge...')
     return server
 
 
 def main():
-    print('[standalone] Pornire MediaPipe Standalone...')
+    print('[standalone] MediaPipe ULTRA OPTIMIZED')
+    print(f'[standalone] Resolution: {CAMERA_WIDTH}x{CAMERA_HEIGHT}')
+    print(f'[standalone] Detection rate: {DETECTION_HZ} Hz')
+    print(f'[standalone] Target classes: {TARGET_CLASSES}')
 
-    # Initializam ROS2 si camera reader
+    # Init ROS2 + camera
     rclpy.init()
     cam = CameraReader()
 
-    # Spin ROS2 pe thread separat - doar pentru a primi imagini
-    spin_thread = threading.Thread(
-        target=rclpy.spin,
-        args=(cam,),
-        daemon=True
-    )
+    # Spin ROS2 pe thread separat
+    spin_thread = threading.Thread(target=rclpy.spin, args=(cam,), daemon=True)
     spin_thread.start()
-    print('[standalone] Camera reader pornit.')
+    print('[standalone] Camera reader active')
 
-    # Initializam detectorul
+    # Init detector
     detector = init_detector()
-    print('[standalone] Detector initializat.')
+    print('[standalone] Detector ready')
 
-    server  = init_socket()
-    conn    = None
+    server = init_socket()
+    conn = None
     interval = 1.0 / DETECTION_HZ
 
     try:
         while rclpy.ok():
-            # Acceptam conexiune de la bridge
+            # Accept connection
             if conn is None:
                 try:
                     conn, _ = server.accept()
-                    print('[standalone] ros2_bridge conectat.')
+                    print('[standalone] ros2_bridge connected')
                 except socket.timeout:
                     continue
 
             t_start = time.monotonic()
 
-            # Citim ultimul frame disponibil
+            # Get frame
             frame = cam.get_frame()
             if frame is None:
-                time.sleep(0.05)
+                time.sleep(0.1)
                 continue
 
-            # Inferenta
-            rgb      = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            # Inference
+            rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb)
 
-            t_inf    = time.monotonic()
-            results  = detector.detect(mp_image)
-            inf_ms   = (time.monotonic() - t_inf) * 1000.0
+            t_inf = time.monotonic()
+            results = detector.detect(mp_image)
+            inf_ms = (time.monotonic() - t_inf) * 1000.0
 
-            # Filtram si serializam
+            # Filter + serialize
             detections = []
             for det in results.detections:
                 if not det.categories:
                     continue
-                cat   = det.categories[0]
+                cat = det.categories[0]
                 label = cat.category_name.lower()
+                
+                # Doar bottle!
                 if label not in TARGET_CLASSES:
                     continue
+                
                 bb = det.bounding_box
                 detections.append({
-                    'label':  label,
-                    'score':  float(cat.score),
-                    'cx':     float(bb.origin_x + bb.width  / 2.0),
-                    'cy':     float(bb.origin_y + bb.height / 2.0),
-                    'width':  float(bb.width),
+                    'label': label,
+                    'score': float(cat.score),
+                    'cx': float(bb.origin_x + bb.width / 2.0),
+                    'cy': float(bb.origin_y + bb.height / 2.0),
+                    'width': float(bb.width),
                     'height': float(bb.height),
                 })
 
             payload = json.dumps({
-                'timestamp':    time.time(),
-                'detections':   detections,
+                'timestamp': time.time(),
+                'detections': detections,
                 'inference_ms': inf_ms,
             }) + '\n'
 
             try:
                 conn.sendall(payload.encode())
             except (BrokenPipeError, ConnectionResetError):
-                print('[standalone] Bridge deconectat, astept reconectare...')
+                print('[standalone] Bridge disconnected')
                 conn.close()
                 conn = None
                 continue
 
-            if len(detections) > 0 or int(time.monotonic()) % 10 == 0:
-                print(f'[standalone] inf={inf_ms:.1f}ms '
-                      f'detectii={len(detections)} '
-                      f'{[d["label"] for d in detections]}')
+            # Log doar când detectează ceva sau periodic
+            if len(detections) > 0:
+                print(f'[standalone] inf={inf_ms:.1f}ms detections={len(detections)} {[d["label"] for d in detections]}')
+            elif int(time.monotonic()) % 20 == 0:  # La fiecare 20s
+                print(f'[standalone] Active (no detections) inf={inf_ms:.1f}ms')
 
-            elapsed    = time.monotonic() - t_start
+            elapsed = time.monotonic() - t_start
             sleep_time = max(0.1, interval - elapsed)
             time.sleep(sleep_time)
 
     except KeyboardInterrupt:
-        print('[standalone] Oprire...')
+        print('[standalone] Shutting down...')
     finally:
         detector.close()
         if conn:

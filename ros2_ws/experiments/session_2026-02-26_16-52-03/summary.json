@@ -1,0 +1,45 @@
+{
+  "session": "session_2026-02-26_16-52-03",
+  "timestamp": "2026-02-26T14:57:54.776736+00:00",
+  "tests": {
+    "semantic": {
+      "total_runs": 1,
+      "validated_success_fwd": "0/1",
+      "validated_success_ret": "0/0",
+      "forward": {
+        "time_s": {},
+        "dist_m": {},
+        "error_m": {}
+      },
+      "return": {
+        "time_s": {},
+        "dist_m": {}
+      },
+      "planning_ms": {
+        "mean": 13.75,
+        "std": 0,
+        "min": 13.75,
+        "max": 13.75,
+        "n": 1
+      },
+      "route_types": [
+        "JOS"
+      ],
+      "penalties_changed_runs": 0
+    },
+    "baseline": {
+      "total_runs": 1,
+      "validated_success_fwd": "0/1",
+      "validated_success_ret": "0/1",
+      "forward": {
+        "time_s": {},
+        "dist_m": {},
+        "error_m": {}
+      },
+      "return": {
+        "time_s": {},
+        "dist_m": {}
+      }
+    }
+  }
+}

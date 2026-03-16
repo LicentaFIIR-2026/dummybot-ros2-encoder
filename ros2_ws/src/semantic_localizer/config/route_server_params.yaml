@@ -1,0 +1,72 @@
+# =============================================================================
+# Route Server Configuration — SAIM Xplorer Semantic Navigation
+# Nav2 1.3.10 / ROS 2 Jazzy / RPi5
+# =============================================================================
+#
+# Arhitectura: ComputeAndTrackRoute → dense path → FollowPath (MPPI)
+#   - PenaltyScorer citește "penalty" din metadata edges (generat de semantic_localizer)
+#   - DistanceScorer scalează cu "speed_limit" din metadata
+#   - AdjustSpeedLimit publică speed limits la runtime pe /speed_limit
+#
+# Graful încărcat: route_graph_fiir_semantic.geojson (anotat de semantic_localizer)
+# =============================================================================
+
+route_server:
+  ros__parameters:
+    # --- Cadre de referință ---
+    base_frame: "base_link"
+    route_frame: "map"
+
+    # --- Parametri planificare ---
+    max_planning_time: 2.0
+    max_iterations: 0                 # 0 = fără limită (graful e mic, 6 noduri)
+
+    # --- Generare path dens ---
+    path_density: 0.05                # Densitate puncte pe path (m)
+    smooth_corners: true
+    smoothing_radius: 0.5             # Adaptat pt spații interioare mici
+
+    # --- Costmap pentru nearest-neighbor search ---
+    costmap_topic: "global_costmap/costmap_raw"
+    enable_nn_search: true
+    max_nn_search_iterations: 5000
+    num_nearest_nodes: 5
+
+    # --- Graph file loader ---
+    graph_file_loader: "GeoJsonGraphFileLoader"
+    graph_file_loader_plugin:
+      plugin: "nav2_route::GeoJsonGraphFileLoader"
+    graph_filepath: "/home/saim/dummybot-ros2-encoder/ros2_ws/maps/route_graph_fiir_nav2.geojson"
+
+    # --- Edge scoring plugins ---
+    edge_cost_functions: ["DistanceScorer", "PenaltyScorer"]
+
+    DistanceScorer:
+      plugin: "nav2_route::DistanceScorer"
+      weight: 1.0
+      speed_tag: "speed_limit"
+
+    PenaltyScorer:
+      plugin: "nav2_route::PenaltyScorer"
+      weight: 5.0                     # Penalty semantic domină alegerea traseului
+      penalty_tag: "penalty"
+
+    # --- Route operations (active doar cu ComputeAndTrackRoute) ---
+    operations: ["AdjustSpeedLimit"]
+
+    AdjustSpeedLimit:
+      plugin: "nav2_route::AdjustSpeedLimit"
+      speed_limit_topic: "speed_limit"
+      speed_tag: "speed_limit"
+
+    # --- Route tracker (ComputeAndTrackRoute) ---
+    tracker_update_rate: 20.0         # Redus de la 50 pt RPi5
+    aggregate_blocked_ids: false
+
+    # --- Node achievement ---
+    boundary_radius_to_achieve_node: 0.8
+    radius_to_achieve_node: 1.0
+    max_prune_dist_from_edge: 3.0
+    min_prune_dist_from_goal: 0.15
+    min_prune_dist_from_start: 0.10
+    prune_goal: true

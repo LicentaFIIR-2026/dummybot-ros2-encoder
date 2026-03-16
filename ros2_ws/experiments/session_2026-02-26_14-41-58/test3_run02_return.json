@@ -1,0 +1,227 @@
+{
+  "test_type": "adaptive_return",
+  "run_number": 2,
+  "timestamp": "2026-02-26T12:45:13.548242+00:00",
+  "robot_start_pose": [
+    7.6528,
+    0.1508,
+    -2.7172
+  ],
+  "start_offset_m": 1.187,
+  "replanning": {
+    "segments": [
+      {
+        "segment": 1,
+        "timestamp": "2026-02-26T12:45:12.537803+00:00",
+        "plan_ms": 9.16,
+        "route_type": "SUS",
+        "route_nodes": [
+          9,
+          8,
+          6,
+          3,
+          2,
+          0
+        ],
+        "route_edges": [
+          35,
+          29,
+          21,
+          33,
+          13
+        ],
+        "route_cost": 241.882,
+        "penalties": {
+          "35": 11.06,
+          "29": 13.21,
+          "21": 7.24,
+          "33": 0.0,
+          "13": 16.58
+        },
+        "reason": "initial",
+        "outcome": "success"
+      }
+    ],
+    "total_reroutes": 0,
+    "final_route": [
+      9,
+      8,
+      6,
+      3,
+      2,
+      0
+    ],
+    "outcome": "success"
+  },
+  "route_analysis": {
+    "initial_route": [
+      9,
+      8,
+      6,
+      3,
+      2,
+      0
+    ],
+    "final_route": [
+      9,
+      8,
+      6,
+      3,
+      2,
+      0
+    ],
+    "initial_route_type": "SUS",
+    "route_changed": false,
+    "planning_total_ms": 9.16,
+    "n_segments": 1
+  },
+  "timing": {
+    "prescan_duration_s": 0.0,
+    "navigation_duration_s": 0.016,
+    "total_duration_s": 0.016
+  },
+  "execution": {
+    "duration_s": 0.016,
+    "nav2_success": true,
+    "validated_success": false,
+    "distance_traveled_m": 0.0,
+    "avg_velocity_ms": 0.001,
+    "max_velocity_ms": 0.001,
+    "final_pose": [
+      -3.0004,
+      14.9196,
+      -4.4234
+    ],
+    "trajectory_points": 1,
+    "xy_error_m": 7.5763,
+    "yaw_error_rad": 2.9898
+  },
+  "trajectory": [
+    [
+      -3.0004,
+      14.9196,
+      1742.931
+    ]
+  ],
+  "min_object_distance": {
+    "min_distance_m": 11.991,
+    "closest_class": "chair"
+  },
+  "penalties_before": {
+    "10": 16.7,
+    "11": 16.7,
+    "12": 16.58,
+    "13": 16.58,
+    "16": 2.16,
+    "17": 2.16,
+    "18": 13.52,
+    "19": 13.52,
+    "20": 7.24,
+    "21": 7.24,
+    "22": 12.5,
+    "23": 12.5,
+    "24": 16.24,
+    "25": 16.24,
+    "26": 22.98,
+    "27": 22.98,
+    "28": 13.21,
+    "29": 13.21,
+    "30": 20.14,
+    "31": 20.14,
+    "34": 11.06,
+    "35": 11.06,
+    "36": 21.59,
+    "37": 21.59
+  },
+  "penalties_after": {
+    "10": 16.7,
+    "11": 16.7,
+    "12": 16.58,
+    "13": 16.58,
+    "16": 2.16,
+    "17": 2.16,
+    "18": 13.52,
+    "19": 13.52,
+    "20": 7.24,
+    "21": 7.24,
+    "22": 12.5,
+    "23": 12.5,
+    "24": 16.24,
+    "25": 16.24,
+    "26": 22.98,
+    "27": 22.98,
+    "28": 13.21,
+    "29": 13.21,
+    "30": 20.14,
+    "31": 20.14,
+    "34": 11.06,
+    "35": 11.06,
+    "36": 21.59,
+    "37": 21.59
+  },
+  "system_metrics": {
+    "samples": 1,
+    "duration_s": 0,
+    "cpu": {
+      "mean": 27.8,
+      "max": 27.8,
+      "min": 27.8,
+      "std": 0.0
+    },
+    "memory": {
+      "mean": 13.2,
+      "max": 13.2,
+      "min": 13.2,
+      "std": 0.0
+    },
+    "swap": {
+      "mean": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "std": 0.0
+    },
+    "cpu_temp": {
+      "mean": 66.1,
+      "max": 66.1,
+      "min": 66.1,
+      "std": 0.0
+    },
+    "battery_start": -1.0,
+    "battery_end": -1.0,
+    "time_series": [
+      {
+        "t": 1772109912.527,
+        "cpu_pct": 27.8,
+        "mem_pct": 13.2,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 66.1,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          27.6,
+          29.4,
+          28.2,
+          25.5
+        ]
+      }
+    ]
+  },
+  "semantic": {
+    "objects_count": 45,
+    "objects_by_class": {
+      "person": 12,
+      "potted plant": 22,
+      "bench": 4,
+      "bottle": 1,
+      "chair": 4,
+      "refrigerator": 2
+    },
+    "valid_count": 43,
+    "timestamp": "2026-02-26T12:44:51.277466+00:00"
+  },
+  "spin_before": {
+    "duration_s": 1.0,
+    "success": true,
+    "delta_deg": -19.6
+  }
+}

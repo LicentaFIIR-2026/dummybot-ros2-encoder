@@ -1,0 +1,223 @@
+{
+  "session": "session_2026-02-26_14-45-22",
+  "timestamp": "2026-02-26T12:53:24.351532+00:00",
+  "tests": {
+    "baseline": {
+      "total_runs": 2,
+      "validated_success_fwd": "2/2",
+      "validated_success_ret": "2/2",
+      "forward": {
+        "time_s": {
+          "mean": 116.797,
+          "std": 63.188,
+          "min": 72.116,
+          "max": 161.478,
+          "n": 2
+        },
+        "dist_m": {
+          "mean": 6.692,
+          "std": 0.693,
+          "min": 6.202,
+          "max": 7.182,
+          "n": 2
+        },
+        "error_m": {
+          "mean": 0.273,
+          "std": 0.047,
+          "min": 0.24,
+          "max": 0.306,
+          "n": 2
+        }
+      },
+      "return": {
+        "time_s": {
+          "mean": 50.342,
+          "std": 6.566,
+          "min": 45.699,
+          "max": 54.985,
+          "n": 2
+        },
+        "dist_m": {
+          "mean": 6.485,
+          "std": 0.297,
+          "min": 6.275,
+          "max": 6.695,
+          "n": 2
+        }
+      },
+      "navigation_only": {
+        "fwd_time_s": {
+          "mean": 116.797,
+          "std": 63.188,
+          "min": 72.116,
+          "max": 161.478,
+          "n": 2
+        },
+        "ret_time_s": {
+          "mean": 50.342,
+          "std": 6.566,
+          "min": 45.699,
+          "max": 54.985,
+          "n": 2
+        },
+        "prescan_time_s": {}
+      },
+      "min_object_distance_m": {
+        "mean": 5.353,
+        "std": 0.981,
+        "min": 4.168,
+        "max": 6.533,
+        "n": 4
+      },
+      "system_metrics_summary": {
+        "cpu_pct": {
+          "mean": 40.95,
+          "std": 0.661,
+          "min": 40.0,
+          "max": 41.4,
+          "n": 4
+        },
+        "mem_pct": {
+          "mean": 13.2,
+          "std": 0.0,
+          "min": 13.2,
+          "max": 13.2,
+          "n": 4
+        },
+        "cpu_temp_max_c": {
+          "mean": 68.975,
+          "std": 0.532,
+          "min": 68.3,
+          "max": 69.4,
+          "n": 4
+        }
+      }
+    },
+    "adaptive": {
+      "total_runs": 2,
+      "validated_success_fwd": "1/2",
+      "validated_success_ret": "0/2",
+      "forward": {
+        "time_s": {
+          "mean": 32.868,
+          "std": 0,
+          "min": 32.868,
+          "max": 32.868,
+          "n": 1
+        },
+        "dist_m": {
+          "mean": 5.25,
+          "std": 0,
+          "min": 5.25,
+          "max": 5.25,
+          "n": 1
+        },
+        "error_m": {
+          "mean": 0.209,
+          "std": 0,
+          "min": 0.209,
+          "max": 0.209,
+          "n": 1
+        }
+      },
+      "return": {
+        "time_s": {},
+        "dist_m": {}
+      },
+      "navigation_only": {
+        "fwd_time_s": {
+          "mean": 32.868,
+          "std": 0,
+          "min": 32.868,
+          "max": 32.868,
+          "n": 1
+        },
+        "ret_time_s": {},
+        "prescan_time_s": {
+          "mean": 2.69,
+          "std": 0,
+          "min": 2.69,
+          "max": 2.69,
+          "n": 1
+        }
+      },
+      "reroutes_fwd": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "n": 2
+      },
+      "reroutes_ret": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "n": 2
+      },
+      "total_reroutes": 0,
+      "runs_with_reroute": 0,
+      "planning_ms": {
+        "mean": 7.91,
+        "std": 1.847,
+        "min": 5.49,
+        "max": 9.72,
+        "n": 4
+      },
+      "route_analysis": {
+        "route_types": [
+          "SUS",
+          "SUS",
+          "DIRECT",
+          "SUS"
+        ],
+        "routes_changed": 0,
+        "total_legs": 4
+      },
+      "min_object_distance_m": {
+        "mean": 0.048,
+        "std": 0,
+        "min": 0.048,
+        "max": 0.048,
+        "n": 1
+      },
+      "system_metrics_summary": {
+        "cpu_pct": {
+          "mean": 35.1,
+          "std": 0,
+          "min": 35.1,
+          "max": 35.1,
+          "n": 1
+        },
+        "mem_pct": {
+          "mean": 13.2,
+          "std": 0,
+          "min": 13.2,
+          "max": 13.2,
+          "n": 1
+        },
+        "cpu_temp_max_c": {
+          "mean": 68.8,
+          "std": 0,
+          "min": 68.8,
+          "max": 68.8,
+          "n": 1
+        }
+      }
+    }
+  },
+  "comparison": {
+    "nav_time_fwd_s": {
+      "baseline": 116.797,
+      "adaptive": 32.868
+    },
+    "min_obj_dist_m": {
+      "baseline": 5.353,
+      "adaptive": 0.048
+    },
+    "success_rate": {
+      "baseline": "2/2",
+      "adaptive": "1/2"
+    }
+  }
+}

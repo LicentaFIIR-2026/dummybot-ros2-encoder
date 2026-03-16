@@ -1,0 +1,64 @@
+{
+  "test_type": "compute_route",
+  "timestamp": "2026-02-26T11:30:30.242665+00:00",
+  "planning": {
+    "duration_ms": 18.67,
+    "points": 102,
+    "route_type": "JOS",
+    "route_nodes": [
+      0,
+      1,
+      2,
+      4,
+      5
+    ],
+    "route_node_names": [
+      "start",
+      "in1",
+      "in2",
+      "int3",
+      "altB"
+    ],
+    "route_edges": [
+      10,
+      12,
+      16,
+      20
+    ],
+    "route_cost": 251.829,
+    "penalties_per_edge": {
+      "10": 10.51,
+      "12": 15.36,
+      "16": 14.92,
+      "20": 9.56
+    }
+  },
+  "details": {
+    "visited": [
+      "altB",
+      "in1",
+      "int2",
+      "int3",
+      "int4"
+    ],
+    "min_dists": {
+      "in1": 0.052,
+      "in2": 0.601,
+      "int2": 0.004,
+      "int3": 0.35,
+      "altB": 0.084,
+      "altA": 0.762,
+      "int4": 0.136,
+      "goal_old": 0.58
+    }
+  },
+  "semantic": {
+    "objects_count": 2,
+    "objects_by_class": {
+      "bottle": 1,
+      "microwave": 1
+    },
+    "valid_count": 1,
+    "timestamp": "2026-02-26T11:30:05.784906+00:00"
+  }
+}

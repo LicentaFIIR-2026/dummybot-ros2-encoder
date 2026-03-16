@@ -1,0 +1,350 @@
+{
+  "test_type": "adaptive_forward",
+  "run_number": 1,
+  "timestamp": "2026-03-04T09:08:35.596817+00:00",
+  "robot_start_pose": [
+    1.0368,
+    0.0772,
+    0.0633
+  ],
+  "start_offset_m": 0.086,
+  "replanning": {
+    "segments": [
+      {
+        "segment": 1,
+        "timestamp": "2026-03-04T09:08:29.568584+00:00",
+        "plan_ms": 8.03,
+        "route_type": "SUS",
+        "route_nodes": [
+          2,
+          3,
+          6,
+          8,
+          9
+        ],
+        "route_edges": [
+          32,
+          20,
+          28,
+          34
+        ],
+        "route_cost": 158.946,
+        "penalties": {
+          "32": 0.0,
+          "20": 7.24,
+          "28": 13.21,
+          "34": 11.06
+        },
+        "reason": "initial",
+        "outcome": "success"
+      }
+    ],
+    "total_reroutes": 0,
+    "final_route": [
+      2,
+      3,
+      6,
+      8,
+      9
+    ],
+    "outcome": "success"
+  },
+  "route_analysis": {
+    "initial_route": [
+      2,
+      3,
+      6,
+      8,
+      9
+    ],
+    "final_route": [
+      2,
+      3,
+      6,
+      8,
+      9
+    ],
+    "initial_route_type": "SUS",
+    "route_changed": false,
+    "planning_total_ms": 8.03,
+    "n_segments": 1
+  },
+  "timing": {
+    "prescan_duration_s": 11.8,
+    "navigation_duration_s": 5.468,
+    "total_duration_s": 17.272
+  },
+  "execution": {
+    "duration_s": 5.468,
+    "nav2_success": true,
+    "validated_success": false,
+    "distance_traveled_m": 0.955,
+    "avg_velocity_ms": 0.159,
+    "max_velocity_ms": 0.263,
+    "final_pose": [
+      -4.4472,
+      0.4355,
+      5.4781
+    ],
+    "trajectory_points": 11,
+    "xy_error_m": 4.7307,
+    "yaw_error_rad": 0.3568
+  },
+  "trajectory": [
+    [
+      -4.848,
+      1.2759,
+      3296.46
+    ],
+    [
+      -4.8517,
+      1.2559,
+      3296.974
+    ],
+    [
+      -4.8566,
+      1.2195,
+      3297.505
+    ],
+    [
+      -4.8549,
+      1.1723,
+      3298.006
+    ],
+    [
+      -4.8404,
+      1.1022,
+      3298.506
+    ],
+    [
+      -4.8092,
+      1.012,
+      3299.008
+    ],
+    [
+      -4.76,
+      0.9028,
+      3299.54
+    ],
+    [
+      -4.6975,
+      0.7864,
+      3300.073
+    ],
+    [
+      -4.6256,
+      0.6689,
+      3300.606
+    ],
+    [
+      -4.5501,
+      0.5588,
+      3301.139
+    ],
+    [
+      -4.4841,
+      0.4758,
+      3301.64
+    ]
+  ],
+  "min_object_distance": {
+    "min_distance_m": 4.167,
+    "closest_class": "bottle"
+  },
+  "penalties_before": {
+    "10": 16.7,
+    "11": 16.7,
+    "12": 16.58,
+    "13": 16.58,
+    "16": 2.16,
+    "17": 2.16,
+    "18": 13.52,
+    "19": 13.52,
+    "20": 7.24,
+    "21": 7.24,
+    "22": 12.5,
+    "23": 12.5,
+    "24": 16.24,
+    "25": 16.24,
+    "26": 22.98,
+    "27": 22.98,
+    "28": 13.21,
+    "29": 13.21,
+    "30": 20.14,
+    "31": 20.14,
+    "34": 11.06,
+    "35": 11.06,
+    "36": 21.59,
+    "37": 21.59
+  },
+  "penalties_after": {
+    "10": 16.7,
+    "11": 16.7,
+    "12": 16.58,
+    "13": 16.58,
+    "16": 2.16,
+    "17": 2.16,
+    "18": 13.52,
+    "19": 13.52,
+    "20": 7.24,
+    "21": 7.24,
+    "22": 12.5,
+    "23": 12.5,
+    "24": 16.24,
+    "25": 16.24,
+    "26": 22.98,
+    "27": 22.98,
+    "28": 13.21,
+    "29": 13.21,
+    "30": 20.14,
+    "31": 20.14,
+    "34": 11.06,
+    "35": 11.06,
+    "36": 21.59,
+    "37": 21.59
+  },
+  "system_metrics": {
+    "samples": 6,
+    "duration_s": 5.0,
+    "cpu": {
+      "mean": 33.8,
+      "max": 34.4,
+      "min": 32.9,
+      "std": 0.5
+    },
+    "memory": {
+      "mean": 13.5,
+      "max": 13.5,
+      "min": 13.5,
+      "std": 0.0
+    },
+    "swap": {
+      "mean": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "std": 0.0
+    },
+    "cpu_temp": {
+      "mean": 69.7,
+      "max": 70.0,
+      "min": 68.8,
+      "std": 0.5
+    },
+    "battery_start": -1.0,
+    "battery_end": -1.0,
+    "time_series": [
+      {
+        "t": 1772615309.559,
+        "cpu_pct": 33.6,
+        "mem_pct": 13.5,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 70.0,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          34.3,
+          33.8,
+          33.3,
+          33.0
+        ]
+      },
+      {
+        "t": 1772615310.58,
+        "cpu_pct": 33.7,
+        "mem_pct": 13.5,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 70.0,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          34.7,
+          36.4,
+          32.0,
+          33.0
+        ]
+      },
+      {
+        "t": 1772615311.581,
+        "cpu_pct": 34.4,
+        "mem_pct": 13.5,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 69.4,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          35.8,
+          33.7,
+          34.0,
+          33.7
+        ]
+      },
+      {
+        "t": 1772615312.585,
+        "cpu_pct": 34.2,
+        "mem_pct": 13.5,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 68.8,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          34.0,
+          34.4,
+          35.1,
+          33.3
+        ]
+      },
+      {
+        "t": 1772615313.588,
+        "cpu_pct": 34.1,
+        "mem_pct": 13.5,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 70.0,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          35.1,
+          35.0,
+          34.7,
+          32.3
+        ]
+      },
+      {
+        "t": 1772615314.591,
+        "cpu_pct": 32.9,
+        "mem_pct": 13.5,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 70.0,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          33.7,
+          30.5,
+          33.0,
+          33.3
+        ]
+      }
+    ]
+  },
+  "semantic": {
+    "objects_count": 11,
+    "objects_by_class": {
+      "bottle": 5,
+      "bench": 2,
+      "potted plant": 3,
+      "chair": 1
+    },
+    "valid_count": 11,
+    "timestamp": "2026-03-04T09:08:27.802821+00:00"
+  },
+  "prescan_snapshot": {
+    "objects_count": 11,
+    "objects_by_class": {
+      "bottle": 5,
+      "bench": 2,
+      "potted plant": 3,
+      "chair": 1
+    },
+    "valid_count": 11,
+    "timestamp": "2026-03-04T09:08:27.802821+00:00"
+  }
+}

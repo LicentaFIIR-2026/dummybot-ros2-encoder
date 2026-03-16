@@ -1,0 +1,243 @@
+{
+  "session": "session_2026-03-03_11-22-31",
+  "timestamp": "2026-03-03T09:34:15.971108+00:00",
+  "tests": {
+    "baseline": {
+      "total_runs": 5,
+      "validated_success_fwd": "4/5",
+      "validated_success_ret": "5/5",
+      "forward": {
+        "time_s": {
+          "mean": 39.934,
+          "std": 8.03,
+          "min": 35.014,
+          "max": 51.883,
+          "n": 4
+        },
+        "dist_m": {
+          "mean": 6.108,
+          "std": 0.145,
+          "min": 5.895,
+          "max": 6.206,
+          "n": 4
+        },
+        "error_m": {
+          "mean": 0.264,
+          "std": 0.021,
+          "min": 0.248,
+          "max": 0.294,
+          "n": 4
+        }
+      },
+      "return": {
+        "time_s": {
+          "mean": 55.921,
+          "std": 8.197,
+          "min": 44.953,
+          "max": 66.483,
+          "n": 5
+        },
+        "dist_m": {
+          "mean": 5.975,
+          "std": 1.864,
+          "min": 2.653,
+          "max": 7.064,
+          "n": 5
+        }
+      },
+      "navigation_only": {
+        "fwd_time_s": {
+          "mean": 39.934,
+          "std": 8.03,
+          "min": 35.014,
+          "max": 51.883,
+          "n": 4
+        },
+        "ret_time_s": {
+          "mean": 55.921,
+          "std": 8.197,
+          "min": 44.953,
+          "max": 66.483,
+          "n": 5
+        },
+        "prescan_time_s": {}
+      },
+      "min_object_distance_m": {
+        "mean": 1.357,
+        "std": 1.341,
+        "min": 0.08,
+        "max": 3.499,
+        "n": 9
+      },
+      "system_metrics_summary": {
+        "cpu_pct": {
+          "mean": 42.078,
+          "std": 0.983,
+          "min": 41.0,
+          "max": 43.9,
+          "n": 9
+        },
+        "mem_pct": {
+          "mean": 8.989,
+          "std": 0.093,
+          "min": 8.8,
+          "max": 9.1,
+          "n": 9
+        },
+        "cpu_temp_max_c": {
+          "mean": 62.244,
+          "std": 2.196,
+          "min": 57.9,
+          "max": 65.5,
+          "n": 9
+        }
+      }
+    },
+    "adaptive": {
+      "total_runs": 3,
+      "validated_success_fwd": "1/3",
+      "validated_success_ret": "1/3",
+      "forward": {
+        "time_s": {
+          "mean": 49.673,
+          "std": 0,
+          "min": 49.673,
+          "max": 49.673,
+          "n": 1
+        },
+        "dist_m": {
+          "mean": 6.08,
+          "std": 0,
+          "min": 6.08,
+          "max": 6.08,
+          "n": 1
+        },
+        "error_m": {
+          "mean": 0.275,
+          "std": 0,
+          "min": 0.275,
+          "max": 0.275,
+          "n": 1
+        }
+      },
+      "return": {
+        "time_s": {
+          "mean": 33.672,
+          "std": 0,
+          "min": 33.672,
+          "max": 33.672,
+          "n": 1
+        },
+        "dist_m": {
+          "mean": 6.157,
+          "std": 0,
+          "min": 6.157,
+          "max": 6.157,
+          "n": 1
+        }
+      },
+      "navigation_only": {
+        "fwd_time_s": {
+          "mean": 49.673,
+          "std": 0,
+          "min": 49.673,
+          "max": 49.673,
+          "n": 1
+        },
+        "ret_time_s": {
+          "mean": 33.672,
+          "std": 0,
+          "min": 33.672,
+          "max": 33.672,
+          "n": 1
+        },
+        "prescan_time_s": {
+          "mean": 11.74,
+          "std": 0,
+          "min": 11.74,
+          "max": 11.74,
+          "n": 1
+        }
+      },
+      "reroutes_fwd": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "n": 3
+      },
+      "reroutes_ret": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "n": 3
+      },
+      "total_reroutes": 0,
+      "runs_with_reroute": 0,
+      "planning_ms": {
+        "mean": 7.582,
+        "std": 3.535,
+        "min": 3.03,
+        "max": 13.17,
+        "n": 6
+      },
+      "route_analysis": {
+        "route_types": [
+          "SUS",
+          "SUS",
+          "MIX",
+          "SUS",
+          "DIRECT",
+          "DIRECT"
+        ],
+        "routes_changed": 0,
+        "total_legs": 6
+      },
+      "min_object_distance_m": {
+        "mean": 4.505,
+        "std": 1.358,
+        "min": 3.544,
+        "max": 5.465,
+        "n": 2
+      },
+      "system_metrics_summary": {
+        "cpu_pct": {
+          "mean": 35.4,
+          "std": 0.0,
+          "min": 35.4,
+          "max": 35.4,
+          "n": 2
+        },
+        "mem_pct": {
+          "mean": 9.0,
+          "std": 0.0,
+          "min": 9.0,
+          "max": 9.0,
+          "n": 2
+        },
+        "cpu_temp_max_c": {
+          "mean": 66.1,
+          "std": 0.0,
+          "min": 66.1,
+          "max": 66.1,
+          "n": 2
+        }
+      }
+    }
+  },
+  "comparison": {
+    "nav_time_fwd_s": {
+      "baseline": 39.934,
+      "adaptive": 49.673
+    },
+    "min_obj_dist_m": {
+      "baseline": 1.357,
+      "adaptive": 4.505
+    },
+    "success_rate": {
+      "baseline": "4/5",
+      "adaptive": "1/3"
+    }
+  }
+}

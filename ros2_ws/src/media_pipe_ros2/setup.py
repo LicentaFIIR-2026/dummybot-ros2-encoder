@@ -13,6 +13,7 @@ setup(
         ('share/' + package_name + '/launch', [
             'launch/mediapipe_object_detector.launch.py',
             'launch/mediapipe_standalone.launch.py',
+            'launch/yolo_object_detector.launch.py',
         ]),
     ],
     install_requires=['setuptools'],
@@ -31,6 +32,7 @@ setup(
             'object_detector = media_pipe_ros2.object_detector:main',
             'mediapipe_standalone = media_pipe_ros2.mediapipe_standalone:main',
             'ros2_bridge = media_pipe_ros2.ros2_bridge:main',
+            'yolo_detector = media_pipe_ros2.yolo_detector:main',
         ],
     },
 )

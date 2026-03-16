@@ -1,0 +1,212 @@
+{
+  "test_type": "adaptive_forward",
+  "run_number": 2,
+  "timestamp": "2026-02-26T12:31:26.411681+00:00",
+  "robot_start_pose": [
+    0.8069,
+    0.1898,
+    0.667
+  ],
+  "start_offset_m": 0.271,
+  "replanning": {
+    "segments": [
+      {
+        "segment": 1,
+        "timestamp": "2026-02-26T12:31:25.401781+00:00",
+        "plan_ms": 7.24,
+        "route_type": "SUS",
+        "route_nodes": [
+          2,
+          3,
+          6,
+          8,
+          9
+        ],
+        "route_edges": [
+          32,
+          20,
+          28,
+          34
+        ],
+        "route_cost": 158.946,
+        "penalties": {
+          "32": 0.0,
+          "20": 7.24,
+          "28": 13.21,
+          "34": 11.06
+        },
+        "reason": "initial",
+        "outcome": "rejected"
+      }
+    ],
+    "total_reroutes": 0,
+    "outcome": "rejected"
+  },
+  "route_analysis": {
+    "initial_route": [
+      2,
+      3,
+      6,
+      8,
+      9
+    ],
+    "final_route": [
+      2,
+      3,
+      6,
+      8,
+      9
+    ],
+    "initial_route_type": "SUS",
+    "route_changed": false,
+    "planning_total_ms": 7.24,
+    "n_segments": 1
+  },
+  "timing": {
+    "prescan_duration_s": 1.65,
+    "navigation_duration_s": 0.115,
+    "total_duration_s": 1.77
+  },
+  "execution": {
+    "duration_s": 0.115,
+    "nav2_success": false,
+    "validated_success": false,
+    "distance_traveled_m": 0.0,
+    "avg_velocity_ms": 0.0,
+    "max_velocity_ms": 0.0,
+    "final_pose": [
+      4.4779,
+      0.7017,
+      3.2783
+    ],
+    "trajectory_points": 1,
+    "xy_error_m": 5.8155,
+    "yaw_error_rad": 0.667
+  },
+  "trajectory": [
+    [
+      4.4779,
+      0.7017,
+      916.812
+    ]
+  ],
+  "min_object_distance": {
+    "min_distance_m": 2.369,
+    "closest_class": "person"
+  },
+  "penalties_before": {
+    "10": 16.7,
+    "11": 16.7,
+    "12": 16.58,
+    "13": 16.58,
+    "16": 2.16,
+    "17": 2.16,
+    "18": 13.52,
+    "19": 13.52,
+    "20": 7.24,
+    "21": 7.24,
+    "22": 12.5,
+    "23": 12.5,
+    "24": 16.24,
+    "25": 16.24,
+    "26": 22.98,
+    "27": 22.98,
+    "28": 13.21,
+    "29": 13.21,
+    "30": 20.14,
+    "31": 20.14,
+    "34": 11.06,
+    "35": 11.06,
+    "36": 21.59,
+    "37": 21.59
+  },
+  "penalties_after": {
+    "10": 16.7,
+    "11": 16.7,
+    "12": 16.58,
+    "13": 16.58,
+    "16": 2.16,
+    "17": 2.16,
+    "18": 13.52,
+    "19": 13.52,
+    "20": 7.24,
+    "21": 7.24,
+    "22": 12.5,
+    "23": 12.5,
+    "24": 16.24,
+    "25": 16.24,
+    "26": 22.98,
+    "27": 22.98,
+    "28": 13.21,
+    "29": 13.21,
+    "30": 20.14,
+    "31": 20.14,
+    "34": 11.06,
+    "35": 11.06,
+    "36": 21.59,
+    "37": 21.59
+  },
+  "system_metrics": {
+    "samples": 1,
+    "duration_s": 0,
+    "cpu": {
+      "mean": 18.3,
+      "max": 18.3,
+      "min": 18.3,
+      "std": 0.0
+    },
+    "memory": {
+      "mean": 13.3,
+      "max": 13.3,
+      "min": 13.3,
+      "std": 0.0
+    },
+    "swap": {
+      "mean": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "std": 0.0
+    },
+    "cpu_temp": {
+      "mean": 66.1,
+      "max": 66.1,
+      "min": 66.1,
+      "std": 0.0
+    },
+    "battery_start": -1.0,
+    "battery_end": -1.0,
+    "time_series": [
+      {
+        "t": 1772109085.393,
+        "cpu_pct": 18.3,
+        "mem_pct": 13.3,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 66.1,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          17.6,
+          17.7,
+          18.9,
+          18.6
+        ]
+      }
+    ]
+  },
+  "semantic": {
+    "objects_count": 1,
+    "objects_by_class": {
+      "person": 1
+    },
+    "valid_count": 1,
+    "timestamp": "2026-02-26T12:30:56.842721+00:00"
+  },
+  "prescan_snapshot": {
+    "objects_count": 1,
+    "objects_by_class": {
+      "person": 1
+    },
+    "valid_count": 1,
+    "timestamp": "2026-02-26T12:30:56.842721+00:00"
+  }
+}

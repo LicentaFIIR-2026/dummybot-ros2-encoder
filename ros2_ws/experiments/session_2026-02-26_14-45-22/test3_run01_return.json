@@ -1,0 +1,208 @@
+{
+  "test_type": "adaptive_return",
+  "run_number": 1,
+  "timestamp": "2026-02-26T12:52:33.879636+00:00",
+  "robot_start_pose": [
+    2.8998,
+    0.5522,
+    1.5467
+  ],
+  "start_offset_m": 0.113,
+  "replanning": {
+    "segments": [
+      {
+        "segment": 1,
+        "timestamp": "2026-02-26T12:52:32.854419+00:00",
+        "plan_ms": 5.49,
+        "route_type": "DIRECT",
+        "route_nodes": [
+          2,
+          0
+        ],
+        "route_edges": [
+          13
+        ],
+        "route_cost": 12.062,
+        "penalties": {
+          "13": 16.58
+        },
+        "reason": "initial",
+        "outcome": "success"
+      }
+    ],
+    "total_reroutes": 0,
+    "final_route": [
+      2,
+      0
+    ],
+    "outcome": "success"
+  },
+  "route_analysis": {
+    "initial_route": [
+      2,
+      0
+    ],
+    "final_route": [
+      2,
+      0
+    ],
+    "initial_route_type": "DIRECT",
+    "route_changed": false,
+    "planning_total_ms": 5.49,
+    "n_segments": 1
+  },
+  "timing": {
+    "prescan_duration_s": 0.0,
+    "navigation_duration_s": 0.916,
+    "total_duration_s": 0.916
+  },
+  "execution": {
+    "duration_s": 0.916,
+    "nav2_success": true,
+    "validated_success": false,
+    "distance_traveled_m": 0.06,
+    "avg_velocity_ms": 0.028,
+    "max_velocity_ms": 0.138,
+    "final_pose": [
+      -0.7742,
+      5.3676,
+      -5.4027
+    ],
+    "trajectory_points": 2,
+    "xy_error_m": 1.9952,
+    "yaw_error_rad": 1.96
+  },
+  "trajectory": [
+    [
+      -0.8135,
+      5.3237,
+      2187.227
+    ],
+    [
+      -0.805,
+      5.3319,
+      2187.754
+    ]
+  ],
+  "min_object_distance": {
+    "min_distance_m": 0.594,
+    "closest_class": "person"
+  },
+  "penalties_before": {
+    "10": 16.7,
+    "11": 16.7,
+    "12": 16.58,
+    "13": 16.58,
+    "16": 2.16,
+    "17": 2.16,
+    "18": 13.52,
+    "19": 13.52,
+    "20": 7.24,
+    "21": 7.24,
+    "22": 12.5,
+    "23": 12.5,
+    "24": 16.24,
+    "25": 16.24,
+    "26": 22.98,
+    "27": 22.98,
+    "28": 13.21,
+    "29": 13.21,
+    "30": 20.14,
+    "31": 20.14,
+    "34": 11.06,
+    "35": 11.06,
+    "36": 21.59,
+    "37": 21.59
+  },
+  "penalties_after": {
+    "10": 16.7,
+    "11": 16.7,
+    "12": 16.58,
+    "13": 16.58,
+    "16": 2.16,
+    "17": 2.16,
+    "18": 13.52,
+    "19": 13.52,
+    "20": 7.24,
+    "21": 7.24,
+    "22": 12.5,
+    "23": 12.5,
+    "24": 16.24,
+    "25": 16.24,
+    "26": 22.98,
+    "27": 22.98,
+    "28": 13.21,
+    "29": 13.21,
+    "30": 20.14,
+    "31": 20.14,
+    "34": 11.06,
+    "35": 11.06,
+    "36": 21.59,
+    "37": 21.59
+  },
+  "system_metrics": {
+    "samples": 1,
+    "duration_s": 0,
+    "cpu": {
+      "mean": 35.8,
+      "max": 35.8,
+      "min": 35.8,
+      "std": 0.0
+    },
+    "memory": {
+      "mean": 13.2,
+      "max": 13.2,
+      "min": 13.2,
+      "std": 0.0
+    },
+    "swap": {
+      "mean": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "std": 0.0
+    },
+    "cpu_temp": {
+      "mean": 67.8,
+      "max": 67.8,
+      "min": 67.8,
+      "std": 0.0
+    },
+    "battery_start": -1.0,
+    "battery_end": -1.0,
+    "time_series": [
+      {
+        "t": 1772110352.847,
+        "cpu_pct": 35.8,
+        "mem_pct": 13.2,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.8,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          35.6,
+          36.9,
+          36.4,
+          34.6
+        ]
+      }
+    ]
+  },
+  "semantic": {
+    "objects_count": 26,
+    "objects_by_class": {
+      "bench": 2,
+      "potted plant": 8,
+      "couch": 1,
+      "bottle": 9,
+      "person": 5,
+      "refrigerator": 1
+    },
+    "valid_count": 24,
+    "timestamp": "2026-02-26T12:52:24.975975+00:00"
+  },
+  "spin_before": {
+    "duration_s": 2.25,
+    "success": true,
+    "delta_deg": 170.1
+  }
+}

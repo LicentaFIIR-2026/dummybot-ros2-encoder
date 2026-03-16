@@ -1,0 +1,78 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "description": "SAIM Xplorer Semantic Object Map",
+    "frame": "map",
+    "generated_by": "semantic_localizer",
+    "last_updated": "2026-02-26T11:36:35.787403+00:00",
+    "object_count": 3
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.9207,
+          2.0855
+        ]
+      },
+      "properties": {
+        "obj_id": "microwave_1",
+        "class_name": "microwave",
+        "class_id": 68,
+        "mobility": "static",
+        "confidence": 0.557,
+        "observation_count": 2,
+        "best_score": 6.489,
+        "first_seen": "2026-02-26T11:29:46.629672+00:00",
+        "last_seen": "2026-02-26T11:29:46.630950+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.4087,
+          -0.0024
+        ]
+      },
+      "properties": {
+        "obj_id": "suitcase_16",
+        "class_name": "suitcase",
+        "class_id": 28,
+        "mobility": "static",
+        "confidence": 0.76,
+        "observation_count": 60,
+        "best_score": 4.224,
+        "first_seen": "2026-02-26T11:34:29.809534+00:00",
+        "last_seen": "2026-02-26T11:35:21.615323+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6378,
+          2.6959
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_28",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.87,
+        "observation_count": 50,
+        "best_score": 5.508,
+        "first_seen": "2026-02-26T11:35:51.141580+00:00",
+        "last_seen": "2026-02-26T11:36:07.637511+00:00",
+        "ttl_seconds": 120.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "test_type": "compute_route",
+  "timestamp": "2026-02-26T12:57:59.118094+00:00",
+  "planning": {
+    "duration_ms": 7.15,
+    "points": 83,
+    "route_type": "DIRECT",
+    "route_nodes": [
+      2,
+      4,
+      5,
+      7,
+      9
+    ],
+    "route_node_names": [
+      "in2",
+      "int3",
+      "altB",
+      "int4",
+      "goal"
+    ],
+    "route_edges": [
+      16,
+      18,
+      26,
+      37
+    ],
+    "route_cost": 505.411,
+    "penalties_per_edge": {
+      "16": 23.63,
+      "18": 32.57,
+      "26": 25.8,
+      "37": 19.07
+    }
+  },
+  "details": {
+    "visited": [],
+    "min_dists": {
+      "in1": 2.547,
+      "in2": 1.698,
+      "int2": 1.847,
+      "int3": 2.496,
+      "altB": 2.541,
+      "altA": 1.472,
+      "int4": 2.284,
+      "goal_old": 1.601
+    }
+  },
+  "semantic": {
+    "objects_count": 2,
+    "objects_by_class": {
+      "potted plant": 2
+    },
+    "valid_count": 2,
+    "timestamp": "2026-02-26T12:57:44.987389+00:00"
+  }
+}

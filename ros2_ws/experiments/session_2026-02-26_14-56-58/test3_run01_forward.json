@@ -1,0 +1,220 @@
+{
+  "test_type": "adaptive_forward",
+  "run_number": 1,
+  "timestamp": "2026-02-26T13:00:19.335092+00:00",
+  "robot_start_pose": [
+    1.0765,
+    -0.0926,
+    2.5325
+  ],
+  "start_offset_m": 0.12,
+  "replanning": {
+    "segments": [
+      {
+        "segment": 1,
+        "timestamp": "2026-02-26T13:00:17.528753+00:00",
+        "plan_ms": 7.04,
+        "route_type": "DIRECT",
+        "route_nodes": [
+          2,
+          4,
+          5,
+          7,
+          9
+        ],
+        "route_edges": [
+          16,
+          18,
+          26,
+          37
+        ],
+        "route_cost": 505.411,
+        "penalties": {
+          "16": 23.63,
+          "18": 32.57,
+          "26": 25.8,
+          "37": 19.07
+        },
+        "reason": "initial",
+        "outcome": "success"
+      }
+    ],
+    "total_reroutes": 0,
+    "final_route": [
+      2,
+      4,
+      5,
+      7,
+      9
+    ],
+    "outcome": "success"
+  },
+  "route_analysis": {
+    "initial_route": [
+      2,
+      4,
+      5,
+      7,
+      9
+    ],
+    "final_route": [
+      2,
+      4,
+      5,
+      7,
+      9
+    ],
+    "initial_route_type": "DIRECT",
+    "route_changed": false,
+    "planning_total_ms": 7.04,
+    "n_segments": 1
+  },
+  "timing": {
+    "prescan_duration_s": 44.07,
+    "navigation_duration_s": 0.017,
+    "total_duration_s": 44.088
+  },
+  "execution": {
+    "duration_s": 0.017,
+    "nav2_success": true,
+    "validated_success": false,
+    "distance_traveled_m": 0.0,
+    "avg_velocity_ms": 0,
+    "max_velocity_ms": 0,
+    "final_pose": null,
+    "trajectory_points": 0,
+    "xy_error_m": 5.5871,
+    "yaw_error_rad": 1.9616
+  },
+  "trajectory": [],
+  "min_object_distance": null,
+  "penalties_before": {
+    "10": 29.28,
+    "11": 29.28,
+    "12": 27.58,
+    "13": 27.58,
+    "14": 26.58,
+    "15": 26.58,
+    "16": 23.63,
+    "17": 23.63,
+    "18": 32.57,
+    "19": 32.57,
+    "20": 35.37,
+    "21": 35.37,
+    "22": 34.19,
+    "23": 34.19,
+    "24": 32.8,
+    "25": 32.8,
+    "26": 25.8,
+    "27": 25.8,
+    "28": 31.37,
+    "29": 31.37,
+    "30": 20.73,
+    "31": 20.73,
+    "32": 26.99,
+    "33": 26.99,
+    "34": 15.38,
+    "35": 15.38,
+    "36": 19.07,
+    "37": 19.07
+  },
+  "penalties_after": {
+    "10": 29.28,
+    "11": 29.28,
+    "12": 27.58,
+    "13": 27.58,
+    "14": 26.58,
+    "15": 26.58,
+    "16": 23.63,
+    "17": 23.63,
+    "18": 32.57,
+    "19": 32.57,
+    "20": 35.37,
+    "21": 35.37,
+    "22": 34.19,
+    "23": 34.19,
+    "24": 32.8,
+    "25": 32.8,
+    "26": 25.8,
+    "27": 25.8,
+    "28": 31.37,
+    "29": 31.37,
+    "30": 20.73,
+    "31": 20.73,
+    "32": 26.99,
+    "33": 26.99,
+    "34": 15.38,
+    "35": 15.38,
+    "36": 19.07,
+    "37": 19.07
+  },
+  "system_metrics": {
+    "samples": 1,
+    "duration_s": 0,
+    "cpu": {
+      "mean": 37.9,
+      "max": 37.9,
+      "min": 37.9,
+      "std": 0.0
+    },
+    "memory": {
+      "mean": 13.6,
+      "max": 13.6,
+      "min": 13.6,
+      "std": 0.0
+    },
+    "swap": {
+      "mean": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "std": 0.0
+    },
+    "cpu_temp": {
+      "mean": 66.7,
+      "max": 66.7,
+      "min": 66.7,
+      "std": 0.0
+    },
+    "battery_start": -1.0,
+    "battery_end": -1.0,
+    "time_series": [
+      {
+        "t": 1772110817.52,
+        "cpu_pct": 37.9,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 66.7,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          40.0,
+          37.0,
+          37.0,
+          37.8
+        ]
+      }
+    ]
+  },
+  "semantic": {
+    "objects_count": 12,
+    "objects_by_class": {
+      "potted plant": 2,
+      "person": 7,
+      "bottle": 2,
+      "bench": 1
+    },
+    "valid_count": 12,
+    "timestamp": "2026-02-26T13:00:14.987936+00:00"
+  },
+  "prescan_snapshot": {
+    "objects_count": 12,
+    "objects_by_class": {
+      "potted plant": 2,
+      "person": 7,
+      "bottle": 2,
+      "bench": 1
+    },
+    "valid_count": 12,
+    "timestamp": "2026-02-26T13:00:14.987936+00:00"
+  }
+}

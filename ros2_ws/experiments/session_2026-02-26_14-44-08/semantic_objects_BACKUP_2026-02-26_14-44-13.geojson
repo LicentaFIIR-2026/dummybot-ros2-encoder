@@ -1,0 +1,188 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "description": "SAIM Xplorer Semantic Object Map",
+    "frame": "map",
+    "generated_by": "semantic_localizer",
+    "last_updated": "2026-02-26T12:44:10.260062+00:00",
+    "object_count": 8
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.6379,
+          -0.9163
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_8",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.502,
+        "observation_count": 1,
+        "best_score": 0.358,
+        "first_seen": "2026-02-26T12:36:47.055599+00:00",
+        "last_seen": "2026-02-26T12:36:47.055599+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.4329,
+          -1.0682
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_9",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.551,
+        "observation_count": 1,
+        "best_score": 0.261,
+        "first_seen": "2026-02-26T12:36:47.472850+00:00",
+        "last_seen": "2026-02-26T12:36:47.472850+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0246,
+          0.0512
+        ]
+      },
+      "properties": {
+        "obj_id": "bench_10",
+        "class_name": "bench",
+        "class_id": 13,
+        "mobility": "static",
+        "confidence": 0.547,
+        "observation_count": 10,
+        "best_score": 2.905,
+        "first_seen": "2026-02-26T12:36:52.596927+00:00",
+        "last_seen": "2026-02-26T12:37:00.409846+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.8784,
+          0.0629
+        ]
+      },
+      "properties": {
+        "obj_id": "chair_11",
+        "class_name": "chair",
+        "class_id": 56,
+        "mobility": "static",
+        "confidence": 0.626,
+        "observation_count": 5,
+        "best_score": 1.383,
+        "first_seen": "2026-02-26T12:37:29.168662+00:00",
+        "last_seen": "2026-02-26T12:37:29.169995+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.5785,
+          0.8048
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_12",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.509,
+        "observation_count": 1,
+        "best_score": 0.233,
+        "first_seen": "2026-02-26T12:37:29.170005+00:00",
+        "last_seen": "2026-02-26T12:37:29.170005+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.9028,
+          -0.3141
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_13",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.704,
+        "observation_count": 116,
+        "best_score": 1.915,
+        "first_seen": "2026-02-26T12:43:30.032870+00:00",
+        "last_seen": "2026-02-26T12:44:08.264546+00:00",
+        "ttl_seconds": 120.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.2844,
+          -0.8442
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_14",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.707,
+        "observation_count": 47,
+        "best_score": 0.539,
+        "first_seen": "2026-02-26T12:43:35.470960+00:00",
+        "last_seen": "2026-02-26T12:44:03.493936+00:00",
+        "ttl_seconds": 120.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.2039,
+          -0.6748
+        ]
+      },
+      "properties": {
+        "obj_id": "bottle_15",
+        "class_name": "bottle",
+        "class_id": 39,
+        "mobility": "minor",
+        "confidence": 0.677,
+        "observation_count": 6,
+        "best_score": 0.496,
+        "first_seen": "2026-02-26T12:43:37.644485+00:00",
+        "last_seen": "2026-02-26T12:43:37.646516+00:00",
+        "ttl_seconds": 120.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "test_type": "baseline_return",
+  "run_number": 1,
+  "timestamp": "2026-02-26T12:37:19.245967+00:00",
+  "robot_start_pose": [
+    5.3265,
+    0.4928,
+    -2.9579
+  ],
+  "start_offset_m": 0.425,
+  "timing": {
+    "prescan_duration_s": 0.0,
+    "navigation_duration_s": 1.947,
+    "total_duration_s": 1.947
+  },
+  "execution": {
+    "duration_s": 1.947,
+    "nav2_success": true,
+    "validated_success": false,
+    "distance_traveled_m": 0.0,
+    "avg_velocity_ms": 0,
+    "max_velocity_ms": 0,
+    "final_pose": null,
+    "trajectory_points": 0,
+    "xy_error_m": 4.2467,
+    "yaw_error_rad": 2.9224
+  },
+  "trajectory": [],
+  "min_object_distance": null,
+  "system_metrics": {
+    "samples": 2,
+    "duration_s": 1.0,
+    "cpu": {
+      "mean": 22.0,
+      "max": 25.2,
+      "min": 18.8,
+      "std": 4.5
+    },
+    "memory": {
+      "mean": 13.6,
+      "max": 13.6,
+      "min": 13.6,
+      "std": 0.0
+    },
+    "swap": {
+      "mean": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "std": 0.0
+    },
+    "cpu_temp": {
+      "mean": 63.1,
+      "max": 63.4,
+      "min": 62.8,
+      "std": 0.4
+    },
+    "battery_start": -1.0,
+    "battery_end": -1.0,
+    "time_series": [
+      {
+        "t": 1772109436.434,
+        "cpu_pct": 18.8,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 62.8,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          18.6,
+          19.2,
+          18.8,
+          18.7
+        ]
+      },
+      {
+        "t": 1772109437.44,
+        "cpu_pct": 25.2,
+        "mem_pct": 13.6,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 63.4,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          27.1,
+          23.7,
+          22.7,
+          26.3
+        ]
+      }
+    ]
+  },
+  "semantic": {
+    "objects_count": 11,
+    "objects_by_class": {
+      "bottle": 6,
+      "person": 2,
+      "potted plant": 2,
+      "bench": 1
+    },
+    "valid_count": 11,
+    "timestamp": "2026-02-26T12:36:55.937924+00:00"
+  },
+  "spin_before": {
+    "duration_s": 6.51,
+    "success": true
+  }
+}

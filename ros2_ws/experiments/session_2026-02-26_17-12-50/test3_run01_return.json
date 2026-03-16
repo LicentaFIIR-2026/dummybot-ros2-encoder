@@ -1,0 +1,93 @@
+{
+  "test_type": "baseline_return",
+  "run_number": 1,
+  "timestamp": "2026-02-26T15:15:27.479625+00:00",
+  "robot_start_pose": [
+    3.3292,
+    2.2694,
+    0.5508
+  ],
+  "start_offset_m": 2.255,
+  "baseline_waypoints": [
+    "goal",
+    "int4",
+    "altB",
+    "int3",
+    "in2",
+    "start"
+  ],
+  "execution": {
+    "duration_s": 0.185,
+    "nav2_success": true,
+    "validated_success": false,
+    "distance_traveled_m": 0.0,
+    "avg_velocity_ms": 0,
+    "max_velocity_ms": 0,
+    "final_pose": null,
+    "trajectory_points": 0,
+    "xy_error_m": 2.2548,
+    "yaw_error_rad": 0.5508
+  },
+  "trajectory": [],
+  "min_object_distance": null,
+  "system_metrics": {
+    "samples": 1,
+    "duration_s": 0,
+    "cpu": {
+      "mean": 41.3,
+      "max": 41.3,
+      "min": 41.3,
+      "std": 0.0
+    },
+    "memory": {
+      "mean": 16.3,
+      "max": 16.3,
+      "min": 16.3,
+      "std": 0.0
+    },
+    "swap": {
+      "mean": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "std": 0.0
+    },
+    "cpu_temp": {
+      "mean": 67.8,
+      "max": 67.8,
+      "min": 67.8,
+      "std": 0.0
+    },
+    "battery_start": -1.0,
+    "battery_end": -1.0,
+    "time_series": [
+      {
+        "t": 1772118925.67,
+        "cpu_pct": 41.3,
+        "mem_pct": 16.3,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.8,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          43.0,
+          41.0,
+          41.3,
+          40.4
+        ]
+      }
+    ]
+  },
+  "semantic": {
+    "objects_count": 5,
+    "objects_by_class": {
+      "chair": 3,
+      "person": 2
+    },
+    "valid_count": 5,
+    "timestamp": "2026-02-26T15:15:15.199656+00:00"
+  },
+  "spin_before": {
+    "duration_s": 0.38,
+    "success": true
+  }
+}

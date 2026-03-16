@@ -1,0 +1,43 @@
+{
+  "test_type": "baseline_forward",
+  "run_number": 2,
+  "timestamp": "2026-02-27T11:15:28.238773+00:00",
+  "robot_start_pose": [
+    5.9527,
+    2.6701,
+    -0.9016
+  ],
+  "start_offset_m": 4.856,
+  "execution": {
+    "duration_s": 0,
+    "nav2_success": false,
+    "validated_success": false,
+    "distance_traveled_m": 0,
+    "avg_velocity_ms": 0,
+    "max_velocity_ms": 0,
+    "final_pose": [
+      5.9527,
+      2.6701,
+      -0.9016
+    ],
+    "trajectory_points": 0,
+    "xy_error_m": 4.856,
+    "yaw_error_rad": 0
+  },
+  "trajectory": [],
+  "min_object_distance": null,
+  "system_metrics": {
+    "samples": 0
+  },
+  "semantic": {
+    "objects_count": 4,
+    "objects_by_class": {
+      "chair": 2,
+      "tv": 2
+    },
+    "valid_count": 4,
+    "timestamp": "2026-02-27T11:15:20.062953+00:00"
+  },
+  "skipped": true,
+  "skip_reason": "start_offset 4.856m after re-init"
+}

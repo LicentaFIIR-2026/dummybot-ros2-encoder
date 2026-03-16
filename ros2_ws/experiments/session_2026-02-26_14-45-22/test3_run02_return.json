@@ -1,0 +1,284 @@
+{
+  "test_type": "adaptive_return",
+  "run_number": 2,
+  "timestamp": "2026-02-26T12:53:24.013352+00:00",
+  "robot_start_pose": [
+    7.3294,
+    1.9253,
+    -2.5341
+  ],
+  "start_offset_m": 1.426,
+  "replanning": {
+    "segments": [
+      {
+        "segment": 1,
+        "timestamp": "2026-02-26T12:53:20.959739+00:00",
+        "plan_ms": 9.72,
+        "route_type": "SUS",
+        "route_nodes": [
+          9,
+          8,
+          6,
+          3,
+          2,
+          0
+        ],
+        "route_edges": [
+          35,
+          29,
+          21,
+          33,
+          13
+        ],
+        "route_cost": 173.739,
+        "penalties": {
+          "35": 11.06,
+          "29": 13.21,
+          "21": 7.24,
+          "33": 0.0,
+          "13": 16.58
+        },
+        "reason": "initial",
+        "outcome": "success"
+      }
+    ],
+    "total_reroutes": 0,
+    "final_route": [
+      9,
+      8,
+      6,
+      3,
+      2,
+      0
+    ],
+    "outcome": "success"
+  },
+  "route_analysis": {
+    "initial_route": [
+      9,
+      8,
+      6,
+      3,
+      2,
+      0
+    ],
+    "final_route": [
+      9,
+      8,
+      6,
+      3,
+      2,
+      0
+    ],
+    "initial_route_type": "SUS",
+    "route_changed": false,
+    "planning_total_ms": 9.72,
+    "n_segments": 1
+  },
+  "timing": {
+    "prescan_duration_s": 0.0,
+    "navigation_duration_s": 2.973,
+    "total_duration_s": 2.973
+  },
+  "execution": {
+    "duration_s": 2.973,
+    "nav2_success": true,
+    "validated_success": false,
+    "distance_traveled_m": 0.629,
+    "avg_velocity_ms": 0.176,
+    "max_velocity_ms": 0.331,
+    "final_pose": [
+      2.4789,
+      2.8979,
+      2.8672
+    ],
+    "trajectory_points": 6,
+    "xy_error_m": 6.2128,
+    "yaw_error_rad": 2.5322
+  },
+  "trajectory": [
+    [
+      3.0796,
+      2.7119,
+      2235.327
+    ],
+    [
+      3.0373,
+      2.7275,
+      2235.855
+    ],
+    [
+      2.9444,
+      2.758,
+      2236.355
+    ],
+    [
+      2.8484,
+      2.7875,
+      2236.888
+    ],
+    [
+      2.748,
+      2.8185,
+      2237.388
+    ],
+    [
+      2.5953,
+      2.8645,
+      2237.921
+    ]
+  ],
+  "min_object_distance": {
+    "min_distance_m": 0.284,
+    "closest_class": "person"
+  },
+  "penalties_before": {
+    "10": 16.7,
+    "11": 16.7,
+    "12": 16.58,
+    "13": 16.58,
+    "16": 2.16,
+    "17": 2.16,
+    "18": 13.52,
+    "19": 13.52,
+    "20": 7.24,
+    "21": 7.24,
+    "22": 12.5,
+    "23": 12.5,
+    "24": 16.24,
+    "25": 16.24,
+    "26": 22.98,
+    "27": 22.98,
+    "28": 13.21,
+    "29": 13.21,
+    "30": 20.14,
+    "31": 20.14,
+    "34": 11.06,
+    "35": 11.06,
+    "36": 21.59,
+    "37": 21.59
+  },
+  "penalties_after": {
+    "10": 16.7,
+    "11": 16.7,
+    "12": 16.58,
+    "13": 16.58,
+    "16": 2.16,
+    "17": 2.16,
+    "18": 13.52,
+    "19": 13.52,
+    "20": 7.24,
+    "21": 7.24,
+    "22": 12.5,
+    "23": 12.5,
+    "24": 16.24,
+    "25": 16.24,
+    "26": 22.98,
+    "27": 22.98,
+    "28": 13.21,
+    "29": 13.21,
+    "30": 20.14,
+    "31": 20.14,
+    "34": 11.06,
+    "35": 11.06,
+    "36": 21.59,
+    "37": 21.59
+  },
+  "system_metrics": {
+    "samples": 3,
+    "duration_s": 2.0,
+    "cpu": {
+      "mean": 33.0,
+      "max": 35.4,
+      "min": 31.2,
+      "std": 2.2
+    },
+    "memory": {
+      "mean": 13.2,
+      "max": 13.3,
+      "min": 13.2,
+      "std": 0.1
+    },
+    "swap": {
+      "mean": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "std": 0.0
+    },
+    "cpu_temp": {
+      "mean": 68.5,
+      "max": 69.4,
+      "min": 67.8,
+      "std": 0.8
+    },
+    "battery_start": -1.0,
+    "battery_end": -1.0,
+    "time_series": [
+      {
+        "t": 1772110400.947,
+        "cpu_pct": 35.4,
+        "mem_pct": 13.2,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 67.8,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          34.2,
+          33.2,
+          35.3,
+          38.9
+        ]
+      },
+      {
+        "t": 1772110401.949,
+        "cpu_pct": 31.2,
+        "mem_pct": 13.2,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 69.4,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          32.6,
+          32.0,
+          28.6,
+          30.6
+        ]
+      },
+      {
+        "t": 1772110402.952,
+        "cpu_pct": 32.5,
+        "mem_pct": 13.3,
+        "swap_pct": 0.0,
+        "disk_pct": 6.7,
+        "cpu_temp_c": 68.3,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          32.7,
+          34.7,
+          32.3,
+          32.3
+        ]
+      }
+    ]
+  },
+  "semantic": {
+    "objects_count": 51,
+    "objects_by_class": {
+      "bench": 2,
+      "potted plant": 10,
+      "couch": 1,
+      "bottle": 9,
+      "person": 25,
+      "refrigerator": 1,
+      "microwave": 1,
+      "chair": 2
+    },
+    "valid_count": 48,
+    "timestamp": "2026-02-26T12:52:54.969540+00:00"
+  },
+  "spin_before": {
+    "duration_s": 4.5,
+    "success": true,
+    "delta_deg": -157.6
+  }
+}

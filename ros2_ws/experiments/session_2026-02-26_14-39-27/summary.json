@@ -1,0 +1,25 @@
+{
+  "session": "session_2026-02-26_14-39-27",
+  "timestamp": "2026-02-26T12:44:56.524140+00:00",
+  "tests": {
+    "baseline": {
+      "total_runs": 2,
+      "validated_success_fwd": "0/2",
+      "validated_success_ret": "0/2",
+      "forward": {
+        "time_s": {},
+        "dist_m": {},
+        "error_m": {}
+      },
+      "return": {
+        "time_s": {},
+        "dist_m": {}
+      },
+      "navigation_only": {
+        "fwd_time_s": {},
+        "ret_time_s": {},
+        "prescan_time_s": {}
+      }
+    }
+  }
+}

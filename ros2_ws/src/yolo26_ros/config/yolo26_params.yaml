@@ -1,0 +1,21 @@
+# YOLO26 ROS2 Parameters - DummyBot
+yolo26_detector:
+  ros__parameters:
+    # Model configuration
+    model_path: '/home/saim/yolo26/yolo26n_ncnn_model'
+    input_size: 416  # 320, 416, or 640
+    confidence_threshold: 0.5
+    num_threads: 4
+    
+    # Topics - ADAPTAT PENTRU DUMMYBOT
+    image_topic: '/camera/image_raw'
+    detections_topic: '/yolo26/detections'
+    debug_image_topic: '/yolo26/debug_image'
+    
+    # Performance
+    publish_debug_image: true  # true pentru debugging
+    max_detection_rate: 10.0    # Hz, 0 = unlimited
+    
+    # Class filter (empty = all 80 COCO classes)
+    # Common: 0=person, 56=chair, 57=couch, 62=tv, 63=laptop
+    class_filter: []

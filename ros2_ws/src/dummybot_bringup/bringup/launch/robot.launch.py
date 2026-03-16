@@ -16,7 +16,7 @@ import os
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, SetEnvironmentVariable
 from launch.conditions import IfCondition, UnlessCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command
@@ -27,6 +27,8 @@ from launch_ros.substitutions import FindPackageShare
 from launch.substitutions import Command, FindExecutable, PathJoinSubstitution
 
 def generate_launch_description():
+    set_domain_id = SetEnvironmentVariable(
+        'ROS_DOMAIN_ID', '67')
     robot_description_content = Command(
         [
             PathJoinSubstitution([FindExecutable(name="xacro")]),

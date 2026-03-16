@@ -1,0 +1,42 @@
+{
+  "session": "session_2026-02-23_16-45-51",
+  "timestamp": "2026-02-23T14:46:30.803428+00:00",
+  "tests": {
+    "semantic": {
+      "runs": 1,
+      "success": "1/1",
+      "forward": {
+        "time_s": {
+          "mean": 20.028,
+          "std": 0,
+          "min": 20.028,
+          "max": 20.028,
+          "n": 1
+        },
+        "dist_m": {
+          "mean": 0.0,
+          "std": 0,
+          "min": 0.0,
+          "max": 0.0,
+          "n": 1
+        },
+        "error_m": {}
+      },
+      "return": {
+        "time_s": {},
+        "dist_m": {}
+      },
+      "planning_ms": {
+        "mean": 33.2,
+        "std": 0,
+        "min": 33.2,
+        "max": 33.2,
+        "n": 1
+      },
+      "route_types": [
+        "JOS"
+      ],
+      "penalties_changed": 0
+    }
+  }
+}

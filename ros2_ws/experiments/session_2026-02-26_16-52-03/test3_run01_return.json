@@ -1,0 +1,48 @@
+{
+  "test_type": "baseline_return",
+  "run_number": 1,
+  "timestamp": "2026-02-26T14:57:52.644783+00:00",
+  "robot_start_pose": [
+    4.4745,
+    2.4995,
+    -1.9006
+  ],
+  "start_offset_m": 3.379,
+  "execution": {
+    "duration_s": 0,
+    "nav2_success": false,
+    "validated_success": false,
+    "distance_traveled_m": 0,
+    "avg_velocity_ms": 0,
+    "max_velocity_ms": 0,
+    "final_pose": [
+      4.4745,
+      2.4995,
+      -1.9006
+    ],
+    "trajectory_points": 0,
+    "xy_error_m": 3.379,
+    "yaw_error_rad": 0
+  },
+  "trajectory": [],
+  "min_object_distance": null,
+  "system_metrics": {
+    "samples": 0
+  },
+  "semantic": {
+    "objects_count": 6,
+    "objects_by_class": {
+      "refrigerator": 2,
+      "microwave": 1,
+      "chair": 3
+    },
+    "valid_count": 3,
+    "timestamp": "2026-02-26T14:57:44.123510+00:00"
+  },
+  "skipped": true,
+  "skip_reason": "start_offset 3.379m after re-init",
+  "spin_before": {
+    "duration_s": 6.01,
+    "success": true
+  }
+}

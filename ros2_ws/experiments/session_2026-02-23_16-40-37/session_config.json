@@ -1,0 +1,98 @@
+{
+  "session_id": "session_2026-02-23_16-40-37",
+  "timestamp": "2026-02-23T14:42:12.097730+00:00",
+  "graph": {
+    "nodes": 10,
+    "coords": {
+      "0": {
+        "name": "start",
+        "x": 1.097,
+        "y": 2.588
+      },
+      "1": {
+        "name": "in1",
+        "x": 2.313,
+        "y": 3.215
+      },
+      "2": {
+        "name": "in2",
+        "x": 2.316,
+        "y": 2.54
+      },
+      "3": {
+        "name": "int2",
+        "x": 3.334,
+        "y": 2.844
+      },
+      "4": {
+        "name": "int3",
+        "x": 3.337,
+        "y": 2.473
+      },
+      "5": {
+        "name": "altB",
+        "x": 4.464,
+        "y": 2.563
+      },
+      "6": {
+        "name": "altA",
+        "x": 4.353,
+        "y": 3.299
+      },
+      "7": {
+        "name": "int4",
+        "x": 5.302,
+        "y": 2.564
+      },
+      "8": {
+        "name": "goal_old",
+        "x": 5.635,
+        "y": 3.335
+      },
+      "9": {
+        "name": "goal",
+        "x": 6.002,
+        "y": 2.649
+      }
+    }
+  },
+  "semantic": {
+    "objects_count": 55,
+    "objects_by_class": {
+      "unknown": 55
+    },
+    "valid_count": 0,
+    "timestamp": ""
+  },
+  "penalties": {
+    "10": 10.51,
+    "11": 10.51,
+    "12": 15.36,
+    "13": 15.36,
+    "14": 16.44,
+    "15": 16.44,
+    "16": 14.92,
+    "17": 14.92,
+    "18": 11.16,
+    "19": 11.16,
+    "20": 9.56,
+    "21": 9.56
+  },
+  "params": {
+    "odom_topic": "/platform/odom/filtered",
+    "sample_hz": 2.0,
+    "valid_classes": [
+      "backpack",
+      "bench",
+      "book",
+      "bottle",
+      "chair",
+      "cup",
+      "laptop",
+      "person",
+      "potted plant",
+      "suitcase",
+      "tv"
+    ]
+  }
+}

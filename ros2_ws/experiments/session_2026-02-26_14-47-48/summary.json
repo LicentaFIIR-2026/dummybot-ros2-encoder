@@ -1,0 +1,89 @@
+{
+  "session": "session_2026-02-26_14-47-48",
+  "timestamp": "2026-02-26T12:53:07.617669+00:00",
+  "tests": {
+    "baseline": {
+      "total_runs": 1,
+      "validated_success_fwd": "0/1",
+      "validated_success_ret": "0/1",
+      "forward": {
+        "time_s": {},
+        "dist_m": {},
+        "error_m": {}
+      },
+      "return": {
+        "time_s": {},
+        "dist_m": {}
+      },
+      "navigation_only": {
+        "fwd_time_s": {},
+        "ret_time_s": {},
+        "prescan_time_s": {}
+      }
+    },
+    "adaptive": {
+      "total_runs": 1,
+      "validated_success_fwd": "0/1",
+      "validated_success_ret": "0/1",
+      "forward": {
+        "time_s": {},
+        "dist_m": {},
+        "error_m": {}
+      },
+      "return": {
+        "time_s": {},
+        "dist_m": {}
+      },
+      "navigation_only": {
+        "fwd_time_s": {},
+        "ret_time_s": {},
+        "prescan_time_s": {}
+      },
+      "reroutes_fwd": {
+        "mean": 0,
+        "std": 0,
+        "min": 0,
+        "max": 0,
+        "n": 1
+      },
+      "reroutes_ret": {
+        "mean": 0,
+        "std": 0,
+        "min": 0,
+        "max": 0,
+        "n": 1
+      },
+      "total_reroutes": 0,
+      "runs_with_reroute": 0,
+      "planning_ms": {
+        "mean": 8.16,
+        "std": 0.113,
+        "min": 8.08,
+        "max": 8.24,
+        "n": 2
+      },
+      "route_analysis": {
+        "route_types": [
+          "SUS",
+          "JOS"
+        ],
+        "routes_changed": 0,
+        "total_legs": 2
+      }
+    }
+  },
+  "comparison": {
+    "nav_time_fwd_s": {
+      "baseline": 0,
+      "adaptive": 0
+    },
+    "min_obj_dist_m": {
+      "baseline": 0,
+      "adaptive": 0
+    },
+    "success_rate": {
+      "baseline": "0/1",
+      "adaptive": "0/1"
+    }
+  }
+}

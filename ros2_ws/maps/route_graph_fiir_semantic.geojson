@@ -1,0 +1,1193 @@
+{
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::3857"
+    }
+  },
+  "type": "FeatureCollection",
+  "name": "graph",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "frame": "map",
+        "id": 0,
+        "name": "start"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.4,
+          1.0
+        ]
+      },
+      "properties": {
+        "frame": "map",
+        "id": 3,
+        "name": "in_top"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.4,
+          0.0
+        ]
+      },
+      "properties": {
+        "frame": "map",
+        "id": 2,
+        "name": "center"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.4,
+          -0.5
+        ]
+      },
+      "properties": {
+        "frame": "map",
+        "id": 4,
+        "name": "in_bot"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8,
+          1.0
+        ]
+      },
+      "properties": {
+        "frame": "map",
+        "id": 5,
+        "name": "out_top"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8,
+          -0.5
+        ]
+      },
+      "properties": {
+        "frame": "map",
+        "id": 6,
+        "name": "out_bot"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.7,
+          0.0
+        ]
+      },
+      "properties": {
+        "frame": "map",
+        "id": 7,
+        "name": "goal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              2.4,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 10,
+        "startid": 0,
+        "endid": 3,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 28.69,
+          "speed_limit": 60,
+          "class": "potted plant",
+          "semantic_objects": [
+            {
+              "obj_id": "potted plant_19",
+              "class": "potted plant",
+              "mobility": "static",
+              "x": 1.659,
+              "y": -0.01,
+              "confidence": 0.92,
+              "observations": 4134,
+              "distance_to_edge": 0.391
+            },
+            {
+              "obj_id": "chair_20",
+              "class": "chair",
+              "mobility": "static",
+              "x": 1.915,
+              "y": 0.259,
+              "confidence": 0.69,
+              "observations": 269,
+              "distance_to_edge": 0.321
+            },
+            {
+              "obj_id": "dining table_21",
+              "class": "dining table",
+              "mobility": "static",
+              "x": 1.919,
+              "y": -0.089,
+              "confidence": 0.65,
+              "observations": 27,
+              "distance_to_edge": 0.606
+            },
+            {
+              "obj_id": "potted plant_33",
+              "class": "potted plant",
+              "mobility": "static",
+              "x": 1.751,
+              "y": -0.53,
+              "confidence": 0.72,
+              "observations": 51,
+              "distance_to_edge": 0.867
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              2.4,
+              1.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 11,
+        "startid": 3,
+        "endid": 0,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 28.69,
+          "speed_limit": 60,
+          "class": "potted plant",
+          "semantic_objects": [
+            {
+              "obj_id": "potted plant_19",
+              "class": "potted plant",
+              "mobility": "static",
+              "x": 1.659,
+              "y": -0.01,
+              "confidence": 0.92,
+              "observations": 4134,
+              "distance_to_edge": 0.391
+            },
+            {
+              "obj_id": "chair_20",
+              "class": "chair",
+              "mobility": "static",
+              "x": 1.915,
+              "y": 0.259,
+              "confidence": 0.69,
+              "observations": 269,
+              "distance_to_edge": 0.321
+            },
+            {
+              "obj_id": "dining table_21",
+              "class": "dining table",
+              "mobility": "static",
+              "x": 1.919,
+              "y": -0.089,
+              "confidence": 0.65,
+              "observations": 27,
+              "distance_to_edge": 0.606
+            },
+            {
+              "obj_id": "potted plant_33",
+              "class": "potted plant",
+              "mobility": "static",
+              "x": 1.751,
+              "y": -0.53,
+              "confidence": 0.72,
+              "observations": 51,
+              "distance_to_edge": 0.867
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              3.4,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 12,
+        "startid": 0,
+        "endid": 2,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 38.44,
+          "speed_limit": 60,
+          "class": "potted plant",
+          "semantic_objects": [
+            {
+              "obj_id": "potted plant_19",
+              "class": "potted plant",
+              "mobility": "static",
+              "x": 1.659,
+              "y": -0.01,
+              "confidence": 0.92,
+              "observations": 4134,
+              "distance_to_edge": 0.01
+            },
+            {
+              "obj_id": "chair_20",
+              "class": "chair",
+              "mobility": "static",
+              "x": 1.915,
+              "y": 0.259,
+              "confidence": 0.69,
+              "observations": 269,
+              "distance_to_edge": 0.259
+            },
+            {
+              "obj_id": "dining table_21",
+              "class": "dining table",
+              "mobility": "static",
+              "x": 1.919,
+              "y": -0.089,
+              "confidence": 0.65,
+              "observations": 27,
+              "distance_to_edge": 0.089
+            },
+            {
+              "obj_id": "potted plant_33",
+              "class": "potted plant",
+              "mobility": "static",
+              "x": 1.751,
+              "y": -0.53,
+              "confidence": 0.72,
+              "observations": 51,
+              "distance_to_edge": 0.53
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.4,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 13,
+        "startid": 2,
+        "endid": 0,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 38.44,
+          "speed_limit": 60,
+          "class": "potted plant",
+          "semantic_objects": [
+            {
+              "obj_id": "potted plant_19",
+              "class": "potted plant",
+              "mobility": "static",
+              "x": 1.659,
+              "y": -0.01,
+              "confidence": 0.92,
+              "observations": 4134,
+              "distance_to_edge": 0.01
+            },
+            {
+              "obj_id": "chair_20",
+              "class": "chair",
+              "mobility": "static",
+              "x": 1.915,
+              "y": 0.259,
+              "confidence": 0.69,
+              "observations": 269,
+              "distance_to_edge": 0.259
+            },
+            {
+              "obj_id": "dining table_21",
+              "class": "dining table",
+              "mobility": "static",
+              "x": 1.919,
+              "y": -0.089,
+              "confidence": 0.65,
+              "observations": 27,
+              "distance_to_edge": 0.089
+            },
+            {
+              "obj_id": "potted plant_33",
+              "class": "potted plant",
+              "mobility": "static",
+              "x": 1.751,
+              "y": -0.53,
+              "confidence": 0.72,
+              "observations": 51,
+              "distance_to_edge": 0.53
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              2.4,
+              -0.5
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 14,
+        "startid": 0,
+        "endid": 4,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 35.74,
+          "speed_limit": 60,
+          "class": "potted plant",
+          "semantic_objects": [
+            {
+              "obj_id": "potted plant_19",
+              "class": "potted plant",
+              "mobility": "static",
+              "x": 1.659,
+              "y": -0.01,
+              "confidence": 0.92,
+              "observations": 4134,
+              "distance_to_edge": 0.212
+            },
+            {
+              "obj_id": "chair_20",
+              "class": "chair",
+              "mobility": "static",
+              "x": 1.915,
+              "y": 0.259,
+              "confidence": 0.69,
+              "observations": 269,
+              "distance_to_edge": 0.551
+            },
+            {
+              "obj_id": "dining table_21",
+              "class": "dining table",
+              "mobility": "static",
+              "x": 1.919,
+              "y": -0.089,
+              "confidence": 0.65,
+              "observations": 27,
+              "distance_to_edge": 0.225
+            },
+            {
+              "obj_id": "potted plant_33",
+              "class": "potted plant",
+              "mobility": "static",
+              "x": 1.751,
+              "y": -0.53,
+              "confidence": 0.72,
+              "observations": 51,
+              "distance_to_edge": 0.247
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              2.4,
+              -0.5
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 15,
+        "startid": 4,
+        "endid": 0,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 35.74,
+          "speed_limit": 60,
+          "class": "potted plant",
+          "semantic_objects": [
+            {
+              "obj_id": "potted plant_19",
+              "class": "potted plant",
+              "mobility": "static",
+              "x": 1.659,
+              "y": -0.01,
+              "confidence": 0.92,
+              "observations": 4134,
+              "distance_to_edge": 0.212
+            },
+            {
+              "obj_id": "chair_20",
+              "class": "chair",
+              "mobility": "static",
+              "x": 1.915,
+              "y": 0.259,
+              "confidence": 0.69,
+              "observations": 269,
+              "distance_to_edge": 0.551
+            },
+            {
+              "obj_id": "dining table_21",
+              "class": "dining table",
+              "mobility": "static",
+              "x": 1.919,
+              "y": -0.089,
+              "confidence": 0.65,
+              "observations": 27,
+              "distance_to_edge": 0.225
+            },
+            {
+              "obj_id": "potted plant_33",
+              "class": "potted plant",
+              "mobility": "static",
+              "x": 1.751,
+              "y": -0.53,
+              "confidence": 0.72,
+              "observations": 51,
+              "distance_to_edge": 0.247
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              2.4,
+              1.0
+            ],
+            [
+              3.4,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 16,
+        "startid": 3,
+        "endid": 2,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 9.28,
+          "speed_limit": 60,
+          "class": "chair",
+          "semantic_objects": [
+            {
+              "obj_id": "potted plant_19",
+              "class": "potted plant",
+              "mobility": "static",
+              "x": 1.659,
+              "y": -0.01,
+              "confidence": 0.92,
+              "observations": 4134,
+              "distance_to_edge": 1.239
+            },
+            {
+              "obj_id": "chair_20",
+              "class": "chair",
+              "mobility": "static",
+              "x": 1.915,
+              "y": 0.259,
+              "confidence": 0.69,
+              "observations": 269,
+              "distance_to_edge": 0.867
+            },
+            {
+              "obj_id": "dining table_21",
+              "class": "dining table",
+              "mobility": "static",
+              "x": 1.919,
+              "y": -0.089,
+              "confidence": 0.65,
+              "observations": 27,
+              "distance_to_edge": 1.11
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.4,
+              0.0
+            ],
+            [
+              2.4,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 17,
+        "startid": 2,
+        "endid": 3,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 9.28,
+          "speed_limit": 60,
+          "class": "chair",
+          "semantic_objects": [
+            {
+              "obj_id": "potted plant_19",
+              "class": "potted plant",
+              "mobility": "static",
+              "x": 1.659,
+              "y": -0.01,
+              "confidence": 0.92,
+              "observations": 4134,
+              "distance_to_edge": 1.239
+            },
+            {
+              "obj_id": "chair_20",
+              "class": "chair",
+              "mobility": "static",
+              "x": 1.915,
+              "y": 0.259,
+              "confidence": 0.69,
+              "observations": 269,
+              "distance_to_edge": 0.867
+            },
+            {
+              "obj_id": "dining table_21",
+              "class": "dining table",
+              "mobility": "static",
+              "x": 1.919,
+              "y": -0.089,
+              "confidence": 0.65,
+              "observations": 27,
+              "distance_to_edge": 1.11
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              2.4,
+              -0.5
+            ],
+            [
+              3.4,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 18,
+        "startid": 4,
+        "endid": 2,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 21.53,
+          "speed_limit": 60,
+          "class": "potted plant",
+          "semantic_objects": [
+            {
+              "obj_id": "potted plant_19",
+              "class": "potted plant",
+              "mobility": "static",
+              "x": 1.659,
+              "y": -0.01,
+              "confidence": 0.92,
+              "observations": 4134,
+              "distance_to_edge": 0.889
+            },
+            {
+              "obj_id": "chair_20",
+              "class": "chair",
+              "mobility": "static",
+              "x": 1.915,
+              "y": 0.259,
+              "confidence": 0.69,
+              "observations": 269,
+              "distance_to_edge": 0.901
+            },
+            {
+              "obj_id": "dining table_21",
+              "class": "dining table",
+              "mobility": "static",
+              "x": 1.919,
+              "y": -0.089,
+              "confidence": 0.65,
+              "observations": 27,
+              "distance_to_edge": 0.633
+            },
+            {
+              "obj_id": "potted plant_33",
+              "class": "potted plant",
+              "mobility": "static",
+              "x": 1.751,
+              "y": -0.53,
+              "confidence": 0.72,
+              "observations": 51,
+              "distance_to_edge": 0.65
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.4,
+              0.0
+            ],
+            [
+              2.4,
+              -0.5
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 19,
+        "startid": 2,
+        "endid": 4,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 21.53,
+          "speed_limit": 60,
+          "class": "potted plant",
+          "semantic_objects": [
+            {
+              "obj_id": "potted plant_19",
+              "class": "potted plant",
+              "mobility": "static",
+              "x": 1.659,
+              "y": -0.01,
+              "confidence": 0.92,
+              "observations": 4134,
+              "distance_to_edge": 0.889
+            },
+            {
+              "obj_id": "chair_20",
+              "class": "chair",
+              "mobility": "static",
+              "x": 1.915,
+              "y": 0.259,
+              "confidence": 0.69,
+              "observations": 269,
+              "distance_to_edge": 0.901
+            },
+            {
+              "obj_id": "dining table_21",
+              "class": "dining table",
+              "mobility": "static",
+              "x": 1.919,
+              "y": -0.089,
+              "confidence": 0.65,
+              "observations": 27,
+              "distance_to_edge": 0.633
+            },
+            {
+              "obj_id": "potted plant_33",
+              "class": "potted plant",
+              "mobility": "static",
+              "x": 1.751,
+              "y": -0.53,
+              "confidence": 0.72,
+              "observations": 51,
+              "distance_to_edge": 0.65
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.4,
+              0.0
+            ],
+            [
+              4.8,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 20,
+        "startid": 2,
+        "endid": 5,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 0.97,
+          "speed_limit": 60,
+          "class": "dining table",
+          "semantic_objects": [
+            {
+              "obj_id": "dining table_21",
+              "class": "dining table",
+              "mobility": "static",
+              "x": 1.919,
+              "y": -0.089,
+              "confidence": 0.65,
+              "observations": 27,
+              "distance_to_edge": 1.484
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              4.8,
+              1.0
+            ],
+            [
+              3.4,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 21,
+        "startid": 5,
+        "endid": 2,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 0.97,
+          "speed_limit": 60,
+          "class": "dining table",
+          "semantic_objects": [
+            {
+              "obj_id": "dining table_21",
+              "class": "dining table",
+              "mobility": "static",
+              "x": 1.919,
+              "y": -0.089,
+              "confidence": 0.65,
+              "observations": 27,
+              "distance_to_edge": 1.484
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.4,
+              0.0
+            ],
+            [
+              4.8,
+              -0.5
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 22,
+        "startid": 2,
+        "endid": 6,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 1.95,
+          "speed_limit": 60,
+          "class": "bench",
+          "semantic_objects": [
+            {
+              "obj_id": "bench_5",
+              "class": "bench",
+              "mobility": "static",
+              "x": 3.575,
+              "y": -1.644,
+              "confidence": 0.65,
+              "observations": 39,
+              "distance_to_edge": 1.49
+            },
+            {
+              "obj_id": "dining table_21",
+              "class": "dining table",
+              "mobility": "static",
+              "x": 1.919,
+              "y": -0.089,
+              "confidence": 0.65,
+              "observations": 27,
+              "distance_to_edge": 1.484
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              4.8,
+              -0.5
+            ],
+            [
+              3.4,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 23,
+        "startid": 6,
+        "endid": 2,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 1.95,
+          "speed_limit": 60,
+          "class": "bench",
+          "semantic_objects": [
+            {
+              "obj_id": "bench_5",
+              "class": "bench",
+              "mobility": "static",
+              "x": 3.575,
+              "y": -1.644,
+              "confidence": 0.65,
+              "observations": 39,
+              "distance_to_edge": 1.49
+            },
+            {
+              "obj_id": "dining table_21",
+              "class": "dining table",
+              "mobility": "static",
+              "x": 1.919,
+              "y": -0.089,
+              "confidence": 0.65,
+              "observations": 27,
+              "distance_to_edge": 1.484
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              3.4,
+              0.0
+            ],
+            [
+              6.7,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 24,
+        "startid": 2,
+        "endid": 7,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 0.97,
+          "speed_limit": 60,
+          "class": "dining table",
+          "semantic_objects": [
+            {
+              "obj_id": "dining table_21",
+              "class": "dining table",
+              "mobility": "static",
+              "x": 1.919,
+              "y": -0.089,
+              "confidence": 0.65,
+              "observations": 27,
+              "distance_to_edge": 1.484
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              6.7,
+              0.0
+            ],
+            [
+              3.4,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 25,
+        "startid": 7,
+        "endid": 2,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {
+          "penalty": 0.97,
+          "speed_limit": 60,
+          "class": "dining table",
+          "semantic_objects": [
+            {
+              "obj_id": "dining table_21",
+              "class": "dining table",
+              "mobility": "static",
+              "x": 1.919,
+              "y": -0.089,
+              "confidence": 0.65,
+              "observations": 27,
+              "distance_to_edge": 1.484
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              4.8,
+              1.0
+            ],
+            [
+              6.7,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 26,
+        "startid": 5,
+        "endid": 7,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              6.7,
+              0.0
+            ],
+            [
+              4.8,
+              1.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 27,
+        "startid": 7,
+        "endid": 5,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              4.8,
+              -0.5
+            ],
+            [
+              6.7,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 28,
+        "startid": 6,
+        "endid": 7,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              6.7,
+              0.0
+            ],
+            [
+              4.8,
+              -0.5
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 29,
+        "startid": 7,
+        "endid": 6,
+        "cost": 0,
+        "overridable": true,
+        "metadata": {}
+      }
+    }
+  ]
+}

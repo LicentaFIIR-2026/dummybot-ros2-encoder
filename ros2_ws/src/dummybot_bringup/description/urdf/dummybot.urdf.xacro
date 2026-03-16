@@ -65,16 +65,16 @@
   <xacro:property name="ticks_per_revolution" value="1245"/>
   
   <!-- PID Controller Parameters (INT pentru ESP32, ordine: kp kd ki ko) -->
-  <xacro:property name="pid_kp" value="300"/>
-  <xacro:property name="pid_kd" value="70"/>
-  <xacro:property name="pid_ki" value="0"/>
-  <xacro:property name="pid_ko" value="14"/>
+  <xacro:property name="pid_kp" value="140"/>
+  <xacro:property name="pid_kd" value="20"/>
+  <xacro:property name="pid_ki" value="100"/>
+  <xacro:property name="pid_ko" value="20"/>
   
   <!-- Calibration Factors (FLOAT) -->
-  <xacro:property name="calibration_fl" value="0.875"/>
-  <xacro:property name="calibration_fr" value="1.065"/>
-  <xacro:property name="calibration_rl" value="1.025"/>
-  <xacro:property name="calibration_rr" value="1.025"/>
+  <xacro:property name="calibration_fl" value="1.0"/>
+  <xacro:property name="calibration_fr" value="1.0"/>
+  <xacro:property name="calibration_rl" value="1.0"/>
+  <xacro:property name="calibration_rr" value="1.0"/>
 
   <!-- Materials -->
   <material name="black">

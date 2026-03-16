@@ -35,10 +35,27 @@ def generate_launch_description():
     
     use_yolo = LaunchConfiguration('use_yolo')
 
+    # YOLO Object Detection (YOLOv8-nano - OPTIMIZED)
+    use_yolo8_arg = DeclareLaunchArgument(
+        'use_yolo8',
+        default_value='false',  # ← Activat by default
+        description='Launch YOLOv8-nano object detection'
+    )
+    use_yolo8 = LaunchConfiguration('use_yolo8')
+
+    launch_yolo8 = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            PathJoinSubstitution([
+                FindPackageShare('media_pipe_ros2'),
+                'launch',
+                'yolo_object_detector.launch.py'])]),
+        condition=IfCondition(use_yolo8)
+    )
+
     # MediaPipe Object Detection
     use_mediapipe_arg = DeclareLaunchArgument(
         'use_mediapipe',
-        default_value='true',
+        default_value='false',
         description='Launch MediaPipe object detection'
     )
     use_mediapipe = LaunchConfiguration('use_mediapipe')
@@ -115,4 +132,6 @@ def generate_launch_description():
     ld.add_action(launch_yolo)
     ld.add_action(use_mediapipe_arg)
     ld.add_action(launch_mediapipe)
+    ld.add_action(use_yolo8_arg)
+    ld.add_action(launch_yolo8)
     return ld

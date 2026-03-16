@@ -1,0 +1,122 @@
+{
+  "session_id": "session_2026-02-26_14-56-58",
+  "timestamp": "2026-02-26T12:57:59.109213+00:00",
+  "graph": {
+    "nodes": 10,
+    "coords": {
+      "0": {
+        "name": "start",
+        "x": 1.0,
+        "y": 0.0
+      },
+      "1": {
+        "name": "in1",
+        "x": 2.0,
+        "y": -0.15
+      },
+      "2": {
+        "name": "in2",
+        "x": 1.7,
+        "y": 0.8
+      },
+      "3": {
+        "name": "int2",
+        "x": 3.0,
+        "y": 0.5
+      },
+      "4": {
+        "name": "int3",
+        "x": 3.0,
+        "y": -0.15
+      },
+      "5": {
+        "name": "altB",
+        "x": 4.0,
+        "y": -0.15
+      },
+      "6": {
+        "name": "altA",
+        "x": 4.7,
+        "y": 1.0
+      },
+      "7": {
+        "name": "int4",
+        "x": 5.0,
+        "y": 0.22
+      },
+      "8": {
+        "name": "goal_old",
+        "x": 5.7,
+        "y": 1.0
+      },
+      "9": {
+        "name": "goal",
+        "x": 6.6,
+        "y": 0.7
+      }
+    }
+  },
+  "semantic": {
+    "objects_count": 2,
+    "objects_by_class": {
+      "potted plant": 2
+    },
+    "valid_count": 2,
+    "timestamp": "2026-02-26T12:57:44.987389+00:00"
+  },
+  "penalties_at_start": {
+    "10": 29.28,
+    "11": 29.28,
+    "12": 27.58,
+    "13": 27.58,
+    "14": 26.58,
+    "15": 26.58,
+    "16": 23.63,
+    "17": 23.63,
+    "18": 32.57,
+    "19": 32.57,
+    "20": 35.37,
+    "21": 35.37,
+    "22": 34.19,
+    "23": 34.19,
+    "24": 32.8,
+    "25": 32.8,
+    "26": 25.8,
+    "27": 25.8,
+    "28": 31.37,
+    "29": 31.37,
+    "30": 20.73,
+    "31": 20.73,
+    "32": 26.99,
+    "33": 26.99,
+    "34": 15.38,
+    "35": 15.38,
+    "36": 19.07,
+    "37": 19.07
+  },
+  "validation": {
+    "max_start_offset_m": 1.5,
+    "min_success_dist_m": 1.0,
+    "max_success_error_m": 2.0,
+    "min_success_duration_s": 3.0,
+    "max_consecutive_fails": 2
+  },
+  "params": {
+    "odom_topic": "/platform/odom/filtered",
+    "sample_hz": 2.0,
+    "valid_classes": [
+      "backpack",
+      "bench",
+      "book",
+      "bottle",
+      "chair",
+      "cup",
+      "laptop",
+      "person",
+      "potted plant",
+      "suitcase",
+      "tv"
+    ],
+    "has_psutil": true
+  }
+}
