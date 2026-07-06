@@ -1,0 +1,166 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "description": "SAIM Xplorer Semantic Object Map",
+    "frame": "map",
+    "generated_by": "semantic_localizer",
+    "last_updated": "2026-03-16T11:06:22.945132+00:00",
+    "object_count": 7
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1369,
+          -0.059
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_0",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.934,
+        "observation_count": 1080,
+        "best_score": 29.685,
+        "first_seen": "2026-03-16T11:05:18.970999+00:00",
+        "last_seen": "2026-03-16T11:06:14.364421+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.2734,
+          1.0397
+        ]
+      },
+      "properties": {
+        "obj_id": "dining table_1",
+        "class_name": "dining table",
+        "class_id": 60,
+        "mobility": "static",
+        "confidence": 0.61,
+        "observation_count": 419,
+        "best_score": 5.392,
+        "first_seen": "2026-03-16T11:05:18.972663+00:00",
+        "last_seen": "2026-03-16T11:06:12.854034+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7248,
+          1.1175
+        ]
+      },
+      "properties": {
+        "obj_id": "dining table_2",
+        "class_name": "dining table",
+        "class_id": 60,
+        "mobility": "static",
+        "confidence": 0.601,
+        "observation_count": 283,
+        "best_score": 4.934,
+        "first_seen": "2026-03-16T11:05:20.109412+00:00",
+        "last_seen": "2026-03-16T11:06:13.254541+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.0847,
+          0.8715
+        ]
+      },
+      "properties": {
+        "obj_id": "dining table_3",
+        "class_name": "dining table",
+        "class_id": 60,
+        "mobility": "static",
+        "confidence": 0.599,
+        "observation_count": 22,
+        "best_score": 5.909,
+        "first_seen": "2026-03-16T11:05:21.584450+00:00",
+        "last_seen": "2026-03-16T11:06:04.889623+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5284,
+          0.788
+        ]
+      },
+      "properties": {
+        "obj_id": "dining table_4",
+        "class_name": "dining table",
+        "class_id": 60,
+        "mobility": "static",
+        "confidence": 0.592,
+        "observation_count": 24,
+        "best_score": 6.859,
+        "first_seen": "2026-03-16T11:05:29.494410+00:00",
+        "last_seen": "2026-03-16T11:06:10.895026+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1749,
+          0.5683
+        ]
+      },
+      "properties": {
+        "obj_id": "dining table_5",
+        "class_name": "dining table",
+        "class_id": 60,
+        "mobility": "static",
+        "confidence": 0.573,
+        "observation_count": 2,
+        "best_score": 8.232,
+        "first_seen": "2026-03-16T11:05:29.495463+00:00",
+        "last_seen": "2026-03-16T11:06:04.889572+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.1765,
+          0.1353
+        ]
+      },
+      "properties": {
+        "obj_id": "dining table_6",
+        "class_name": "dining table",
+        "class_id": 60,
+        "mobility": "static",
+        "confidence": 0.58,
+        "observation_count": 26,
+        "best_score": 33.119,
+        "first_seen": "2026-03-16T11:05:54.714042+00:00",
+        "last_seen": "2026-03-16T11:06:14.364490+00:00",
+        "ttl_seconds": -1.0
+      }
+    }
+  ]
+}

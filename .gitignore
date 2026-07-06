@@ -29,3 +29,7 @@ install/
 log/
 ros2_ws/src/ros2_control/
 ros2_ws/src/ros2_controllers/
+
+# Search/log dumps
+domain_search_results.txt
+*.pt

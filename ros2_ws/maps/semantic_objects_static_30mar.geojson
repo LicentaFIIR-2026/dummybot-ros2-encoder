@@ -1,0 +1,205 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "description": "SAIM Xplorer - Static Semantic Objects (FIIR Corridor)",
+    "frame": "map",
+    "source": "manual_survey",
+    "version": "sprint4_v1",
+    "last_updated": "2026-03-20T00:00:00+00:00"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [0.3, 0.0] },
+      "properties": {
+        "obj_id": "restroom_men",
+        "class_name": "restroom",
+        "source": "manual",
+        "nearest_node_id": 0,
+        "attributes": {
+          "type": "men",
+          "floor": "ground",
+          "location_description": "Western end of corridor, near CB202"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [0.3, 6.5] },
+      "properties": {
+        "obj_id": "restroom_women",
+        "class_name": "restroom",
+        "source": "manual",
+        "nearest_node_id": 4,
+        "attributes": {
+          "type": "women",
+          "floor": "ground",
+          "location_description": "Western end of corridor, past CB204"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [2.2, 0.0] },
+      "properties": {
+        "obj_id": "lab_cb202",
+        "class_name": "laboratory",
+        "source": "manual",
+        "nearest_node_id": 8,
+        "attributes": {
+          "room_number": "CB202",
+          "department": "automatica",
+          "access": "card",
+          "floor": "ground",
+          "location_description": "South side, near hall entry"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [8.2, 1.65] },
+      "properties": {
+        "obj_id": "lab_cb203_entrance",
+        "class_name": "laboratory",
+        "source": "manual",
+        "nearest_node_id": 22,
+        "attributes": {
+          "room_number": "CB203",
+          "department": "automatica",
+          "access": "card",
+          "floor": "ground",
+          "entrance": "main",
+          "location_description": "Eastern end, entrance side"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [8.2, 3.67] },
+      "properties": {
+        "obj_id": "lab_cb203_exit",
+        "class_name": "laboratory",
+        "source": "manual",
+        "nearest_node_id": 23,
+        "attributes": {
+          "room_number": "CB203",
+          "department": "automatica",
+          "access": "card",
+          "floor": "ground",
+          "entrance": "exit",
+          "location_description": "Eastern end, exit side"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [2.2, 4.8] },
+      "properties": {
+        "obj_id": "lab_cb204",
+        "class_name": "laboratory",
+        "source": "manual",
+        "nearest_node_id": 5,
+        "attributes": {
+          "room_number": "CB204",
+          "department": "automatica",
+          "access": "card",
+          "floor": "ground",
+          "location_description": "West side, near toilets"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [4.5, -0.8] },
+      "properties": {
+        "obj_id": "radiator_main",
+        "class_name": "radiator",
+        "source": "manual",
+        "nearest_node_id": 9,
+        "attributes": {
+          "location_description": "South wall, center of corridor"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [7.5, -0.95] },
+      "properties": {
+        "obj_id": "plant_1",
+        "class_name": "potted plant",
+        "source": "manual",
+        "nearest_node_id": 21,
+        "attributes": {
+          "species": "TODO",
+          "size": "TODO",
+          "pot_color": "TODO",
+          "location_description": "South wall, easternmost plant"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [7.0, -0.95] },
+      "properties": {
+        "obj_id": "plant_2",
+        "class_name": "potted plant",
+        "source": "manual",
+        "nearest_node_id": 20,
+        "attributes": {
+          "species": "TODO",
+          "size": "TODO",
+          "pot_color": "TODO",
+          "location_description": "South wall, middle plant"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [6.55, -0.95] },
+      "properties": {
+        "obj_id": "plant_3",
+        "class_name": "potted plant",
+        "source": "manual",
+        "nearest_node_id": 19,
+        "attributes": {
+          "species": "TODO",
+          "size": "TODO",
+          "pot_color": "TODO",
+          "location_description": "South wall, westernmost of east cluster"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [7.7, 5.4] },
+      "properties": {
+        "obj_id": "plant_4",
+        "class_name": "potted plant",
+        "source": "manual",
+        "nearest_node_id": 13,
+        "attributes": {
+          "species": "TODO",
+          "size": "TODO",
+          "pot_color": "TODO",
+          "location_description": "North area, easternmost plant"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [6.55, 5.4] },
+      "properties": {
+        "obj_id": "plant_5",
+        "class_name": "potted plant",
+        "source": "manual",
+        "nearest_node_id": 14,
+        "attributes": {
+          "species": "TODO",
+          "size": "TODO",
+          "pot_color": "TODO",
+          "location_description": "North area, western plant"
+        }
+      }
+    }
+  ]
+}

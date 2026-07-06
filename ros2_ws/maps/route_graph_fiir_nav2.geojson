@@ -13,14 +13,17 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1.0,
-          0.0
+          4.42,
+          1.1
         ]
       },
       "properties": {
         "frame": "map",
         "id": 0,
-        "name": "start"
+        "name": "start",
+        "kind": "start",
+        "orientation_z": 1.0,
+        "orientation_w": 0.0
       }
     },
     {
@@ -28,29 +31,14 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.4,
-          1.0
-        ]
-      },
-      "properties": {
-        "frame": "map",
-        "id": 3,
-        "name": "in_top"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3.4,
-          0.0
+          6.617,
+          1.1
         ]
       },
       "properties": {
         "frame": "map",
         "id": 2,
-        "name": "center"
+        "name": "drum3"
       }
     },
     {
@@ -58,14 +46,29 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.4,
-          -0.5
+          5.453,
+          1.508
+        ]
+      },
+      "properties": {
+        "frame": "map",
+        "id": 3,
+        "name": "drum1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6,
+          0.88
         ]
       },
       "properties": {
         "frame": "map",
         "id": 4,
-        "name": "in_bot"
+        "name": "drum2"
       }
     },
     {
@@ -73,14 +76,14 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          4.8,
-          1.0
+          7.829,
+          1.41
         ]
       },
       "properties": {
         "frame": "map",
         "id": 5,
-        "name": "out_top"
+        "name": "drum4"
       }
     },
     {
@@ -88,14 +91,14 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          4.8,
-          -0.5
+          7.942,
+          0.88
         ]
       },
       "properties": {
         "frame": "map",
         "id": 6,
-        "name": "out_bot"
+        "name": "drum5"
       }
     },
     {
@@ -103,14 +106,17 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          6.7,
-          0.0
+          8.5,
+          1.1
         ]
       },
       "properties": {
         "frame": "map",
         "id": 7,
-        "name": "goal"
+        "name": "goal",
+        "kind": "goal",
+        "orientation_z": 0.0,
+        "orientation_w": 1.0
       }
     },
     {
@@ -120,12 +126,12 @@
         "coordinates": [
           [
             [
-              1.0,
-              0.0
+              4.42,
+              1.1
             ],
             [
-              2.4,
-              1.0
+              5.453,
+              1.508
             ]
           ]
         ]
@@ -137,8 +143,8 @@
         "cost": 0,
         "overridable": true,
         "metadata": {
-          "penalty": 28.32,
-          "speed_limit": 60.0
+          "penalty": 39.27,
+          "speed_limit": 30.0
         }
       }
     },
@@ -149,12 +155,12 @@
         "coordinates": [
           [
             [
-              2.4,
-              1.0
+              5.453,
+              1.508
             ],
             [
-              1.0,
-              0.0
+              4.42,
+              1.1
             ]
           ]
         ]
@@ -166,8 +172,8 @@
         "cost": 0,
         "overridable": true,
         "metadata": {
-          "penalty": 28.32,
-          "speed_limit": 60.0
+          "penalty": 39.27,
+          "speed_limit": 30.0
         }
       }
     },
@@ -178,12 +184,12 @@
         "coordinates": [
           [
             [
-              1.0,
-              0.0
+              4.42,
+              1.1
             ],
             [
-              3.4,
-              0.0
+              6.617,
+              1.1
             ]
           ]
         ]
@@ -195,8 +201,8 @@
         "cost": 0,
         "overridable": true,
         "metadata": {
-          "penalty": 38.03,
-          "speed_limit": 60.0
+          "penalty": 46.58,
+          "speed_limit": 30.0
         }
       }
     },
@@ -207,12 +213,12 @@
         "coordinates": [
           [
             [
-              3.4,
-              0.0
+              6.617,
+              1.1
             ],
             [
-              1.0,
-              0.0
+              4.42,
+              1.1
             ]
           ]
         ]
@@ -224,8 +230,8 @@
         "cost": 0,
         "overridable": true,
         "metadata": {
-          "penalty": 38.03,
-          "speed_limit": 60.0
+          "penalty": 46.58,
+          "speed_limit": 30.0
         }
       }
     },
@@ -236,12 +242,12 @@
         "coordinates": [
           [
             [
-              1.0,
-              0.0
+              4.42,
+              1.1
             ],
             [
-              2.4,
-              -0.5
+              5.6,
+              0.88
             ]
           ]
         ]
@@ -253,8 +259,8 @@
         "cost": 0,
         "overridable": true,
         "metadata": {
-          "penalty": 36.1,
-          "speed_limit": 60.0
+          "penalty": 40.37,
+          "speed_limit": 30.0
         }
       }
     },
@@ -265,12 +271,12 @@
         "coordinates": [
           [
             [
-              2.4,
-              -0.5
+              5.6,
+              0.88
             ],
             [
-              1.0,
-              0.0
+              4.42,
+              1.1
             ]
           ]
         ]
@@ -282,8 +288,8 @@
         "cost": 0,
         "overridable": true,
         "metadata": {
-          "penalty": 36.1,
-          "speed_limit": 60.0
+          "penalty": 40.37,
+          "speed_limit": 30.0
         }
       }
     },
@@ -294,12 +300,12 @@
         "coordinates": [
           [
             [
-              2.4,
-              1.0
+              5.453,
+              1.508
             ],
             [
-              3.4,
-              0.0
+              6.617,
+              1.1
             ]
           ]
         ]
@@ -311,7 +317,7 @@
         "cost": 0,
         "overridable": true,
         "metadata": {
-          "penalty": 9.04,
+          "penalty": 15.13,
           "speed_limit": 60.0
         }
       }
@@ -323,12 +329,12 @@
         "coordinates": [
           [
             [
-              3.4,
-              0.0
+              6.617,
+              1.1
             ],
             [
-              2.4,
-              1.0
+              5.453,
+              1.508
             ]
           ]
         ]
@@ -340,7 +346,7 @@
         "cost": 0,
         "overridable": true,
         "metadata": {
-          "penalty": 9.04,
+          "penalty": 15.13,
           "speed_limit": 60.0
         }
       }
@@ -352,12 +358,12 @@
         "coordinates": [
           [
             [
-              2.4,
-              -0.5
+              5.6,
+              0.88
             ],
             [
-              3.4,
-              0.0
+              6.617,
+              1.1
             ]
           ]
         ]
@@ -369,7 +375,7 @@
         "cost": 0,
         "overridable": true,
         "metadata": {
-          "penalty": 21.81,
+          "penalty": 14.87,
           "speed_limit": 60.0
         }
       }
@@ -381,12 +387,12 @@
         "coordinates": [
           [
             [
-              3.4,
-              0.0
+              6.617,
+              1.1
             ],
             [
-              2.4,
-              -0.5
+              5.6,
+              0.88
             ]
           ]
         ]
@@ -398,7 +404,7 @@
         "cost": 0,
         "overridable": true,
         "metadata": {
-          "penalty": 21.81,
+          "penalty": 14.87,
           "speed_limit": 60.0
         }
       }
@@ -410,12 +416,12 @@
         "coordinates": [
           [
             [
-              3.4,
-              0.0
+              6.617,
+              1.1
             ],
             [
-              4.8,
-              1.0
+              7.829,
+              1.41
             ]
           ]
         ]
@@ -427,7 +433,7 @@
         "cost": 0,
         "overridable": true,
         "metadata": {
-          "penalty": 0.97,
+          "penalty": 19.15,
           "speed_limit": 60.0
         }
       }
@@ -439,12 +445,12 @@
         "coordinates": [
           [
             [
-              4.8,
-              1.0
+              7.829,
+              1.41
             ],
             [
-              3.4,
-              0.0
+              6.617,
+              1.1
             ]
           ]
         ]
@@ -456,7 +462,7 @@
         "cost": 0,
         "overridable": true,
         "metadata": {
-          "penalty": 0.97,
+          "penalty": 19.15,
           "speed_limit": 60.0
         }
       }
@@ -468,12 +474,12 @@
         "coordinates": [
           [
             [
-              3.4,
-              0.0
+              6.617,
+              1.1
             ],
             [
-              4.8,
-              -0.5
+              7.942,
+              0.88
             ]
           ]
         ]
@@ -485,7 +491,7 @@
         "cost": 0,
         "overridable": true,
         "metadata": {
-          "penalty": 1.95,
+          "penalty": 18.88,
           "speed_limit": 60.0
         }
       }
@@ -497,12 +503,12 @@
         "coordinates": [
           [
             [
-              4.8,
-              -0.5
+              7.942,
+              0.88
             ],
             [
-              3.4,
-              0.0
+              6.617,
+              1.1
             ]
           ]
         ]
@@ -514,7 +520,7 @@
         "cost": 0,
         "overridable": true,
         "metadata": {
-          "penalty": 1.95,
+          "penalty": 18.88,
           "speed_limit": 60.0
         }
       }
@@ -526,12 +532,12 @@
         "coordinates": [
           [
             [
-              3.4,
-              0.0
+              6.617,
+              1.1
             ],
             [
-              6.7,
-              0.0
+              8.5,
+              1.1
             ]
           ]
         ]
@@ -543,7 +549,7 @@
         "cost": 0,
         "overridable": true,
         "metadata": {
-          "penalty": 0.97,
+          "penalty": 25.37,
           "speed_limit": 60.0
         }
       }
@@ -555,12 +561,12 @@
         "coordinates": [
           [
             [
-              6.7,
-              0.0
+              8.5,
+              1.1
             ],
             [
-              3.4,
-              0.0
+              6.617,
+              1.1
             ]
           ]
         ]
@@ -572,7 +578,7 @@
         "cost": 0,
         "overridable": true,
         "metadata": {
-          "penalty": 0.97,
+          "penalty": 25.37,
           "speed_limit": 60.0
         }
       }
@@ -584,12 +590,12 @@
         "coordinates": [
           [
             [
-              4.8,
-              1.0
+              7.829,
+              1.41
             ],
             [
-              6.7,
-              0.0
+              8.5,
+              1.1
             ]
           ]
         ]
@@ -600,7 +606,10 @@
         "endid": 7,
         "cost": 0,
         "overridable": true,
-        "metadata": {}
+        "metadata": {
+          "penalty": 19.48,
+          "speed_limit": 60.0
+        }
       }
     },
     {
@@ -610,12 +619,12 @@
         "coordinates": [
           [
             [
-              6.7,
-              0.0
+              8.5,
+              1.1
             ],
             [
-              4.8,
-              1.0
+              7.829,
+              1.41
             ]
           ]
         ]
@@ -626,7 +635,10 @@
         "endid": 5,
         "cost": 0,
         "overridable": true,
-        "metadata": {}
+        "metadata": {
+          "penalty": 19.48,
+          "speed_limit": 60.0
+        }
       }
     },
     {
@@ -636,12 +648,12 @@
         "coordinates": [
           [
             [
-              4.8,
-              -0.5
+              7.942,
+              0.88
             ],
             [
-              6.7,
-              0.0
+              8.5,
+              1.1
             ]
           ]
         ]
@@ -652,7 +664,10 @@
         "endid": 7,
         "cost": 0,
         "overridable": true,
-        "metadata": {}
+        "metadata": {
+          "penalty": 17.21,
+          "speed_limit": 60.0
+        }
       }
     },
     {
@@ -662,12 +677,12 @@
         "coordinates": [
           [
             [
-              6.7,
-              0.0
+              8.5,
+              1.1
             ],
             [
-              4.8,
-              -0.5
+              7.942,
+              0.88
             ]
           ]
         ]
@@ -678,7 +693,10 @@
         "endid": 6,
         "cost": 0,
         "overridable": true,
-        "metadata": {}
+        "metadata": {
+          "penalty": 17.21,
+          "speed_limit": 60.0
+        }
       }
     }
   ]

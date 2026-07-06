@@ -1,0 +1,175 @@
+{
+  "session_id": "session_2026-03-23_11-44-36",
+  "timestamp": "2026-03-23T09:44:47.717850+00:00",
+  "route_config": "route_config.yaml",
+  "route_name": "FIIR_corridor_sprint4",
+  "graph_file": "route_graph_fiir.geojson",
+  "start_node_id": 0,
+  "goal_node_id": 18,
+  "start_yaw_deg": 0.0,
+  "goal_yaw_deg": 0.0,
+  "route_alternatives": {},
+  "graph": {
+    "nodes": 24,
+    "coords": {
+      "0": {
+        "name": "toilet_m",
+        "x": 0.3,
+        "y": 0.0
+      },
+      "1": {
+        "name": "hall_entry",
+        "x": 0.3,
+        "y": 1.65
+      },
+      "2": {
+        "name": "hall_exit",
+        "x": 0.3,
+        "y": 3.2
+      },
+      "3": {
+        "name": "corridor_w_mid",
+        "x": 0.3,
+        "y": 4.8
+      },
+      "4": {
+        "name": "toilet_f",
+        "x": 0.3,
+        "y": 6.5
+      },
+      "5": {
+        "name": "cb204",
+        "x": 2.2,
+        "y": 4.8
+      },
+      "6": {
+        "name": "junction_w1",
+        "x": 2.2,
+        "y": 3.2
+      },
+      "7": {
+        "name": "junction_w2",
+        "x": 2.2,
+        "y": 1.65
+      },
+      "8": {
+        "name": "cb202",
+        "x": 2.2,
+        "y": 0.0
+      },
+      "9": {
+        "name": "radiator",
+        "x": 4.5,
+        "y": -0.8
+      },
+      "10": {
+        "name": "junction_s1",
+        "x": 4.5,
+        "y": 0.0
+      },
+      "11": {
+        "name": "junction_s2",
+        "x": 4.5,
+        "y": 1.65
+      },
+      "12": {
+        "name": "junction_s3",
+        "x": 4.5,
+        "y": 3.2
+      },
+      "13": {
+        "name": "plant_4",
+        "x": 7.7,
+        "y": 5.4
+      },
+      "14": {
+        "name": "plant_5",
+        "x": 6.55,
+        "y": 5.4
+      },
+      "15": {
+        "name": "junction_e1",
+        "x": 6.55,
+        "y": 4.8
+      },
+      "16": {
+        "name": "junction_e2",
+        "x": 6.55,
+        "y": 3.2
+      },
+      "17": {
+        "name": "junction_e3",
+        "x": 6.55,
+        "y": 1.65
+      },
+      "18": {
+        "name": "junction_e4",
+        "x": 6.55,
+        "y": 0.0
+      },
+      "19": {
+        "name": "plant_3",
+        "x": 6.55,
+        "y": -0.95
+      },
+      "20": {
+        "name": "plant_2",
+        "x": 7.0,
+        "y": -0.95
+      },
+      "21": {
+        "name": "plant_1",
+        "x": 7.5,
+        "y": -0.95
+      },
+      "22": {
+        "name": "cb203_entrance",
+        "x": 8.2,
+        "y": 1.65
+      },
+      "23": {
+        "name": "cb203_exit",
+        "x": 8.2,
+        "y": 3.67
+      }
+    }
+  },
+  "semantic": {
+    "objects_count": 0,
+    "objects_by_class": {},
+    "valid_count": 0,
+    "timestamp": "2026-03-23T09:44:37.784056+00:00"
+  },
+  "penalties_at_start": {
+    "150": 21.07,
+    "151": 21.07,
+    "158": 3.89,
+    "159": 3.89
+  },
+  "validation": {
+    "max_start_offset_m": 2.0,
+    "min_success_dist_m": 1.0,
+    "max_success_error_m": 2.0,
+    "min_success_duration_s": 3.0,
+    "max_consecutive_fails": 2
+  },
+  "params": {
+    "odom_topic": "/odom",
+    "sample_hz": 2.0,
+    "valid_classes": [
+      "backpack",
+      "bench",
+      "book",
+      "bottle",
+      "chair",
+      "cup",
+      "laptop",
+      "person",
+      "potted plant",
+      "radiator",
+      "suitcase",
+      "tv"
+    ],
+    "has_psutil": true
+  }
+}

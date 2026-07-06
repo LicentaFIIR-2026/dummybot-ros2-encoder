@@ -137,14 +137,14 @@ controller_server:
       time_steps: 30
       model_dt: 0.10
       batch_size: 350
-      vx_std: 0.2
+      vx_std: 0.15
       vy_std: 0.0
       wz_std: 0.3
       # SYNCED with diff_drive_controller limits
-      vx_max: 6.0
-      vx_min: -6.0
+      vx_max: 3.0
+      vx_min: -3.0
       vy_max: 0.0           # No lateral movement (diff-drive)
-      wz_max: 3.0
+      wz_max: 3.14
       ax_max: 6.0
       ax_min: -6.0
       ay_max: 0.0
@@ -463,8 +463,8 @@ velocity_smoother:
     feedback: "OPEN_LOOP"
     max_velocity: [0.5, 0.0, 3.14]   # SPEED: ERA [1.5, 0.0, 3.0] — match cu vx_max din MPPI
     min_velocity: [-0.3, 0.0, -3.14]  # SPEED: ERA [-1.5, 0.0, -3.0] — match cu vx_min
-    max_accel: [4.5, 0.0, 4.5]      # SPEED: ERA [3.0, 0.0, 3.5] — match cu ax_max
-    max_decel: [-4.5, 0.0, -4.5]    # SPEED: ERA [-3.0, 0.0, -3.5] — match cu ax_min
+    max_accel: [6.0, 0.0, 6.0]      # SPEED: ERA [3.0, 0.0, 3.5] — match cu ax_max
+    max_decel: [-6.0, 0.0, -6.0]    # SPEED: ERA [-3.0, 0.0, -3.5] — match cu ax_min
     odom_topic: "/odom"
     odom_duration: 0.1               # SPEED: ERA 0.15 — răspuns mai rapid
     deadband_velocity: [0.01, 0.0, 0.03]  # SPEED: ERA [0.02, 0.0, 0.05] — deadband mai mic

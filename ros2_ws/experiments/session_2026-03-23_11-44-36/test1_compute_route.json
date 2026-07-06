@@ -1,0 +1,41 @@
+{
+  "test_type": "compute_route",
+  "timestamp": "2026-03-23T09:44:47.730203+00:00",
+  "planning": {
+    "duration_ms": 10.41,
+    "points": 127,
+    "route_type": "DIRECT",
+    "route_nodes": [
+      0,
+      8,
+      10,
+      18
+    ],
+    "route_node_names": [
+      "toilet_m",
+      "cb202",
+      "junction_s1",
+      "junction_e4"
+    ],
+    "route_edges": [
+      100,
+      126,
+      130
+    ],
+    "route_cost": 6.25,
+    "penalties_per_edge": {
+      "100": 0.0,
+      "126": 0.0,
+      "130": 0.0
+    }
+  },
+  "details": {},
+  "semantic": {
+    "objects_count": 2,
+    "objects_by_class": {
+      "person": 2
+    },
+    "valid_count": 2,
+    "timestamp": "2026-03-23T09:44:43.699996+00:00"
+  }
+}

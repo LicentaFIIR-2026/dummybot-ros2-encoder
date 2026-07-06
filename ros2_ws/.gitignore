@@ -26,7 +26,6 @@ navigation_log.txt
 *.gv
 
 # External repos
-src/ros-mcp-server/
 
 # Backup files
 *~

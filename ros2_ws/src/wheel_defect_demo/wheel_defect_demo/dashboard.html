@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIONIS — Wheel Defect Monitor</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/5.3.4/mqtt.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --bg:        #0a0c10;
+    --surface:   #111318;
+    --border:    #1e2330;
+    --accent:    #00d4ff;
+    --warn:      #ff6b35;
+    --ok:        #00e676;
+    --text:      #e8eaf0;
+    --muted:     #4a5068;
+    --fl:        #00d4ff;
+    --fr:        #7c4dff;
+    --rl:        #ff6b35;
+    --rr:        #00e676;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    padding: 24px;
+  }
+
+  /* ── Header ── */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+  }
+
+  .logo span { color: var(--muted); font-weight: 400; }
+
+  .conn-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  .conn-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--muted);
+    transition: background 0.3s;
+  }
+
+  .conn-dot.connected { background: var(--ok); box-shadow: 0 0 8px var(--ok); }
+  .conn-dot.error     { background: var(--warn); box-shadow: 0 0 8px var(--warn); }
+
+  /* ── Grid ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+
+  .card-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .wheel-card {
+    border-top: 3px solid var(--muted);
+    transition: border-color 0.3s;
+  }
+
+  .wheel-card.FL { border-top-color: var(--fl); }
+  .wheel-card.FR { border-top-color: var(--fr); }
+  .wheel-card.RL { border-top-color: var(--rl); }
+  .wheel-card.RR { border-top-color: var(--rr); }
+
+  .wheel-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .wheel-unit {
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .wheel-status {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    background: rgba(0, 230, 118, 0.12);
+    color: var(--ok);
+    transition: all 0.3s;
+  }
+
+  .wheel-status.fault {
+    background: rgba(255, 107, 53, 0.15);
+    color: var(--warn);
+    animation: pulse-warn 1s ease-in-out infinite;
+  }
+
+  @keyframes pulse-warn {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.6; }
+  }
+
+  /* ── Defect banner ── */
+  .defect-banner {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 24px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .defect-banner.active {
+    border-color: var(--warn);
+    background: rgba(255, 107, 53, 0.06);
+  }
+
+  .defect-banner.done {
+    border-color: var(--ok);
+    background: rgba(0, 230, 118, 0.06);
+  }
+
+  .defect-icon {
+    font-size: 1.6rem;
+    min-width: 32px;
+    text-align: center;
+  }
+
+  .defect-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+
+  .defect-sub {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* ── Charts ── */
+  .chart-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .chart-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  canvas { max-height: 200px; }
+
+  /* ── cmd_vel cards ── */
+  .cmdvel-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .cmdvel-item { }
+
+  .cmdvel-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .cmdvel-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* ── Log ── */
+  .log-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 0;
+  }
+
+  .log-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  #log-list {
+    list-style: none;
+    max-height: 140px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  #log-list li {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    padding: 3px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  #log-list li .ts  { color: var(--accent); margin-right: 8px; }
+  #log-list li.warn { color: var(--warn); }
+  #log-list li.ok   { color: var(--ok); }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">AIONIS <span>/ Wheel Defect Monitor</span></div>
+  <div class="conn-badge">
+    <div class="conn-dot" id="conn-dot"></div>
+    <span id="conn-label">DISCONNECTED</span>
+  </div>
+</header>
+
+<!-- Defect banner -->
+<div class="defect-banner" id="defect-banner">
+  <div class="defect-icon" id="defect-icon">🟢</div>
+  <div>
+    <div class="defect-title" id="defect-title">SISTEM NORMAL</div>
+    <div class="defect-sub" id="defect-sub">Toate rotile functionale. Se asteapta date...</div>
+  </div>
+</div>
+
+<!-- Wheel speed cards -->
+<div class="grid">
+  <div class="card wheel-card FL">
+    <div class="card-label">Roata FL</div>
+    <div class="wheel-value" id="val-FL">—</div>
+    <div class="wheel-unit">rad/s</div>
+    <div class="wheel-status" id="status-FL">OK</div>
+  </div>
+  <div class="card wheel-card FR">
+    <div class="card-label">Roata FR</div>
+    <div class="wheel-value" id="val-FR">—</div>
+    <div class="wheel-unit">rad/s</div>
+    <div class="wheel-status" id="status-FR">OK</div>
+  </div>
+  <div class="card wheel-card RL">
+    <div class="card-label">Roata RL</div>
+    <div class="wheel-value" id="val-RL">—</div>
+    <div class="wheel-unit">rad/s</div>
+    <div class="wheel-status" id="status-RL">OK</div>
+  </div>
+  <div class="card wheel-card RR">
+    <div class="card-label">Roata RR</div>
+    <div class="wheel-value" id="val-RR">—</div>
+    <div class="wheel-unit">rad/s</div>
+    <div class="wheel-status" id="status-RR">OK</div>
+  </div>
+</div>
+
+<!-- Charts + cmd_vel -->
+<div class="grid-2">
+  <div class="chart-card">
+    <div class="chart-title">Viteze roți — istoric</div>
+    <canvas id="chart-wheels"></canvas>
+  </div>
+  <div class="chart-card">
+    <div class="chart-title">Comandă mișcare</div>
+    <div class="cmdvel-row">
+      <div class="cmdvel-item">
+        <div class="cmdvel-label">Viteză liniară</div>
+        <div class="cmdvel-value" id="cv-linear">— m/s</div>
+      </div>
+      <div class="cmdvel-item">
+        <div class="cmdvel-label">Viteză unghiulară</div>
+        <div class="cmdvel-value" id="cv-angular">— rad/s</div>
+      </div>
+    </div>
+    <canvas id="chart-cmdvel" style="margin-top:16px"></canvas>
+  </div>
+</div>
+
+<!-- Log -->
+<div class="log-card">
+  <div class="log-title">Event log</div>
+  <ul id="log-list"></ul>
+</div>
+
+<script>
+// ── Config ──────────────────────────────────────────────────────────────────
+const BROKER_WS = 'ws://192.168.53.159:9001';
+const TOPICS = {
+  wheels: 'aionis/wheel_velocities',
+  defect: 'aionis/defect_status',
+  cmdvel: 'aionis/cmd_vel',
+};
+
+const MAX_POINTS = 60;
+
+// ── State ────────────────────────────────────────────────────────────────────
+const wheelColors = { FL: '#00d4ff', FR: '#7c4dff', RL: '#ff6b35', RR: '#00e676' };
+const history = {
+  labels: [],
+  FL: [], FR: [], RL: [], RR: [],
+  linear: [], angular: [],
+};
+let defectWheels = new Set();
+
+// ── Charts ───────────────────────────────────────────────────────────────────
+const chartCfgBase = {
+  type: 'line',
+  options: {
+    animation: false,
+    responsive: true,
+    plugins: { legend: { display: true, labels: { color: '#4a5068', font: { family: 'Space Mono', size: 10 } } } },
+    scales: {
+      x: { display: false },
+      y: { grid: { color: '#1e2330' }, ticks: { color: '#4a5068', font: { family: 'Space Mono', size: 10 } } }
+    }
+  }
+};
+
+const wheelChart = new Chart(document.getElementById('chart-wheels'), {
+  ...chartCfgBase,
+  data: {
+    labels: history.labels,
+    datasets: ['FL','FR','RL','RR'].map(w => ({
+      label: w,
+      data: history[w],
+      borderColor: wheelColors[w],
+      backgroundColor: wheelColors[w] + '18',
+      borderWidth: 2,
+      pointRadius: 0,
+      tension: 0.3,
+      fill: false,
+    }))
+  }
+});
+
+const cmdvelChart = new Chart(document.getElementById('chart-cmdvel'), {
+  ...chartCfgBase,
+  data: {
+    labels: history.labels,
+    datasets: [
+      { label: 'linear', data: history.linear, borderColor: '#00d4ff', borderWidth: 2, pointRadius: 0, tension: 0.3, fill: false },
+      { label: 'angular', data: history.angular, borderColor: '#ff6b35', borderWidth: 2, pointRadius: 0, tension: 0.3, fill: false },
+    ]
+  }
+});
+
+// ── Log ───────────────────────────────────────────────────────────────────────
+function addLog(msg, cls = '') {
+  const li = document.createElement('li');
+  if (cls) li.classList.add(cls);
+  const ts = new Date().toLocaleTimeString('ro-RO', { hour12: false });
+  li.innerHTML = `<span class="ts">${ts}</span>${msg}`;
+  const list = document.getElementById('log-list');
+  list.prepend(li);
+  if (list.children.length > 50) list.removeChild(list.lastChild);
+}
+
+// ── Wheel cards ───────────────────────────────────────────────────────────────
+function updateWheelCard(wheel, velocity, isFault) {
+  document.getElementById(`val-${wheel}`).textContent = velocity.toFixed(3);
+  const statusEl = document.getElementById(`status-${wheel}`);
+  if (isFault) {
+    statusEl.textContent = 'DEFECT';
+    statusEl.classList.add('fault');
+  } else {
+    statusEl.textContent = 'OK';
+    statusEl.classList.remove('fault');
+  }
+}
+
+// ── Defect banner ─────────────────────────────────────────────────────────────
+function updateBanner(status) {
+  const banner = document.getElementById('defect-banner');
+  const icon   = document.getElementById('defect-icon');
+  const title  = document.getElementById('defect-title');
+  const sub    = document.getElementById('defect-sub');
+
+  banner.classList.remove('active', 'done');
+
+  if (status.startsWith('DEFECT_ACTIVE')) {
+    const wheel = status.split(':')[1] || '?';
+    banner.classList.add('active');
+    icon.textContent  = '⚠️';
+    title.textContent = `DEFECT DETECTAT — Roata ${wheel}`;
+    sub.textContent   = 'Compensatorul este activ. Se corecteaza traiectoria...';
+    addLog(`Defect confirmat pe roata ${wheel}`, 'warn');
+  } else if (status === 'DONE') {
+    banner.classList.add('done');
+    icon.textContent  = '✅';
+    title.textContent = 'MISIUNE FINALIZATA';
+    sub.textContent   = 'Robotul a parcurs distanta tinta. Sistem oprit.';
+    addLog('Misiune finalizata.', 'ok');
+  } else {
+    icon.textContent  = '🟢';
+    title.textContent = 'SISTEM NORMAL';
+    sub.textContent   = 'Toate rotile functionale.';
+  }
+}
+
+// ── MQTT ──────────────────────────────────────────────────────────────────────
+const client = mqtt.connect(BROKER_WS);
+
+client.on('connect', () => {
+  document.getElementById('conn-dot').classList.add('connected');
+  document.getElementById('conn-label').textContent = 'CONNECTED';
+  addLog('Conectat la broker MQTT.', 'ok');
+  Object.values(TOPICS).forEach(t => client.subscribe(t));
+});
+
+client.on('error', (err) => {
+  document.getElementById('conn-dot').classList.remove('connected');
+  document.getElementById('conn-dot').classList.add('error');
+  document.getElementById('conn-label').textContent = 'ERROR';
+  addLog('Eroare MQTT: ' + err.message, 'warn');
+});
+
+client.on('close', () => {
+  document.getElementById('conn-dot').classList.remove('connected');
+  document.getElementById('conn-label').textContent = 'DISCONNECTED';
+});
+
+client.on('message', (topic, message) => {
+  try {
+    const data = JSON.parse(message.toString());
+
+    if (topic === TOPICS.wheels) {
+      const v = data.velocities || {};
+      const ts = new Date().toLocaleTimeString('ro-RO', { hour12: false });
+
+      history.labels.push(ts);
+      ['FL','FR','RL','RR'].forEach(w => history[w].push(v[w] ?? 0));
+
+      if (history.labels.length > MAX_POINTS) {
+        history.labels.shift();
+        ['FL','FR','RL','RR'].forEach(w => history[w].shift());
+      }
+
+      ['FL','FR','RL','RR'].forEach(w => {
+        updateWheelCard(w, v[w] ?? 0, defectWheels.has(w));
+      });
+
+      wheelChart.update();
+    }
+
+    else if (topic === TOPICS.defect) {
+      const status = data.status || '';
+      updateBanner(status);
+
+      defectWheels.clear();
+      if (status.startsWith('DEFECT_ACTIVE')) {
+        const wheel = status.split(':')[1];
+        if (wheel) defectWheels.add(wheel);
+      }
+    }
+
+    else if (topic === TOPICS.cmdvel) {
+      const lin = data.original?.linear  ?? 0;
+      const ang = data.original?.angular ?? 0;
+
+      document.getElementById('cv-linear').textContent  = lin.toFixed(3) + ' m/s';
+      document.getElementById('cv-angular').textContent = ang.toFixed(3) + ' rad/s';
+
+      history.linear.push(lin);
+      history.angular.push(ang);
+      if (history.linear.length > MAX_POINTS) {
+        history.linear.shift();
+        history.angular.shift();
+      }
+      cmdvelChart.update();
+    }
+
+  } catch(e) {
+    console.error('Parse error:', e);
+  }
+});
+</script>
+</body>
+</html>

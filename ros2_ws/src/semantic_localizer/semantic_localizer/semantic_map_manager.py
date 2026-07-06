@@ -77,8 +77,8 @@ def classify_mobility(class_name: str) -> str:
 
 DEFAULT_PENALTIES = {
     'dynamic': 50.0,     # person → very high penalty, strongly prefer alternate
-    'static': 15.0,      # chair → significant penalty
-    'minor': 5.0,        # bottle → meaningful penalty (was 0.5 — too low for routing)
+    'static': 2.0,      # chair → significant penalty
+    'minor': 0.5,        # bottle → meaningful penalty (was 0.5 — too low for routing)
 }
 
 DEFAULT_SPEED_LIMITS = {

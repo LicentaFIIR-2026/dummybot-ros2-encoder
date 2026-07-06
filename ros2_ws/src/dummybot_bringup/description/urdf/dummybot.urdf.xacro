@@ -15,19 +15,19 @@
   <!-- ============================================ -->
   
   <!-- Roți -->
-  <xacro:property name="wheel_radius" value="0.0345"/>     <!-- 69mm diametru / 2 -->
-  <xacro:property name="wheel_width" value="0.028"/>       <!-- 28mm grosime -->
+  <xacro:property name="wheel_radius" value="0.0555"/>     <!-- 69mm diametru / 2 -->
+  <xacro:property name="wheel_width" value="0.0450"/>       <!-- 28mm grosime -->
   
   <!-- Distanțe între roți -->
-  <xacro:property name="wheelbase" value="0.400"/>         <!-- FR-FL distanță FAȚĂ-SPATE (37.4cm) -->
+  <xacro:property name="wheelbase" value="0.425"/>         <!-- FR-FL distanță FAȚĂ-SPATE (37.4cm) -->
   <xacro:property name="track_width" value="0.390"/>       <!-- FR-RR distanță LATERALĂ (39cm) -->
   
   <!-- Chassis -->
   <xacro:property name="chassis_length" value="0.495"/>    <!-- 36cm pe X (față-spate, "lățimea" ta) -->
-  <xacro:property name="chassis_width" value="0.362"/>     <!-- 46.5cm pe Y (lateral, "lungimea" ta) -->
+  <xacro:property name="chassis_width" value="0.365"/>     <!-- 46.5cm pe Y (lateral, "lungimea" ta) -->
   <xacro:property name="chassis_height" value="0.142"/>    <!-- 16cm înălțime (Z) -->
   
-  <xacro:property name="ground_clearance" value="0.050"/>  <!-- 5cm de la sol la baza chassis -->
+  <xacro:property name="ground_clearance" value="0.070"/>  <!-- 5cm de la sol la baza chassis -->
   
   <!-- Poziționare roți față de chassis -->
   <!-- FR/FL la 5cm de față → +36/2 - 5 = +13cm = +0.13m -->
@@ -40,8 +40,8 @@
   <!-- Centru roți spate: -37.4/2 = -18.7cm -->
   <xacro:property name="front_wheel_x" value="0.195"/>     <!-- +18.7cm -->
   <xacro:property name="rear_wheel_x" value="-0.195"/>     <!-- -18.7cm -->
-  <xacro:property name="left_wheel_y" value="0.200"/>     <!-- +18.7cm -->
-  <xacro:property name="right_wheel_y" value="-0.200"/>     <!-- -18.7cm -->
+  <xacro:property name="left_wheel_y" value="0.210"/>     <!-- +18.7cm -->
+  <xacro:property name="right_wheel_y" value="-0.210"/>     <!-- -18.7cm -->
 
   <!-- Offset vertical roți: centru la 5.8cm de sol, minus ground_clearance de 5cm -->
   <xacro:property name="wheel_z_offset" value="0.008"/>    <!-- 5.8cm - 5cm = 0.8cm -->
@@ -62,13 +62,13 @@
   <!-- ESP32 Hardware Interface -->
   <xacro:property name="serial_port" value="/dev/ttyUSB0"/>
   <xacro:property name="serial_baud" value="115200"/>
-  <xacro:property name="ticks_per_revolution" value="1245"/>
+  <xacro:property name="ticks_per_revolution" value="2400"/> <!--1245-->
   
   <!-- PID Controller Parameters (INT pentru ESP32, ordine: kp kd ki ko) -->
-  <xacro:property name="pid_kp" value="140"/>
-  <xacro:property name="pid_kd" value="20"/>
-  <xacro:property name="pid_ki" value="100"/>
-  <xacro:property name="pid_ko" value="20"/>
+  <xacro:property name="pid_kp" value="100"/>
+  <xacro:property name="pid_kd" value="25"/>
+  <xacro:property name="pid_ki" value="40"/>
+  <xacro:property name="pid_ko" value="25"/>
   
   <!-- Calibration Factors (FLOAT) -->
   <xacro:property name="calibration_fl" value="1.0"/>
@@ -149,7 +149,7 @@
       </collision>
       <inertial>
         <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
-        <mass value="0.5"/>
+        <mass value="0.133"/>
         <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
                 iyy="0.0001" iyz="0.0"
                 izz="0.0001"/>
@@ -224,7 +224,7 @@
     <joint name="camera_joint" type="fixed">
         <parent link="base_link"/>
         <child link="camera_link"/>
-        <origin xyz="0.225 0 0.140" rpy="0 0 0"/>
+        <origin xyz="0.280 0 0.160" rpy="0 0 0"/>
     </joint>
 
   <link name="camera_link">

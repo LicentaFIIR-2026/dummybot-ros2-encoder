@@ -1,0 +1,17 @@
+# =============================================================================
+# xplorer_mcp_bridge — HTTP Context Server
+# Expune pose, camera si graph semantic catre VLM/MCP layer
+# =============================================================================
+
+xplorer_mcp_bridge:
+  ros__parameters:
+    # --- Server HTTP ---
+    http_port: 8080
+
+    # --- Fisiere GeoJSON (paths absolute) ---
+    route_graph_path: '/home/saim/dummybot-ros2-encoder/ros2_ws/maps/route_graph_fiir.geojson'
+    semantic_objects_path: '/home/saim/dummybot-ros2-encoder/ros2_ws/maps/semantic_objects.geojson'
+
+    # --- Topics ROS2 ---
+    camera_topic: '/camera/image_raw/compressed'
+    pose_topic: '/amcl_pose'

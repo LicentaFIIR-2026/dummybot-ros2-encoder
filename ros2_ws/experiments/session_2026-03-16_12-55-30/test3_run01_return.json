@@ -1,0 +1,192 @@
+{
+  "test_type": "adaptive_return",
+  "run_number": 1,
+  "timestamp": "2026-03-16T10:58:06.202584+00:00",
+  "robot_start_pose": [
+    1.4757,
+    0.0254,
+    -0.1717
+  ],
+  "start_offset_m": 0.476,
+  "replanning": {
+    "segments": [
+      {
+        "segment": 1,
+        "timestamp": "2026-03-16T10:58:05.701346+00:00",
+        "plan_ms": 0,
+        "route_type": "AT_GOAL",
+        "route_nodes": [],
+        "route_edges": [],
+        "route_cost": 0,
+        "penalties": {},
+        "reason": "at_goal",
+        "outcome": "success"
+      }
+    ],
+    "total_reroutes": 0,
+    "final_route": [],
+    "outcome": "success"
+  },
+  "route_analysis": {
+    "initial_route": [],
+    "final_route": [],
+    "initial_route_type": "AT_GOAL",
+    "route_changed": false,
+    "planning_total_ms": 0,
+    "n_segments": 1
+  },
+  "timing": {
+    "prescan_duration_s": 0.0,
+    "navigation_duration_s": 0.632,
+    "total_duration_s": 0.632
+  },
+  "execution": {
+    "duration_s": 0.632,
+    "nav2_success": true,
+    "validated_success": false,
+    "distance_traveled_m": 0.0,
+    "avg_velocity_ms": 0.0,
+    "max_velocity_ms": 0.0,
+    "final_pose": [
+      -3.924,
+      -2.2066,
+      -3.1189
+    ],
+    "trajectory_points": 2,
+    "xy_error_m": 0.4764,
+    "yaw_error_rad": 0.1717
+  },
+  "trajectory": [
+    [
+      1.4757,
+      0.0254,
+      3897.828
+    ],
+    [
+      1.4757,
+      0.0254,
+      3898.357
+    ]
+  ],
+  "trajectory_odom": [
+    [
+      -3.924,
+      -2.2066,
+      3897.828
+    ],
+    [
+      -3.924,
+      -2.2066,
+      3898.357
+    ]
+  ],
+  "min_object_distance": {
+    "min_distance_m": 0.619,
+    "closest_class": "potted plant"
+  },
+  "penalties_before": {
+    "10": 8.81,
+    "11": 8.81,
+    "12": 12.4,
+    "13": 12.4,
+    "14": 9.17,
+    "15": 9.17,
+    "16": 5.99,
+    "17": 5.99,
+    "18": 7.21,
+    "19": 7.21,
+    "20": 8.16,
+    "21": 8.16,
+    "22": 1.62,
+    "23": 1.62,
+    "24": 4.04,
+    "25": 4.04,
+    "26": 7.23,
+    "27": 7.23,
+    "28": 0.85,
+    "29": 0.85
+  },
+  "penalties_after": {
+    "10": 8.81,
+    "11": 8.81,
+    "12": 12.4,
+    "13": 12.4,
+    "14": 9.17,
+    "15": 9.17,
+    "16": 5.99,
+    "17": 5.99,
+    "18": 7.21,
+    "19": 7.21,
+    "20": 8.16,
+    "21": 8.16,
+    "22": 1.62,
+    "23": 1.62,
+    "24": 4.04,
+    "25": 4.04,
+    "26": 7.23,
+    "27": 7.23,
+    "28": 0.85,
+    "29": 0.85
+  },
+  "system_metrics": {
+    "samples": 1,
+    "duration_s": 0,
+    "cpu": {
+      "mean": 40.2,
+      "max": 40.2,
+      "min": 40.2,
+      "std": 0.0
+    },
+    "memory": {
+      "mean": 13.5,
+      "max": 13.5,
+      "min": 13.5,
+      "std": 0.0
+    },
+    "swap": {
+      "mean": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "std": 0.0
+    },
+    "cpu_temp": {
+      "mean": 68.3,
+      "max": 68.3,
+      "min": 68.3,
+      "std": 0.0
+    },
+    "battery_start": -1.0,
+    "battery_end": -1.0,
+    "time_series": [
+      {
+        "t": 1773658685.07,
+        "cpu_pct": 40.2,
+        "mem_pct": 13.5,
+        "swap_pct": 0.0,
+        "disk_pct": 6.8,
+        "cpu_temp_c": 68.3,
+        "battery_pct": -1.0,
+        "cpu_per_core": [
+          40.3,
+          40.1,
+          39.7,
+          40.8
+        ]
+      }
+    ]
+  },
+  "semantic": {
+    "objects_count": 2,
+    "objects_by_class": {
+      "potted plant": 1,
+      "dining table": 1
+    },
+    "valid_count": 1,
+    "timestamp": "2026-03-16T10:56:09.100256+00:00"
+  },
+  "spin_before": {
+    "duration_s": 5.14,
+    "success": true,
+    "delta_deg": 166.6
+  }
+}

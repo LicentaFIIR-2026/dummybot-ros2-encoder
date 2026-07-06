@@ -1,0 +1,56 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "description": "SAIM Xplorer Semantic Object Map",
+    "frame": "map",
+    "generated_by": "semantic_localizer",
+    "last_updated": "2026-03-16T10:56:09.100256+00:00",
+    "object_count": 2
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.0858,
+          0.129
+        ]
+      },
+      "properties": {
+        "obj_id": "potted plant_0",
+        "class_name": "potted plant",
+        "class_id": 58,
+        "mobility": "static",
+        "confidence": 0.905,
+        "observation_count": 10,
+        "best_score": 43.41,
+        "first_seen": "2026-03-16T10:55:50.772682+00:00",
+        "last_seen": "2026-03-16T10:55:50.774314+00:00",
+        "ttl_seconds": -1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.1362,
+          1.0736
+        ]
+      },
+      "properties": {
+        "obj_id": "dining table_1",
+        "class_name": "dining table",
+        "class_id": 60,
+        "mobility": "static",
+        "confidence": 0.566,
+        "observation_count": 2,
+        "best_score": 9.71,
+        "first_seen": "2026-03-16T10:55:50.774326+00:00",
+        "last_seen": "2026-03-16T10:55:50.775451+00:00",
+        "ttl_seconds": -1.0
+      }
+    }
+  ]
+}

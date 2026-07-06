@@ -1,0 +1,78 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "description": "SAIM Xplorer Semantic Object Map",
+    "frame": "map",
+    "generated_by": "semantic_localizer",
+    "last_updated": "2026-03-16T10:27:35.879375+00:00",
+    "object_count": 3
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.8116,
+          0.3184
+        ]
+      },
+      "properties": {
+        "obj_id": "person_0",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.523,
+        "observation_count": 4,
+        "best_score": 1.803,
+        "first_seen": "2026-03-16T10:27:25.509070+00:00",
+        "last_seen": "2026-03-16T10:27:25.510161+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.0182,
+          0.0002
+        ]
+      },
+      "properties": {
+        "obj_id": "person_1",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.76,
+        "observation_count": 46,
+        "best_score": 5.466,
+        "first_seen": "2026-03-16T10:27:25.938155+00:00",
+        "last_seen": "2026-03-16T10:27:32.894280+00:00",
+        "ttl_seconds": 60.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7926,
+          -0.9697
+        ]
+      },
+      "properties": {
+        "obj_id": "person_2",
+        "class_name": "person",
+        "class_id": 0,
+        "mobility": "dynamic",
+        "confidence": 0.554,
+        "observation_count": 1,
+        "best_score": 0.491,
+        "first_seen": "2026-03-16T10:27:29.418459+00:00",
+        "last_seen": "2026-03-16T10:27:29.418459+00:00",
+        "ttl_seconds": 60.0
+      }
+    }
+  ]
+}

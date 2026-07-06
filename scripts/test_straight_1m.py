@@ -18,7 +18,7 @@ class StraightLineTest(Node):
         # Publică direct pe topic-ul controller-ului
         self.cmd_pub = self.create_publisher(
             TwistStamped, 
-            '/diff_drive_controller/cmd_vel', 
+            '/cmd_vel', 
             10
         )
         self.get_logger().info('Using TwistStamped for /diff_drive_controller/cmd_vel')
@@ -26,7 +26,7 @@ class StraightLineTest(Node):
         # Subscribe la odometrie
         self.odom_sub = self.create_subscription(
             Odometry,
-            '/diff_drive_controller/odom',
+            '/odom',
             self.odom_callback,
             10
         )
