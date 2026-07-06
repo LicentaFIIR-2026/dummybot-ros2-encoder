@@ -1,0 +1,15 @@
+Dbg [parser.cc:1086] Converting a deprecated source[/tmp/nav2_j2as5z4h.sdf].
+Dbg [Converter.cc:116] Version[1.6] to Version[1.11]
+  Please use the gz sdf tool to update your SDF files.
+    $ gz sdf -c [sdf_file]
+Dbg [parser.cc:1086] Converting a deprecated source[/opt/ros/jazzy/share/nav2_minimal_tb3_sim/models/turtlebot3_world/model.sdf].
+Dbg [Converter.cc:116] Version[1.5] to Version[1.11]
+  Please use the gz sdf tool to update your SDF files.
+    $ gz sdf -c [sdf_file]
+Dbg [parser.cc:1086] Converting a deprecated source[<data-string>].
+Dbg [Converter.cc:116] Version[1.6] to Version[1.11]
+  Please use the gz sdf tool to update your SDF files.
+    $ gz sdf -c [sdf_file]
+Warning [Utils.cc:132] [/sdf/model[@name="turtlebot3_waffle"]/link[@name="imu_link"]/sensor[@name="tb3_imu"]/gz_frame_id:<data-string>:L49]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+Warning [Utils.cc:132] [/sdf/model[@name="turtlebot3_waffle"]/link[@name="base_scan"]/sensor[@name="hls_lfcd_lds"]/gz_frame_id:<data-string>:L134]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+Warning [Utils.cc:132] [/sdf/model[@name="turtlebot3_waffle"]/link[@name="camera_link"]/sensor[@name="intel_realsense_r200_depth"]/gz_frame_id:<data-string>:L361]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].

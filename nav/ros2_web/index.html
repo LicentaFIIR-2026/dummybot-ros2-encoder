@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Robot ROS 2</title>
+    <script src="https://cdn.jsdelivr.net/npm/roslib/build/roslib.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        .control-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            font-size: 20px;
+            padding: 15px 30px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .stop {
+            background-color: red;
+        }
+        .stop:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <h1>Control Robot ROS 2</h1>
+
+    <div class="control-panel">
+        <div class="row">
+            <button onclick="sendCommand(0.2, 0)">Înainte</button>
+            </div>
+        <div class="row">
+            <button onclick="sendCommand(0, 0.5)">Stânga</button>
+            <button class="stop" onclick="sendCommand(0, 0)">STOP</button>
+            <button onclick="sendCommand(0, -0.5)">Dreapta</button>
+        </div>
+        <div class="row">
+            <button onclick="sendCommand(-0.2, 0)">Înapoi</button>
+        </div>
+    </div>
+
+    <script>
+        // Conectare la Rosbridge WebSocket
+        var ros = new ROSLIB.Ros({
+            url: 'ws://10.2.0.1:9090'  // Înlocuiește cu IP-ul Raspberry Pi
+        });
+
+        ros.on('connection', function() {
+            console.log('Conectat la ROS2 via WebSocket');
+        });
+
+        ros.on('error', function(error) {
+            console.log('Eroare: ', error);
+        });
+
+        ros.on('close', function() {
+            console.log('Deconectat de la ROS2');
+        });
+
+        // Creare publisher pentru /cmd_vel_stamped
+        var cmdVelStamped = new ROSLIB.Topic({
+            ros: ros,
+            name: '/cmd_vel',
+            messageType: 'geometry_msgs/TwistStamped'
+        });
+
+        function getCurrentTime() {
+            var now = new Date();
+            return {
+                sec: Math.floor(now.getTime() / 1000),
+                nanosec: (now.getTime() % 1000) * 1000000
+            };
+        }
+
+        function sendCommand(linearX, angularZ) {
+            var timestamp = getCurrentTime();
+
+            var twistStamped = new ROSLIB.Message({
+                header: {
+                    stamp: timestamp,
+                    frame_id: "base_link"
+                },
+                twist: {
+                    linear: { x: linearX, y: 0, z: 0 },
+                    angular: { x: 0, y: 0, z: angularZ }
+                }
+            });
+
+            cmdVelStamped.publish(twistStamped);
+        }
+    </script>
+
+</body>
+</html>

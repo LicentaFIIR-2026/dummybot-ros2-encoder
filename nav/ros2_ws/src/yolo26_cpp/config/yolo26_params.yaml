@@ -1,0 +1,10 @@
+yolo26_detector:
+  ros__parameters:
+    model_path: '/home/saim/yolo26/yolo26n_ncnn_model'
+    input_size: 416
+    confidence_threshold: 0.5
+    num_threads: 4
+    image_topic: '/camera/image_raw'
+    detections_topic: '/yolo26/detections'
+    max_detection_rate: 15.0
+    class_filter: []

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>TurtleBot Control</title>
+
+   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/eventemitter2@6.4.9/lib/eventemitter2.min.js"></script>
+
+   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/roslib/0.22.2/roslib.min.js"></script>
+
+        <style>
+
+        .container {
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            height: 100vh;
+
+        }
+
+
+
+        .direction-buttons {
+
+            display: flex;
+
+            flex-direction: row;
+
+        }
+
+
+
+        button {
+
+            margin: 5px;
+
+            padding: 10px 20px;
+
+            font-size: 16px;
+
+        }
+
+
+
+        #stop {
+
+            background-color: red;
+
+            color: white;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>TurtleBot Control</h1>
+
+        <div class="direction-buttons">
+
+            <button id="forward">Forward</button>
+
+        </div>
+
+        <div class="direction-buttons">
+
+            <button id="left">Left</button>
+
+            <button id="stop">Stop</button>
+
+            <button id="right">Right</button>
+
+        </div>
+
+        <div class="direction-buttons">
+
+            <button id="backward">Backward</button>
+
+        </div>
+
+    </div>
+
+<!--/head>
+
+<body>
+
+    <h1>TurtleBot Control</h1>
+
+    <button id="forward">Forward</button>
+
+    <button id="backward">Backward</button>
+
+    <button id="left">Left</button>
+
+    <button id="right">Right</button>
+
+    <button id="right">Stop</button-->
+
+
+
+    <script type="text/javascript" type="text/javascript">
+
+  10   // Connecting to ROS
+
+  11   // -----------------
+
+        const ros = new ROSLIB.Ros({
+
+            url: 'ws://localhost:9090'
+
+        });
+
+
+
+        ros.on('connection', () => {
+
+            console.log('Connected to ROS Bridge.');
+
+        });
+
+
+
+        ros.on('error', (error) => {
+
+            console.error('Error connecting to ROS Bridge:', error);
+
+        });
+
+
+
+        ros.on('close', () => {
+
+            console.log('Disconnected from ROS Bridge.');
+
+        });
+
+
+
+        function sendCommand(command) {
+
+            const cmdVel = new ROSLIB.Topic({
+
+                ros: ros,
+
+                name: '/cmd_vel',
+
+                messageType: 'geometry_msgs/Twist'
+
+            });
+
+
+
+            const twist = new ROSLIB.Message({
+
+                linear: { x: command.linear, y: 0.0, z: 0.0 },
+
+                angular: { x: 0.0, y: 0.0, z: command.angular }
+
+            });
+
+
+
+            cmdVel.publish(twist);
+
+        }
+
+
+
+        document.getElementById('forward').onclick = () => {
+
+            sendCommand({ linear: 0.5, angular: 0.0 });
+
+        };
+
+
+
+        document.getElementById('backward').onclick = () => {
+
+            sendCommand({ linear: -0.5, angular: 0 });
+
+        };
+
+
+
+        document.getElementById('left').onclick = () => {
+
+            sendCommand({ linear: 0.0, angular: 0.5 });
+
+        };
+
+
+
+        document.getElementById('right').onclick = () => {
+
+            sendCommand({ linear: 0.0, angular: 0.5 });
+
+        };
+
+        
+
+        document.getElementById('stop').onclick = () => {
+
+            sendCommand({ linear: 0.0, angular: 0.0 });
+
+        };
+
+    </script>
+
+</body>
+
+</html>
